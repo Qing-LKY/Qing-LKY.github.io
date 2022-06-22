@@ -162,6 +162,92 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/22/%E5%B0%8F%E9%BB%84%E9%B8%AD%E7%BB%8F%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Qing-LKY">
+      <meta itemprop="description" content="可爱就是正义！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小乖乖的妙妙屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/22/%E5%B0%8F%E9%BB%84%E9%B8%AD%E7%BB%8F%E9%AA%8C/" class="post-title-link" itemprop="url">小黄鸭经验</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-22 13:24:33 / 修改时间：14:05:28" itemprop="dateCreated datePublished" datetime="2022-06-22T13:24:33+08:00">2022-06-22</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%AB%9E%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">竞赛</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="傻逼错误"><a href="#傻逼错误" class="headerlink" title="傻逼错误"></a>傻逼错误</h2><p>此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。</p>
+<ol>
+<li>注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n n。</li>
+<li>小心 1 和 ‘1’，这是一个情急下很容易写错且难以意识到的问题。</li>
+<li>注意多测的清空，尤其是多测下前向星数组的 head 和 cc。</li>
+<li>注意数组的初始化。特别是 dp 的时候如果懒得写边界特判的时候。</li>
+<li>注意 continue 的位置。如果你只是想跳过中间的某一段代码，后面还有另外的要执行，就不能 continue。这个问题在一开始没有考虑清楚逻辑，后续补上其它代码段时非常容易出现。</li>
+<li>记得删 freopen。</li>
+<li>小心 i*j n*i 之类的东西爆 int。</li>
+<li>线段树大小是 0 的 build 会死循环。小心边界特判。</li>
+<li>queue 的初始化非常的慢，空间非常的玄学，不要开大的 queue 数组。</li>
+</ol>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><ol>
+<li>理清程序逻辑</li>
+<li>看清题目要求（<strong>例如昆明那道面积覆盖的矩形，写成了格点覆盖，死活没想到这个问题痛失银牌</strong>）</li>
+<li>注意边界特判</li>
+<li>检查傻逼错误（变量名、多测清空、初始化等）</li>
+<li>对于复杂度玄学的 dp，尝试尽可能减少状态比卡常更有效</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -412,20 +498,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
