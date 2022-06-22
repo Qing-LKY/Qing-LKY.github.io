@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="个人简介 来自武汉大学国家网络安全学院本科 20 级。高中就读于汕头金中。ACMer。 活跃账号    平台 账号名     GitHub Qing-LKY   Codeforces Qing_LKYi   Acraea capoo555    友情链接 Xinyang&#39;s Blog Ctrl-newbee">
+  <meta name="description" content="个人简介 来自武汉大学国家网络安全学院本科 20 级。高中就读于汕头金中。ACMer。 活跃账号        平台 账号名     GitHub Qing-LKY   Codeforces Qing_LKYi   Acraea capoo555    友情链接 Xinyang&#39;s Blog Ctrl-newbee">
 <meta property="og:type" content="website">
 <meta property="og:title" content="关于">
 <meta property="og:url" content="http://example.com/about/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="个人简介 来自武汉大学国家网络安全学院本科 20 级。高中就读于汕头金中。ACMer。 活跃账号    平台 账号名     GitHub Qing-LKY   Codeforces Qing_LKYi   Acraea capoo555    友情链接 Xinyang&#39;s Blog Ctrl-newbee">
+<meta property="og:description" content="个人简介 来自武汉大学国家网络安全学院本科 20 级。高中就读于汕头金中。ACMer。 活跃账号        平台 账号名     GitHub Qing-LKY   Codeforces Qing_LKYi   Acraea capoo555    友情链接 Xinyang&#39;s Blog Ctrl-newbee">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-20T15:52:39.000Z">
 <meta property="article:modified_time" content="2022-06-22T09:35:25.142Z">
@@ -189,9 +189,14 @@
       
       <div class="post-body">
           <h2 id="个人简介">个人简介</h2>
-<p>来自武汉大学国家网络安全学院本科 20 级。高中就读于汕头金中。ACMer。</p>
+<p>来自武汉大学国家网络安全学院本科 20
+级。高中就读于汕头金中。ACMer。</p>
 <h2 id="活跃账号">活跃账号</h2>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: center;">平台</th>
@@ -201,11 +206,13 @@
 <tbody>
 <tr class="odd">
 <td style="text-align: center;"><strong>GitHub</strong></td>
-<td style="text-align: center;"><a target="_blank" rel="noopener" href="https://github.com/Qing-LKY">Qing-LKY</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://github.com/Qing-LKY">Qing-LKY</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><strong>Codeforces</strong></td>
-<td style="text-align: center;"><a target="_blank" rel="noopener" href="https://codeforces.com/profile/Qing_LKYi">Qing_LKYi</a></td>
+<td style="text-align: center;"><a
+target="_blank" rel="noopener" href="https://codeforces.com/profile/Qing_LKYi">Qing_LKYi</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><strong>Acraea</strong></td>
@@ -392,6 +399,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 

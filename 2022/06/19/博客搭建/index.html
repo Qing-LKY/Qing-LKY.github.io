@@ -232,22 +232,33 @@
 <ol type="1">
 <li><p>npm 显示如下警告信息，但仍可正常使用：</p>
 <blockquote>
-<p>npm WARN config global <code>--global</code>, <code>--local</code> are deprecated. Use <code>--location=global</code> instead</p>
+<p>npm WARN config global <code>--global</code>, <code>--local</code>
+are deprecated. Use <code>--location=global</code> instead</p>
 </blockquote>
 <p>首先尝试更新 npm 版本 <code>npm install -g npm</code>。</p>
-<p>查阅资料，发现 github 上有过这个 <a target="_blank" rel="noopener" href="https://github.com/npm/cli/issues/4980">issue</a></p>
+<p>查阅资料，发现 github 上有过这个 <a
+target="_blank" rel="noopener" href="https://github.com/npm/cli/issues/4980">issue</a></p>
 <p>我选择的解决方法如下：</p>
-<p>用管理员权限打开记事本，然后用带管理员权限的记事本去修改 nodejs/npm 和 nodejs/npm.cmd。</p>
+<p>用管理员权限打开记事本，然后用带管理员权限的记事本去修改 nodejs/npm
+和 nodejs/npm.cmd。</p>
 <p>把里面 prefix -g 替换成 prefix --location=global。</p></li>
-<li><p><strong>hexo 的工作目录与 github.io 应该是两个不同的仓库</strong></p>
-<p>一开始没有注意到这个问题，直接把 hexo 新建好的工作目录推到我的 github.io 仓库里了。</p>
-<p>后面完成基本配置 deploy 的时候才发现部署时会用生成的静态文件完全覆盖 github.io 那个仓库。</p>
-<p>github.io 这个仓库放的是你的网页，hexo 的工作目录需要放到另外的一个仓库里。</p>
-<p>于是我新创了一个 MyBlog 的远端仓库，改了 .git/config 里的 remote 地址。</p></li>
+<li><p><strong>hexo 的工作目录与 github.io
+应该是两个不同的仓库</strong></p>
+<p>一开始没有注意到这个问题，直接把 hexo 新建好的工作目录推到我的
+github.io 仓库里了。</p>
+<p>后面完成基本配置 deploy 的时候才发现部署时会用生成的静态文件完全覆盖
+github.io 那个仓库。</p>
+<p>github.io 这个仓库放的是你的网页，hexo
+的工作目录需要放到另外的一个仓库里。</p>
+<p>于是我新创了一个 MyBlog 的远端仓库，改了 .git/config 里的 remote
+地址。</p></li>
 <li><p>添加 next 主题后，git 提示你套了一个 repository</p>
-<p>我是直接在 themes 里 clone 的。所以弄下来的这个会带有 .git 文件夹，就变成了仓库套仓库了。</p>
-<p>我没有按提示的设置子模块。而是先取消追踪，然后直接删掉了next 里的 .git 文件夹。</p>
-<p>如果想要设置子模块的话，fork 一个到自己的账户下会比较好。而且修改配置的时候会比较麻烦。我懒得弄了。</p></li>
+<p>我是直接在 themes 里 clone 的。所以弄下来的这个会带有 .git
+文件夹，就变成了仓库套仓库了。</p>
+<p>我没有按提示的设置子模块。而是先取消追踪，然后直接删掉了next 里的
+.git 文件夹。</p>
+<p>如果想要设置子模块的话，fork
+一个到自己的账户下会比较好。而且修改配置的时候会比较麻烦。我懒得弄了。</p></li>
 </ol>
 
     </div>
@@ -444,6 +455,59 @@
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
