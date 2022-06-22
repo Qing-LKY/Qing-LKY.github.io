@@ -445,6 +445,7 @@ continue。这个问题在一开始没有考虑清楚逻辑，后续补上其它
   if (typeof MathJax === 'undefined') {
     window.MathJax = {
       loader: {
+          load: ['[tex]/mhchem'],
         source: {
           '[tex]/amsCd': '[tex]/amscd',
           '[tex]/AMScd': '[tex]/amscd'
@@ -452,6 +453,7 @@ continue。这个问题在一开始没有考虑清楚逻辑，后续补上其它
       },
       tex: {
         inlineMath: {'[+]': [['$', '$']]},
+          packages: {'[+]': ['mhchem']},
         tags: 'ams'
       },
       options: {
