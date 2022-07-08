@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>小乖乖的妙妙屋</title>
+  <icon>http://example.com/icon.png</icon>
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-06-29T16:28:05.851Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>Qing-LKY</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CF#803 E. PermutationForces II</title>
+    <link href="http://example.com/2022/06/29/CF-803-E-PermutationForces-II/"/>
+    <id>http://example.com/2022/06/29/CF-803-E-PermutationForces-II/</id>
+    <published>2022-06-29T14:09:26.000Z</published>
+    <updated>2022-06-29T16:28:05.851Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="排列计数" scheme="http://example.com/tags/%E6%8E%92%E5%88%97%E8%AE%A1%E6%95%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CF#802 F.Puzzle</title>
+    <link href="http://example.com/2022/06/23/CF-802-F-Puzzle/"/>
+    <id>http://example.com/2022/06/23/CF-802-F-Puzzle/</id>
+    <published>2022-06-23T07:06:22.000Z</published>
+    <updated>2022-06-23T19:10:56.822Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/F&quot;&gt;https://codeforces.com/contest/1700/problem/F&lt;/a&gt;&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="贪心" scheme="http://example.com/tags/%E8%B4%AA%E5%BF%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CF#802 E.Serega the Pirate</title>
+    <link href="http://example.com/2022/06/23/CF-802-E-Serega-the-Pirate/"/>
+    <id>http://example.com/2022/06/23/CF-802-E-Serega-the-Pirate/</id>
+    <published>2022-06-23T02:39:50.000Z</published>
+    <updated>2022-06-23T03:57:48.261Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="暴力" scheme="http://example.com/tags/%E6%9A%B4%E5%8A%9B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CF#801 D.Tree Queries</title>
+    <link href="http://example.com/2022/06/22/CF-801-D-Tree-Queries/"/>
+    <id>http://example.com/2022/06/22/CF-801-D-Tree-Queries/</id>
+    <published>2022-06-22T08:29:19.000Z</published>
+    <updated>2022-06-22T11:38:26.528Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/D2&quot;&gt;https://codeforces.com/contest/1695/problem/D2&lt;/a&gt;&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="换根dp" scheme="http://example.com/tags/%E6%8D%A2%E6%A0%B9dp/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CF#801 C.Zero Path</title>
+    <link href="http://example.com/2022/06/22/CF-801-C-Zero-Path/"/>
+    <id>http://example.com/2022/06/22/CF-801-C-Zero-Path/</id>
+    <published>2022-06-22T06:22:18.000Z</published>
+    <updated>2022-06-22T11:38:19.713Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/C&quot;&gt;https://codeforces.com/contest/1695/problem/C&lt;/a&gt;&lt;/p&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
+    
+    
+    <category term="dp" scheme="http://example.com/tags/dp/"/>
+    
+    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小黄鸭经验</title>
+    <link href="http://example.com/2022/06/22/%E5%B0%8F%E9%BB%84%E9%B8%AD%E7%BB%8F%E9%AA%8C/"/>
+    <id>http://example.com/2022/06/22/%E5%B0%8F%E9%BB%84%E9%B8%AD%E7%BB%8F%E9%AA%8C/</id>
+    <published>2022-06-22T05:24:33.000Z</published>
+    <updated>2022-06-22T11:38:35.420Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;傻逼错误&lt;/h2&gt;
+&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成</summary>
+        
+      
+    
+    
+    
+    <category term="竞赛经验" scheme="http://example.com/categories/%E7%AB%9E%E8%B5%9B%E7%BB%8F%E9%AA%8C/"/>
+    
+    
+    <category term="Debug" scheme="http://example.com/tags/Debug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>学期小结</title>
+    <link href="http://example.com/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/"/>
+    <id>http://example.com/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/</id>
+    <published>2022-06-20T14:20:03.000Z</published>
+    <updated>2022-06-20T17:29:57.059Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2</summary>
+        
+      
+    
+    
+    
+    <category term="水" scheme="http://example.com/categories/%E6%B0%B4/"/>
+    
+    
+    <category term="大学生活" scheme="http://example.com/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo 博客搭建记录</title>
+    <link href="http://example.com/2022/06/19/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>http://example.com/2022/06/19/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</id>
+    <published>2022-06-19T08:18:09.000Z</published>
+    <updated>2022-06-22T13:36:31.908Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;qing-lky-的个人博客&quot;&gt;Qing-LKY 的个人博客&lt;/h1&gt;
+&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。&lt;/p&gt;
+&lt;p&gt;使用的是 github.io + hexa</summary>
+        
+      
+    
+    
+    
+    <category term="项目经验" scheme="http://example.com/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/"/>
+    
+    
+    <category term="hexo" scheme="http://example.com/tags/hexo/"/>
+    
+  </entry>
+  
+</feed>
