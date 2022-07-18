@@ -23,27 +23,27 @@
   <meta name="description" content="可爱就是正义！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="小乖乖的妙妙屋">
-<meta property="og:url" content="http://example.com/categories/%E6%B0%B4/">
+<meta property="og:url" content="http://example.com/page/2/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
 <meta property="og:description" content="可爱就是正义！">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Qing-LKY">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/categories/%E6%B0%B4/">
+<link rel="canonical" href="http://example.com/page/2/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : false,
+    isHome : true,
     isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: 水 | 小乖乖的妙妙屋</title>
+  <title>小乖乖的妙妙屋</title>
   
 
 
@@ -166,52 +166,121 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/19/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
 
-  
-  
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">水
-          <small>分类</small>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Qing-LKY">
+      <meta itemprop="description" content="可爱就是正义！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小乖乖的妙妙屋">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/19/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" class="post-title-link" itemprop="url">Hexo 博客搭建记录</a>
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-19 16:18:09" itemprop="dateCreated datePublished" datetime="2022-06-19T16:18:09+08:00">2022-06-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-22 21:36:31" itemprop="dateModified" datetime="2022-06-22T21:36:31+08:00">2022-06-22</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C/" itemprop="url" rel="index"><span itemprop="name">项目经验</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+          <h1 id="Qing-LKY-的个人博客"><a href="#Qing-LKY-的个人博客" class="headerlink" title="Qing-LKY 的个人博客"></a>Qing-LKY 的个人博客</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。</p>
+<p>使用的是 github.io + hexa 的经典组合。暂时选了 next 作为主题。</p>
+<p>本文整理了在搭建过程中遇到的问题和解决的思路。</p>
+<h2 id="问题与解决过程记录"><a href="#问题与解决过程记录" class="headerlink" title="问题与解决过程记录"></a>问题与解决过程记录</h2><ol>
+<li><p>npm 显示如下警告信息，但仍可正常使用：</p>
+<blockquote>
+<p>npm WARN config global <code>--global</code>, <code>--local</code> are deprecated. Use <code>--location=global</code> instead</p>
+</blockquote>
+<p> 首先尝试更新 npm 版本 <code>npm install -g npm</code>。</p>
+<p> 查阅资料，发现 github 上有过这个 <a target="_blank" rel="noopener" href="https://github.com/npm/cli/issues/4980">issue</a></p>
+<p> 我选择的解决方法如下：</p>
+<p> 用管理员权限打开记事本，然后用带管理员权限的记事本去修改 nodejs&#x2F;npm 和 nodejs&#x2F;npm.cmd。</p>
+<p> 把里面 prefix -g 替换成 prefix –location&#x3D;global。</p>
+</li>
+<li><p><strong>hexo 的工作目录与 github.io 应该是两个不同的仓库</strong></p>
+<p> 一开始没有注意到这个问题，直接把 hexo 新建好的工作目录推到我的 github.io 仓库里了。</p>
+<p> 后面完成基本配置 deploy 的时候才发现部署时会用生成的静态文件完全覆盖 github.io 那个仓库。</p>
+<p> github.io 这个仓库放的是你的网页，hexo 的工作目录需要放到另外的一个仓库里。</p>
+<p> 于是我新创了一个 MyBlog 的远端仓库，改了 .git&#x2F;config 里的 remote 地址。</p>
+</li>
+<li><p>添加 next 主题后，git 提示你套了一个 repository</p>
+<p> 我是直接在 themes 里 clone 的。所以弄下来的这个会带有 .git 文件夹，就变成了仓库套仓库了。</p>
+<p> 我没有按提示的设置子模块。而是先取消追踪，然后直接删掉了next 里的 .git 文件夹。</p>
+<p> 如果想要设置子模块的话，fork 一个到自己的账户下会比较好。而且修改配置的时候会比较麻烦。我懒得弄了。</p>
+</li>
+<li><p>latex 在本地预览时正常渲染，推到远端时无法渲染</p>
+<p> 我一开始只用的 next 和 hexo-renderer-pandoc。</p>
+<p> 卸掉 hexo-renderer-marked，装了 hexo-renderer-pandoc，改了下 next 里的配置（enable）。</p>
+<p> 这时候本地已经能渲染出来了（hexo s）。</p>
+<p> 但是推到远端去看不到。所以我陆陆续续采用了下面的手段尝试补救。我不知道哪个是关键的，所以我全部记录了下来：</p>
+<p> 首先，我重新安装了 pandoc。然后，我又安装了 hexo-math。然后，我又安装了 hexo-filter-mathjax。然后，我把 next 配置里面 mathjax 的 mhchem 设成了 true。然后我又把它改回了 false。然后我又重启电脑重复了一遍上述的某些操作。</p>
+<p> 最后我查阅资料发现以前版本的 next 的 math 配置长得和现在不太一样。（参考的是<a target="_blank" rel="noopener" href="https://heary.cn/posts/MathJax-Hexo-Next%E6%B8%B2%E6%9F%93LaTex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">这篇文章</a>）</p>
+<p> 把 cdn:xxxxx 那一行配置复制到 next 的配置文件的对应位置上，再次部署。发现它好了。</p>
+</li>
+</ol>
+
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2022-06-20T22:20:03+08:00"
-              content="2022-06-20">
-          06-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/" itemprop="url">
-            <span itemprop="name">学期小结</span>
-          </a>
-      </div>
-
-    </header>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
   </article>
-
-    </div>
-  </div>
   
   
   
 
+
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 
