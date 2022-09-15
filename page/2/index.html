@@ -226,19 +226,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="学期小结"><a href="#学期小结" class="headerlink" title="学期小结"></a>学期小结</h2><ul>
-<li><p>呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天 vp 一下写写题解，打打游戏逛逛本校，顺便收收东西，看看找点什么东西学一学。</p>
-</li>
-<li><p>之前数据库实验学了 django 框架，一个人写完了前后端（一个非常简单的网页），也许可以找个时间分享一下学习经验。还有好多整理的一半一半的各个学科的学习资料，也得找个时间编排一下比较好。</p>
-</li>
-<li><p>这学期有点小摆，基本靠着 namomo 的每日一题在苟命。不过也算是有进步吧？cf 终于还是突破了 2000，可惜还没橙。昆明拿了个铜，因为一个傻逼错误没搞出 dp，非常蛋疼。然后换了队友，省赛拿了 rk2。</p>
-</li>
-<li><p>顺便入坑了 arcaea。不过拇指玩起来好蛋疼，得找个机会入个平板。顺便平板也能记笔记什么的。嗯。绝对不是为了玩音游才想买平板的。嗯。</p>
-</li>
-<li><p>这学期也开始学到一些比较底层的东西了，操作系统和编译原理。老师有布置过几个让我们去阅读底层代码的任务，但是我真的看不懂，而且也没什么时间，完成的不是很好，暑假该找时间更细致的学一下。毕竟 acm 也就图一乐，还得干干正事。</p>
-</li>
-<li><p>以及发现博客园的延迟有点小大，想换个博客玩玩了，所以搭了个新的</p>
-</li>
+          <h2 id="学期小结">学期小结</h2>
+<ul>
+<li><p>呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天
+vp
+一下写写题解，打打游戏逛逛本校，顺便收收东西，看看找点什么东西学一学。</p></li>
+<li><p>之前数据库实验学了 django
+框架，一个人写完了前后端（一个非常简单的网页），也许可以找个时间分享一下学习经验。还有好多整理的一半一半的各个学科的学习资料，也得找个时间编排一下比较好。</p></li>
+<li><p>这学期有点小摆，基本靠着 namomo
+的每日一题在苟命。不过也算是有进步吧？cf 终于还是突破了
+2000，可惜还没橙。昆明拿了个铜，因为一个傻逼错误没搞出
+dp，非常蛋疼。然后换了队友，省赛拿了 rk2。</p></li>
+<li><p>顺便入坑了
+arcaea。不过拇指玩起来好蛋疼，得找个机会入个平板。顺便平板也能记笔记什么的。嗯。绝对不是为了玩音游才想买平板的。嗯。</p></li>
+<li><p>这学期也开始学到一些比较底层的东西了，操作系统和编译原理。老师有布置过几个让我们去阅读底层代码的任务，但是我真的看不懂，而且也没什么时间，完成的不是很好，暑假该找时间更细致的学一下。毕竟
+acm 也就图一乐，还得干干正事。</p></li>
+<li><p>以及发现博客园的延迟有点小大，想换个博客玩玩了，所以搭了个新的</p></li>
 </ul>
 
       
@@ -313,40 +316,57 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="Qing-LKY-的个人博客"><a href="#Qing-LKY-的个人博客" class="headerlink" title="Qing-LKY 的个人博客"></a>Qing-LKY 的个人博客</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。</p>
+          <h1 id="qing-lky-的个人博客">Qing-LKY 的个人博客</h1>
+<h2 id="前言">前言</h2>
+<p>博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。</p>
 <p>使用的是 github.io + hexa 的经典组合。暂时选了 next 作为主题。</p>
 <p>本文整理了在搭建过程中遇到的问题和解决的思路。</p>
-<h2 id="问题与解决过程记录"><a href="#问题与解决过程记录" class="headerlink" title="问题与解决过程记录"></a>问题与解决过程记录</h2><ol>
+<h2 id="问题与解决过程记录">问题与解决过程记录</h2>
+<ol type="1">
 <li><p>npm 显示如下警告信息，但仍可正常使用：</p>
 <blockquote>
-<p>npm WARN config global <code>--global</code>, <code>--local</code> are deprecated. Use <code>--location=global</code> instead</p>
+<p>npm WARN config global <code>--global</code>, <code>--local</code>
+are deprecated. Use <code>--location=global</code> instead</p>
 </blockquote>
-<p> 首先尝试更新 npm 版本 <code>npm install -g npm</code>。</p>
-<p> 查阅资料，发现 github 上有过这个 <a target="_blank" rel="noopener" href="https://github.com/npm/cli/issues/4980">issue</a></p>
-<p> 我选择的解决方法如下：</p>
-<p> 用管理员权限打开记事本，然后用带管理员权限的记事本去修改 nodejs&#x2F;npm 和 nodejs&#x2F;npm.cmd。</p>
-<p> 把里面 prefix -g 替换成 prefix –location&#x3D;global。</p>
-</li>
-<li><p><strong>hexo 的工作目录与 github.io 应该是两个不同的仓库</strong></p>
-<p> 一开始没有注意到这个问题，直接把 hexo 新建好的工作目录推到我的 github.io 仓库里了。</p>
-<p> 后面完成基本配置 deploy 的时候才发现部署时会用生成的静态文件完全覆盖 github.io 那个仓库。</p>
-<p> github.io 这个仓库放的是你的网页，hexo 的工作目录需要放到另外的一个仓库里。</p>
-<p> 于是我新创了一个 MyBlog 的远端仓库，改了 .git&#x2F;config 里的 remote 地址。</p>
-</li>
+<p>首先尝试更新 npm 版本 <code>npm install -g npm</code>。</p>
+<p>查阅资料，发现 github 上有过这个 <a
+target="_blank" rel="noopener" href="https://github.com/npm/cli/issues/4980">issue</a></p>
+<p>我选择的解决方法如下：</p>
+<p>用管理员权限打开记事本，然后用带管理员权限的记事本去修改 nodejs/npm
+和 nodejs/npm.cmd。</p>
+<p>把里面 prefix -g 替换成 prefix --location=global。</p></li>
+<li><p><strong>hexo 的工作目录与 github.io
+应该是两个不同的仓库</strong></p>
+<p>一开始没有注意到这个问题，直接把 hexo 新建好的工作目录推到我的
+github.io 仓库里了。</p>
+<p>后面完成基本配置 deploy 的时候才发现部署时会用生成的静态文件完全覆盖
+github.io 那个仓库。</p>
+<p>github.io 这个仓库放的是你的网页，hexo
+的工作目录需要放到另外的一个仓库里。</p>
+<p>于是我新创了一个 MyBlog 的远端仓库，改了 .git/config 里的 remote
+地址。</p></li>
 <li><p>添加 next 主题后，git 提示你套了一个 repository</p>
-<p> 我是直接在 themes 里 clone 的。所以弄下来的这个会带有 .git 文件夹，就变成了仓库套仓库了。</p>
-<p> 我没有按提示的设置子模块。而是先取消追踪，然后直接删掉了next 里的 .git 文件夹。</p>
-<p> 如果想要设置子模块的话，fork 一个到自己的账户下会比较好。而且修改配置的时候会比较麻烦。我懒得弄了。</p>
-</li>
+<p>我是直接在 themes 里 clone 的。所以弄下来的这个会带有 .git
+文件夹，就变成了仓库套仓库了。</p>
+<p>我没有按提示的设置子模块。而是先取消追踪，然后直接删掉了next 里的
+.git 文件夹。</p>
+<p>如果想要设置子模块的话，fork
+一个到自己的账户下会比较好。而且修改配置的时候会比较麻烦。我懒得弄了。</p></li>
 <li><p>latex 在本地预览时正常渲染，推到远端时无法渲染</p>
-<p> 我一开始只用的 next 和 hexo-renderer-pandoc。</p>
-<p> 卸掉 hexo-renderer-marked，装了 hexo-renderer-pandoc，改了下 next 里的配置（enable）。</p>
-<p> 这时候本地已经能渲染出来了（hexo s）。</p>
-<p> 但是推到远端去看不到。所以我陆陆续续采用了下面的手段尝试补救。我不知道哪个是关键的，所以我全部记录了下来：</p>
-<p> 首先，我重新安装了 pandoc。然后，我又安装了 hexo-math。然后，我又安装了 hexo-filter-mathjax。然后，我把 next 配置里面 mathjax 的 mhchem 设成了 true。然后我又把它改回了 false。然后我又重启电脑重复了一遍上述的某些操作。</p>
-<p> 最后我查阅资料发现以前版本的 next 的 math 配置长得和现在不太一样。（参考的是<a target="_blank" rel="noopener" href="https://heary.cn/posts/MathJax-Hexo-Next%E6%B8%B2%E6%9F%93LaTex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">这篇文章</a>）</p>
-<p> 把 cdn:xxxxx 那一行配置复制到 next 的配置文件的对应位置上，再次部署。发现它好了。</p>
-</li>
+<p>我一开始只用的 next 和 hexo-renderer-pandoc。</p>
+<p>卸掉 hexo-renderer-marked，装了 hexo-renderer-pandoc，改了下 next
+里的配置（enable）。</p>
+<p>这时候本地已经能渲染出来了（hexo s）。</p>
+<p>但是推到远端去看不到。所以我陆陆续续采用了下面的手段尝试补救。我不知道哪个是关键的，所以我全部记录了下来：</p>
+<p>首先，我重新安装了 pandoc。然后，我又安装了
+hexo-math。然后，我又安装了 hexo-filter-mathjax。然后，我把 next
+配置里面 mathjax 的 mhchem 设成了 true。然后我又把它改回了
+false。然后我又重启电脑重复了一遍上述的某些操作。</p>
+<p>最后我查阅资料发现以前版本的 next 的 math
+配置长得和现在不太一样。（参考的是<a
+target="_blank" rel="noopener" href="https://heary.cn/posts/MathJax-Hexo-Next%E6%B8%B2%E6%9F%93LaTex%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">这篇文章</a>）</p>
+<p>把 cdn:xxxxx 那一行配置复制到 next
+的配置文件的对应位置上，再次部署。发现它好了。</p></li>
 </ol>
 
       
@@ -468,7 +488,7 @@
           <a href="https://www.cnblogs.com/Qing-LKY/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Qing-LKY&#x2F;" rel="noopener" target="_blank">Past blog</a>
         </li>
         <li class="links-of-blogroll-item">
-          <a href="https://blog-xinyangli.vercel.app/" title="https:&#x2F;&#x2F;blog-xinyangli.vercel.app&#x2F;" rel="noopener" target="_blank">Xinyang's Blog</a>
+          <a href="https://blog.xinyang.life/" title="https:&#x2F;&#x2F;blog.xinyang.life&#x2F;" rel="noopener" target="_blank">Xinyang's Blog</a>
         </li>
         <li class="links-of-blogroll-item">
           <a href="https://www.cnblogs.com/ctrl-newbee/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ctrl-newbee&#x2F;" rel="noopener" target="_blank">Ctrlnewbee</a>
