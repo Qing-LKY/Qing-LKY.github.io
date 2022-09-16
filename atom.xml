@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-16T02:07:51.711Z</updated>
+  <updated>2022-09-16T08:40:16.519Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -18,18 +18,17 @@
   
   <entry>
     <title>《操作系统实践》实验指南</title>
-    <link href="http://example.com/2022/09/13/%E3%80%8A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%B7%B5%E3%80%8B%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E4%B8%8E%E5%9D%91%E7%82%B9%E8%AE%B0%E5%BD%95/"/>
-    <id>http://example.com/2022/09/13/%E3%80%8A%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%AE%9E%E8%B7%B5%E3%80%8B%E5%AE%9E%E9%AA%8C%E6%AD%A5%E9%AA%A4%E4%B8%8E%E5%9D%91%E7%82%B9%E8%AE%B0%E5%BD%95/</id>
+    <link href="http://example.com/2022/09/13/OS-LAB/"/>
+    <id>http://example.com/2022/09/13/OS-LAB/</id>
     <published>2022-09-13T02:52:30.000Z</published>
-    <updated>2022-09-16T02:07:51.711Z</updated>
+    <updated>2022-09-16T08:40:16.519Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是</summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是 Orange’s</summary>
         
       
     
@@ -54,9 +53,7 @@
       
         
         
-    <summary type="html">&lt;p&gt;原题链接：https://codeforc.es/contest/1707/problem/C[https://codeforc.es/contest/1707/problem/C]&lt;/p&gt;
-&lt;p&gt;(家里网络不是很好，最近主站经常上不去，只好上镜像了)&lt;/p&gt;
-&lt;h2</summary>
+    <summary type="html">&lt;p&gt;原题链接：&lt;a</summary>
         
       
     
@@ -84,7 +81,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1701/problem/E&quot;&gt;https://codeforces.com/contest/1701/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -112,7 +109,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1701/problem/E&quot;&gt;https://codeforces.com/contest/1701/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -140,7 +137,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -168,7 +165,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/F&quot;&gt;https://codeforces.com/contest/1700/problem/F&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -194,7 +191,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -222,7 +219,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/D2&quot;&gt;https://codeforces.com/contest/1695/problem/D2&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -250,7 +247,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/C&quot;&gt;https://codeforces.com/contest/1695/problem/C&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -277,10 +274,9 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;傻逼错误&lt;/h2&gt;
-&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成</summary>
+    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;&lt;a href=&quot;#傻逼错误&quot; class=&quot;headerlink&quot; title=&quot;傻逼错误&quot;&gt;&lt;/a&gt;傻逼错误&lt;/h2&gt;&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注意 n 和 m 的读入顺序和在</summary>
         
       
     
@@ -305,7 +301,8 @@
       
         
         
-    <summary type="html">&lt;h2</summary>
+    <summary type="html">&lt;h2 id=&quot;学期小结&quot;&gt;&lt;a href=&quot;#学期小结&quot; class=&quot;headerlink&quot; title=&quot;学期小结&quot;&gt;&lt;/a&gt;学期小结&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天 vp</summary>
         
       
     
@@ -330,10 +327,7 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;qing-lky-的个人博客&quot;&gt;Qing-LKY 的个人博客&lt;/h1&gt;
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。&lt;/p&gt;
-&lt;p&gt;使用的是 github.io + hexa</summary>
+    <summary type="html">&lt;h1 id=&quot;Qing-LKY-的个人博客&quot;&gt;&lt;a href=&quot;#Qing-LKY-的个人博客&quot; class=&quot;headerlink&quot; title=&quot;Qing-LKY 的个人博客&quot;&gt;&lt;/a&gt;Qing-LKY 的个人博客&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a</summary>
         
       
     

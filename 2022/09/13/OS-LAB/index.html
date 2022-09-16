@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前言上的是武大网安院严老师的课头。使用的教材是 Orange’s 啥啥的那本书。因为第一次课配环境血压飙的有点快，所以开个帖来记录实验过程。 文章里包含大量指向有用文档的超链接，但是都是夹在文字中的，长这样（不用点，只是演示一下长什么样）。看起来不明显，需要仔细识别。后续可能会考虑改进一下，把链接摆在明显的位置，或是换一个主题。 本人的博客向来是话比较多的，因为个人倾向于把所有想到的东西全部写进来">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《操作系统实践》实验指南">
+<meta property="og:url" content="http://example.com/2022/09/13/OS-LAB/">
+<meta property="og:site_name" content="小乖乖的妙妙屋">
+<meta property="og:description" content="前言上的是武大网安院严老师的课头。使用的教材是 Orange’s 啥啥的那本书。因为第一次课配环境血压飙的有点快，所以开个帖来记录实验过程。 文章里包含大量指向有用文档的超链接，但是都是夹在文字中的，长这样（不用点，只是演示一下长什么样）。看起来不明显，需要仔细识别。后续可能会考虑改进一下，把链接摆在明显的位置，或是换一个主题。 本人的博客向来是话比较多的，因为个人倾向于把所有想到的东西全部写进来">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/bochs%E5%B8%B8%E7%94%A8%E8%B0%83%E8%AF%95.png">
+<meta property="article:published_time" content="2022-09-13T02:52:30.000Z">
+<meta property="article:modified_time" content="2022-09-16T08:40:16.519Z">
+<meta property="article:author" content="Qing-LKY">
+<meta property="article:tag" content="OS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/bochs%E5%B8%B8%E7%94%A8%E8%B0%83%E8%AF%95.png">
+
+<link rel="canonical" href="http://example.com/2022/09/13/OS-LAB/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>《操作系统实践》实验指南 | 小乖乖的妙妙屋</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><link rel="alternate" href="/atom.xml" title="小乖乖的妙妙屋" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">小乖乖的妙妙屋</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-rss">
+
+    <a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/13/OS-LAB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="Qing-LKY">
+      <meta itemprop="description" content="可爱就是正义！">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小乖乖的妙妙屋">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          《操作系统实践》实验指南
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-13 10:52:30" itemprop="dateCreated datePublished" datetime="2022-09-13T10:52:30+08:00">2022-09-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-16 16:40:16" itemprop="dateModified" datetime="2022-09-16T16:40:16+08:00">2022-09-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>上的是武大网安院严老师的课头。使用的教材是 Orange’s 啥啥的那本书。因为第一次课配环境血压飙的有点快，所以开个帖来记录实验过程。</p>
+<p>文章里包含大量指向有用文档的超链接，但是都是夹在文字中的，长<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Qc411h7Ys">这样</a>（不用点，只是演示一下长什么样）。看起来不明显，需要仔细识别。后续可能会考虑改进一下，把链接摆在明显的位置，或是换一个主题。</p>
+<p>本人的博客向来是话比较多的，因为个人倾向于把所有想到的东西全部写进来。望多多包涵。</p>
+<p>随课持续更新中。也可能开一篇新的文章。</p>
+<h1 id="1-环境配置与-“hello-OS！”"><a href="#1-环境配置与-“hello-OS！”" class="headerlink" title="1 环境配置与 “hello OS！”"></a>1 环境配置与 “hello OS！”</h1><h2 id="1-1-虚拟机平台与操作系统选择"><a href="#1-1-虚拟机平台与操作系统选择" class="headerlink" title="1.1 虚拟机平台与操作系统选择"></a>1.1 虚拟机平台与操作系统选择</h2><h3 id="1-1-1-操作系统"><a href="#1-1-1-操作系统" class="headerlink" title="1.1.1 操作系统"></a>1.1.1 操作系统</h3><p>根据老师的说法，64 位系统编译 32 位程序比较麻烦，而且有些东西不一样，折腾起来可能很麻烦，所以建议使用 32 位的操作系统。Ubuntu 版本中带有 i386 的，就是 32 位的。</p>
+<p>可以在<a target="_blank" rel="noopener" href="https://mirrors-i.tuna.tsinghua.edu.cn/ubuntu-releases/">清华源</a>下载想要的系统光驱。16 往前的才有 i386。也可以去别的地方，无所谓。</p>
+<p>我使用的是 ubuntu-16.04.6-desktop-i386。下个 torrent 文件用迅雷下就行，蛮快的。</p>
+<h3 id="1-1-2-虚拟机平台"><a href="#1-1-2-虚拟机平台" class="headerlink" title="1.1.2 虚拟机平台"></a>1.1.2 虚拟机平台</h3><p>关于虚拟机平台，老师推荐 Virtual Box，因为它开源免费，当然它 bug 也很多；VMware 也是推荐选项，它更稳定，不过大多数都是盗版，不排除出现一些难以解决的问题。老师不推荐我们使用 wsl。<del>wsl 确实蛋疼，没有 service 也没有 systemctl，之前装 mysql 研究了半天才找到怎么开启服务。</del></p>
+<p>周围有好多大佬用的奇奇怪怪的非 desktop 的 linux，看着好帅，我比较菜，就算了吧。</p>
+<p>我相对熟悉的是 VMware。当然我也试了一下 Virtual Box，但是折腾半天虚拟机一直卡在启动页面打不开，就不想用了。</p>
+<h2 id="1-2-一些”无关紧要”的前置准备"><a href="#1-2-一些”无关紧要”的前置准备" class="headerlink" title="1.2 一些”无关紧要”的前置准备"></a>1.2 一些”无关紧要”的前置准备</h2><h3 id="1-2-1-修改软件源到镜像站"><a href="#1-2-1-修改软件源到镜像站" class="headerlink" title="1.2.1 修改软件源到镜像站"></a>1.2.1 修改软件源到镜像站</h3><p>之前做过很多次的事情。这里我修改的是清华源，参考<a target="_blank" rel="noopener" href="https://mirror.tuna.tsinghua.edu.cn/help/ubuntu/">这里</a>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先备份一下</span></span><br><span class="line"><span class="built_in">cp</span> /etc/apt/sources.list ~/sources.list</span><br><span class="line"><span class="comment"># 修改来源 把文档里的内容复制进去（记得改版本）</span></span><br><span class="line"><span class="comment"># 你也可以用 vi，但是用起来很怪，可能是我误触了什么，以后再下个 vim 吧</span></span><br><span class="line">sudo gedit ~/sources.list</span><br><span class="line"><span class="comment"># 然后重新 update 一下</span></span><br><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<p>注意，如果在 <code>sudo apt update</code> 后提示安全证书问题，你可以把 sources.list 里的 https 全部改成 http。</p>
+<h3 id="1-2-2-安装-VMware-tools-与设置共享文件夹"><a href="#1-2-2-安装-VMware-tools-与设置共享文件夹" class="headerlink" title="1.2.2 安装 VMware tools 与设置共享文件夹"></a>1.2.2 安装 VMware tools 与设置共享文件夹</h3><p>这里只记录下我具体做了什么，因为我也不知道我在干什么。我用的是 VMware® Workstation 16 Pro。<del>怎么搞到的就不说了。</del></p>
+<p>我先设置的是共享文件夹。在 “虚拟机 -&gt; 设置 -&gt; 选项 -&gt; 共享文件夹”。改成永久启用，然后添加主机上的一个路径。确认之后，类似 wsl2，你就可以通过 &#x2F;mnt&#x2F;hgfs 访问主机上的这个文件夹了。</p>
+<p><em>理论上讲这一步最好是重装完 tools 再来做的，但是我提前做了，不清楚会不会有什么影响，所以我将其记录下来作为参考。</em></p>
+<p>但此时我还是不能共享剪切板。所以我重启了一下，然后在菜单栏的虚拟机选项卡里的 “重新安装 VMware tools” 就变黑了。点一下，它大概会把那些东西以一个虚拟光盘的样子挂给你。（因为路径显示的是 &#x2F;mnt&#x2F;xxx，所以我猜是挂载的什么玩意）</p>
+<p>然后把中间那个 tar.gz 格式的文件复制到 home 目录下，解压出来。不建议直接在那个目录下解压，一个是没有权限，一个是我不知道会发生什么，也不排除本来就是只读的。</p>
+<p>然后在解压出来的 VMware-tools-distrib 里打开 terminal，运行 <code>sudo ./vmware-install.pl</code>。</p>
+<p>然后我就全程回车保持默认，<del>反正也看不懂</del>。</p>
+<p>然后就好了，然后就可以共享剪切板了。声明一下：如果你还没好，我也不太懂，因为我确实不知道这个安装程序是在干什么。</p>
+<p>重装了 tools 后，原来设置的共享文件夹找不到了。所以你需要再删掉重新添加一次。用不用重启我忘了。</p>
+<p><em>我装完 VM tools 之后 VMware 偶尔会出现半分钟左右的莫名奇妙的无响应，不知道在加载什么东西。且这段时间里我主机无法使用复制黏贴功能。不知道有没有遇到相同问题的大佬指导一下。我用的是 VMware® Workstation 16 Pro 16.1.2 build-17966106。</em></p>
+<h3 id="1-2-3-为-github-账户添加新的-ssh-key"><a href="#1-2-3-为-github-账户添加新的-ssh-key" class="headerlink" title="1.2.3 为 github 账户添加新的 ssh key"></a>1.2.3 为 github 账户添加新的 ssh key</h3><p><del>我有三个虚拟机和一个主机，所以我的 github 账户有四个 key。</del></p>
+<p>当然这个只是个人习惯，完全没打算用远端仓库或是习惯直接输入账号密码的可以无视这部分。</p>
+<p>需要注意的是，出于<a target="_blank" rel="noopener" href="https://github.blog/2021-09-01-improving-git-protocol-security-github/">安全上的考虑</a>，过去很多教程里生成 key 的方式不再被支持了。</p>
+<p>可以参考<a target="_blank" rel="noopener" href="https://docs.github.com/cn/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">官方的指南</a>。</p>
+<p>因为我 ssh 用的不多，基本上是每个机子只用同一个 key 到处连，所以没有管 ssh-agent。生成完直接看下一节的添加就行。</p>
+<p>也可以参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/Mr_kanger/article/details/123741702">这个博客</a>。too much 教程，这里就不扯皮了。</p>
+<h3 id="1-2-4-zsh-oh-my-zsh-相关配置"><a href="#1-2-4-zsh-oh-my-zsh-相关配置" class="headerlink" title="1.2.4 zsh oh-my-zsh 相关配置"></a>1.2.4 zsh oh-my-zsh 相关配置</h3><p>老师说你们别折腾什么中文输入法，说有人折腾了半天结果把系统搞崩了，最后重装虚拟机。中文输入法确实没有必要，但是 zsh 和 oh-my-zsh 必须要有！（暴论</p>
+<p>好吧这个依然是个人习惯。</p>
+<p>首先是安装 zsh，很简单 <code>sudo apt install zsh</code>。</p>
+<p>问题在于怎么设置 zsh 为默认终端。这个东西这个版本上不能直接 <code>chsh -s /bin/zsh</code>，要在 gnome terminal 的图形化界面里面手动修改。</p>
+<p>需要注意的是它的界面和平常用的 windows 不太一样。当终端在前台运行时，桌面左上角会有一个 terminal 的字样，光标移动到它上面，才会出现我们平常见的菜单栏。Terminal -&gt; Preferences -&gt; Profiles，可以直接改原来的这个配置，也可以建一个新的，但是要记得改下面的 profile used when launching a new terminal。</p>
+<p>把 profile 里 run a custom command install of my shell 勾上，写上 zsh。顺便把下面的 exit 效果设置成退出终端，体验就和 chsh 基本一致了。</p>
+<p>然后自然是要安装 oh-my-zsh。以前小乖乖的游记的时候我用的是改 host 的方式。其实没有必要。我们可以借助国内的镜像。</p>
+<p>我们知道这个 oh-my-zsh 是开源的。之所以直接用官网给的安装链接安装不了，是因为 raw.github.com 上不去。那我们直接把这个文件下载下来不久行了。</p>
+<p>当然我是连 github 本身也上不去的，所以我选择的是直接使用 gitee 上的<a target="_blank" rel="noopener" href="https://gitee.com/mirrors/oh-my-zsh/tree/master">镜像</a>。</p>
+<p>首先把 &#x2F;tools&#x2F;install.sh 搞下来。直接 clone 整个项目或是 wget 之类的都行。</p>
+<p>然后打开来看一眼，它告诉你可以执行的时候加上 REMOTE 参数来指定源。指定源来跑就行了。我用的是 ssh，用 http 也一样</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># You can tweak the install behavior by setting variables when running the script. For</span></span><br><span class="line"><span class="comment"># example, to change the path to the Oh My Zsh repository:</span></span><br><span class="line"><span class="comment">#   ZSH=~/.zsh sh install.sh</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># Respects the following environment variables:</span></span><br><span class="line"><span class="comment">#   ZSH     - path to the Oh My Zsh repository folder (default: $HOME/.oh-my-zsh)</span></span><br><span class="line"><span class="comment">#   REPO    - name of the GitHub repo to install from (default: ohmyzsh/ohmyzsh)</span></span><br><span class="line"><span class="comment">#   REMOTE  - full remote URL of the git repo to install (default: GitHub via HTTPS)</span></span><br><span class="line"><span class="comment">#   BRANCH  - branch to check out immediately after install (default: master)</span></span><br><span class="line">REMOTE=git@gitee.com:mirrors/oh-my-zsh.git sh install.sh</span><br></pre></td></tr></table></figure>
+
+<p>弄完后，可以尝试添加一些插件。比如 <a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting">zsh-syntax-highlighting</a>。</p>
+<p>照着它的<a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">文档</a>弄就行了。我们装了 ohmyzsh，所以按它教的 ohmyzsh 安装插件的方式来装。</p>
+<h2 id="1-3-实验环境配置"><a href="#1-3-实验环境配置" class="headerlink" title="1.3 实验环境配置"></a>1.3 实验环境配置</h2><h3 id="1-3-1-Bochs-安装"><a href="#1-3-1-Bochs-安装" class="headerlink" title="1.3.1 Bochs 安装"></a>1.3.1 Bochs 安装</h3><p>Bochs 是个模拟器。教材用的是 Bochs，我也不会 Qemu，所以这里用 Bochs。后续可能会考虑看一下 Qemu。</p>
+<p>P.S. 模拟器和虚拟机是有很大区别的。模拟器的所有指令都需要经过软件的模拟，也因此它可以跑另一种 CPU 架构下的系统。而个人理解的虚拟化强调的是物理资源的抽象和分配。具体的可以百度 <em>Formal Requirements for Virtualizable Third Generation Architectures</em> 这篇论文了解。当然这和这个实验没有任何关系，我们并不是在研究虚拟化技术，我们研究的是如何实现一个简单的操作系统。</p>
+<p>Bochs 可以从<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/">官方网站</a>上下载。似乎需要翻墙，各显神通吧。但是我自己在尝试下载的时候，找了半天下载入口。</p>
+<p>其实你需要点 Get Bochs -&gt; see all release，然后会跳转到<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/bochs/files/bochs/">这里</a>。在这里下载 tar.gz 格式的安装包。用共享文件夹或是别的手段搞到虚拟机里。因为我们后续需要使用一些特殊的 configure 选项，所以要下载源码手动编译。</p>
+<p>编译的过程可以参考<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/compiling.html">官方文档</a>，上面也写有各个参数的详细意义。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装依赖。虽然说 make 的时候再根据报错来装也可以。</span></span><br><span class="line">sudo apt install build-essential \</span><br><span class="line">    libx11-dev \</span><br><span class="line">    libxrandr-dev \</span><br><span class="line">    libsdl1.2-dev \</span><br><span class="line">    vgabios \</span><br><span class="line">    bximage</span><br><span class="line"><span class="comment"># 运行 configure 脚本 带上 PPT 上要求的参数</span></span><br><span class="line"><span class="comment"># 第一个参数好像是 display library 相关的 </span></span><br><span class="line"><span class="comment"># 第二个是开启 debug</span></span><br><span class="line"><span class="comment"># 最后这个参数我的版本似乎不需要加 会被直接忽略</span></span><br><span class="line">./configure --with-sdl --enable-debugger --enable-disasm</span><br><span class="line"><span class="comment"># 编译和安装</span></span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+
+<p>P.S. 安装完成后，根据<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/compiling.html">文档</a>的 3.4.1.3，文件的默认目录是 &#x2F;usr&#x2F;local&#x2F;xxx。在后续修改 bochsrc 时会用到 &#x2F;usr&#x2F;local&#x2F;share&#x2F;bochs 这个目录。</p>
+<h3 id="1-3-2-nasm-安装"><a href="#1-3-2-nasm-安装" class="headerlink" title="1.3.2 nasm 安装"></a>1.3.2 nasm 安装</h3><p>本实验使用 nasm 来编译汇编源码。直接 <code>sudo apt install nasm</code> 即可。</p>
+<h2 id="1-4-Hello-OS"><a href="#1-4-Hello-OS" class="headerlink" title="1.4 Hello OS!"></a>1.4 Hello OS!</h2><h3 id="1-4-1-随书源码下载"><a href="#1-4-1-随书源码下载" class="headerlink" title="1.4.1 随书源码下载"></a>1.4.1 随书源码下载</h3><p>这本书是由随书源码的。<a target="_blank" rel="noopener" href="https://github.com/yyu/osfs00">osfs00</a>是这些源码的总目录和随书光碟。课上到哪就去对应的链接里找源码，比如<a target="_blank" rel="noopener" href="https://github.com/yyu/osfs01">这一节的</a>。老师也会下载了丢在群里，可以用共享文件夹传到虚拟机里。</p>
+<p>可以 clone 下来后修改下 boshsrc 直接 make，因为它有一个写好的 makefile。下面我们不用它的 makefile，一步一步手动进行，先熟悉一下。</p>
+<h3 id="1-4-2-我们要做什么？"><a href="#1-4-2-我们要做什么？" class="headerlink" title="1.4.2 我们要做什么？"></a>1.4.2 我们要做什么？</h3><p>计算机加电时，首先执行的是 BIOS。这是集成在硬件（芯片）中的程序，它会完成基本的 IO 初始化和硬件自检，然后运行系统引导程序，将 OS 装载到 ram 中，并将计算机控制权交给 OS。</p>
+<blockquote>
+<p>或者我们可以说，它的功能是：初始化硬件平台和提供硬件的软件抽象，引导操作系统启动。</p>
+</blockquote>
+<p>我们接下来实现的，其实是操作系统的一个部分：一个引导程序（OS Boot Loader）。在平时，boot loader 的功能是将 OS kernel 装载到内存中。但是我们现在还搞不出内核这种复杂的东西。</p>
+<p>因此，在本次实验中，我们其实是利用 Boot Loader 来跑一段简单的汇编程序。在这个过程中体验 PC 机启动和操作系统的初始化过程。</p>
+<h3 id="1-4-3-制作一张空白软盘"><a href="#1-4-3-制作一张空白软盘" class="headerlink" title="1.4.3 制作一张空白软盘"></a>1.4.3 制作一张空白软盘</h3><p>首先我们需要一张空白的虚拟软盘。Bochs 为我们提供了一个方便的虚拟光驱创建工具 bximage。相关的参数等可以在<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/using-bximage.html">这里</a>查到。</p>
+<p>直接运行 bximage，会有一个交互界面。根据提示一步一步进行就行了。我们需要的是一个软盘(fd, floppy image)，其余部分可以全部保持默认。你也可以改名字。</p>
+<p>创建完成后，它会有提示，比如：The following line should appear in your bochsrc: floppya: image&#x3D;”b.img”, status&#x3D;inserted。</p>
+<p>后面修改 bochsrc 的时候要用到。</p>
+<p>根据<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/using-bximage.html">文档</a>，你也可以直接用指令生成这个软盘而不是进入交互界面：（从 xygg 的实验报告里 copy 出来的）</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bximage -func=create -fd=1.44M -q a.img</span><br></pre></td></tr></table></figure>
+
+<p><del>当然你也可以不自己生成，直接从随书源码里的 a.img.gz 解压出来。</del></p>
+<h3 id="1-4-4-写入引导程序"><a href="#1-4-4-写入引导程序" class="headerlink" title="1.4.4 写入引导程序"></a>1.4.4 写入引导程序</h3><p>引导软盘上装载的是引导程序，重点在程序。在本实验中，是由一段神奇短小的汇编代码实现的，那段代码我们后面再来分析。这里先拿随书源码中现成的 boot.asm，来制作一张引导软盘。</p>
+<p>首先编译 <code>nasm boot.asm -o boot.bin</code>。</p>
+<p>然后运行下面的指令：<code>dd if=boot.bin of=a.img bs=512 count=1 conv=notrunc</code>。</p>
+<p>dd 是 linux 中自带的指令，一般用于文件的复制、读写、转码等，它可以加入很多的参数。</p>
+<p>在这个指令中，if 和 of 指定的是输入文件和输出文件，不指定时默认是标准输出。bs 是块的大小，count 是块的数量。notrunc 的意思是 no truncate，非截断。我们这里需要的是一个完整的软盘，自然是不能让它截断的。</p>
+<p>（虽然其实这个实验里，后面的部分并不会用上，截断了也不是不能跑）</p>
+<p>P.S. 什么是截断？举例而言：echo “hello” &gt; a.txt，如果 a.txt 本来是个很大的文件，那它的大小会被改变，只剩 “hello” 占的大小（当然实际可能是一个块的大小，这里只是举个例子）。截断的意思大概是，把大于输入的部分全部”删掉”，把输出文件”截”剩下输入的大小。</p>
+<p>总之，现在我们就得到了一张引导盘。可以开始准备跑起来了。</p>
+<h3 id="1-4-4-boshsrc-修改"><a href="#1-4-4-boshsrc-修改" class="headerlink" title="1.4.4 boshsrc 修改"></a>1.4.4 boshsrc 修改</h3><p>由于教材比较古老，所以随书源码的 boshsrc 有些配置已经失效了，需要进行修改。</p>
+<p>最重要的是 romimage 和 vgaromimage 的文件目录。</p>
+<p>最简单的判断路径对不对的方法是直接 cd 进去看看有没有这个文件。</p>
+<p>这里的 romimage 指的是 BIOS 的 image，是随 bochs 分发的。根据<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/compiling.html">文档</a>，它的默认位置应该是：&#x2F;usr&#x2F;local&#x2F;share&#x2F;bochs&#x2F;BIOS-bochs-latest。</p>
+<p>事实上这个文件也是部署的时候从你下载的源码包里面 copy 过去的，所以你直接在你下下来的解压的文件夹里也能找到这个 image，例如 bochs-2.7&#x2F;bios&#x2F;BIOS-bochs-latest。</p>
+<p>如果你实在找不到，也可以 <code>sudo find / -name &quot;BIOS-bochs-latest&quot;</code>。</p>
+<p>至于 vgabios，直接 <code>whereis vgabios</code> 就可以找到（在前面安装依赖时，它是直接 apt install 的）。</p>
+<p>软盘部分在创建后 bximage 会给出提示，我们前面提到过了。</p>
+<p>最后面的 keyboard_mapping 部分要注释掉。这个东西 15 年就有个 <a target="_blank" rel="noopener" href="https://github.com/yyu/osfs01/issues/3">issue</a> 了。应该是个已经被抛弃的写法。</p>
+<p>PPT 上还提到了 display_library。可以参考<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/bochsrc.html">文档的 4.3.3</a>。似乎与模拟器的显示有关。根据文档，不加的话默认选的应该也是 sdl（我们 configure 的参数也是 sdl），不过我还是加上了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"><span class="comment"># Configuration file for Bochs</span></span><br><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># how much memory the emulated machine will have</span></span><br><span class="line">megs: 32</span><br><span class="line"></span><br><span class="line"><span class="comment"># filename of ROM images</span></span><br><span class="line"><span class="comment"># 这里需要修改</span></span><br><span class="line">romimage: file=/usr/local/share/bochs/BIOS-bochs-latest</span><br><span class="line">vgaromimage: file=/usr/share/vgabios/vgabios.bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># what disk images will be used</span></span><br><span class="line"><span class="comment"># 这里在创建完软盘后 bximage 会给你提示，根据提示给出的填就行</span></span><br><span class="line">floppya: 1_44=a.img, status=inserted</span><br><span class="line"></span><br><span class="line"><span class="comment"># choose the boot disk.</span></span><br><span class="line">boot: floppy</span><br><span class="line"></span><br><span class="line"><span class="comment"># where do we send log messages?</span></span><br><span class="line"><span class="comment"># log: bochsout.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># disable the mouse</span></span><br><span class="line">mouse: enabled=0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的部分要注释掉</span></span><br><span class="line"><span class="comment"># enable key mapping, using US layout as default.</span></span><br><span class="line"><span class="comment"># keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 下面的可选择加上</span></span><br><span class="line">display_library: sdl</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-4-5-运行效果及部分常见报错"><a href="#1-4-5-运行效果及部分常见报错" class="headerlink" title="1.4.5 运行效果及部分常见报错"></a>1.4.5 运行效果及部分常见报错</h3><p>接下来就可以直接运行了 <code>bochs -f bochsrc</code>（也可以直接 <code>bochs</code>，只要在同一个目录内）。</p>
+<p>因为前面开了 debug，所以你要在交互窗口上输入 ‘c’，让它继续运行。运行结果是，在弹出来的窗口上看到一行红色的 “Hello, OS world!”。</p>
+<p>报错 1：couldn’t open ROM image file。你的 bochsrc 里面路径错了需要检查一下。</p>
+<p>报错 2：其实严格来说不是报错。如果你发现你的第一条指令不是 jmp，而是 <code>add [bx+si],al</code>（其实这条指令的机器码是0000）（我们开了 debug，在输入 c 的时候会注意到的），之类的很奇怪的指令，还一直报奇怪的数学运算错误之类的，那就是你的 rom image 选错了。那个是随 bochs 分发的 BIOS image，而不是你自己的创的 a.img。具体可以看前面 1.4.4。</p>
+<h2 id="1-5-hello-os-源码分析与调试"><a href="#1-5-hello-os-源码分析与调试" class="headerlink" title="1.5 hello os 源码分析与调试"></a>1.5 hello os 源码分析与调试</h2><h3 id="1-5-1-无关紧要的前置准备"><a href="#1-5-1-无关紧要的前置准备" class="headerlink" title="1.5.1 无关紧要的前置准备"></a>1.5.1 无关紧要的前置准备</h3><p>恭喜，我们运行了 hello os。但是别急，我们还要研究一下这个汇编程序在干什么。</p>
+<p>在研究的过程中，我们可能会需要修改这个 boot.asm 来测试产生的变化。但是，我们每次修改都要走一遍上面的流程：编译 - 写入 - 运行（虽然其实只是 cv 三条指令）。我们可以写个脚本，让这个过程自动化。</p>
+<p>你可能注意到了随书源码里的 makefile。你可以直接在上面改，也可以写个新的脚本。</p>
+<p><del>其实那个 makefile 是可以直接用的，每次 make 解压一个新的 a.img 出来也是更合理的做法。当然，本实验中每次挂载进去的都是同样大小的内容，所以解不解压并没有什么影响。</del></p>
+<p>草了，它给的那个 a.img.gz 里的 a.img 根本就不是一个空白软盘。它本来就是烧过的。所以你会发现直接注释掉 dw 0xaa55 它照样能跑，因为你写入 boot.bin 的方式是非截断的，原本就烧在里面的 0xaa55 并不会被你覆盖掉。</p>
+<p>如果你不想像我下面这样直接生成一个新的软盘，应该删掉原来的 a.img.gz，自己用 bximage 弄出一个空白 a.img 后重新压缩成 a.img.gz。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果已经存在 a.img 别忘了回答 yes</span></span><br><span class="line"><span class="comment"># 或者你也可以先 rm a.img</span></span><br><span class="line">bximage -func=create -fd=1.44M -q a.img</span><br><span class="line">gzip a.img</span><br></pre></td></tr></table></figure>
+
+<p>个人不建议一直用同一个被烧过的软盘跑，除非你保证每次都能把前面烧的内容覆盖掉。毕竟我们写入的方式是非截断的，并不会自动覆盖或重置掉后面的内容。</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run :</span><br><span class="line">	rm a.img</span><br><span class="line">	bximage -func=create -fd=<span class="number">1.44</span>M -q a.img</span><br><span class="line">	nasm boot.asm -o boot.bin</span><br><span class="line">	dd <span class="keyword">if</span>=boot.bin of=a.img bs=<span class="number">512</span> count=<span class="number">1</span> conv=notrunc</span><br><span class="line">	bochs</span><br></pre></td></tr></table></figure>
+
+<p>如果你有按我上面说的重新打包一个 a.img.gz，你也可以维持原本的 makefile 不变。</p>
+<p>这样我们每次改完 asm 就可以直接 make 啦。</p>
+<p>或把上面的指令抄到 sh 文件里，加个可执行权限。</p>
+<p>然后还有一个有趣的小工具，xygg 找到的，<a target="_blank" rel="noopener" href="https://github.com/yamnikov-oleg/nasmfmt">nasmfmt</a>，一个格式化汇编代码的小工具。</p>
+<h3 id="1-5-2-源码分析"><a href="#1-5-2-源码分析" class="headerlink" title="1.5.2 源码分析"></a>1.5.2 源码分析</h3><p>下面就是随书自带的源码了。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">	org	<span class="number">07c00h</span>			<span class="comment">; where the code will be running</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">ax</span>, <span class="built_in">cs</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">ds</span>, <span class="built_in">ax</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">es</span>, <span class="built_in">ax</span></span><br><span class="line">	<span class="keyword">call</span>	DispStr			<span class="comment">; let&#x27;s display a string</span></span><br><span class="line">	<span class="keyword">jmp</span>	$			<span class="comment">; and loop forever</span></span><br><span class="line"><span class="symbol">DispStr:</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">ax</span>, BootMessage</span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">bp</span>, <span class="built_in">ax</span>			<span class="comment">; ES:BP = string address</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">cx</span>, <span class="number">16</span>			<span class="comment">; CX = string length</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">ax</span>, <span class="number">01301h</span>		<span class="comment">; AH = 13,  AL = 01h</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">bx</span>, <span class="number">000ch</span>		<span class="comment">; RED/BLACK</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">dl</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">int</span>	<span class="number">10h</span></span><br><span class="line">	<span class="keyword">ret</span></span><br><span class="line"><span class="symbol">BootMessage:</span>		<span class="built_in">db</span>	<span class="string">&quot;Hello, OS world!&quot;</span></span><br><span class="line"><span class="built_in">times</span> 	<span class="number">510</span>-($-$$)	<span class="built_in">db</span>	<span class="number">0</span>	<span class="comment">; fill zeros to make it exactly 512 bytes</span></span><br><span class="line"><span class="built_in">dw</span> 	<span class="number">0xaa55</span>				<span class="comment">; boot record signature</span></span><br></pre></td></tr></table></figure>
+
+<p>程序第一行是一条伪指令，用来告诉编译器你后面的程序是从 07c00h 开始的（因为根据 Intel 80386，引导盘上的程序会被放到内存的 07c00h 处）。这会影响编译器对后面部分需要寻址的指令的编译。如果不加的话，编译器会认为程序是从 00000h 开始的，导致有些指令翻译成机器码后不能找到正确的地址。（比如 <code>jmp $</code> 和 <code>mov ax, BootMessage</code>）</p>
+<p><em>后面我们会分析反汇编后的代码，在反汇编后这个伪指令的作用会体现的更清晰。</em></p>
+<p>P.S. 我一开始以为它真的会使编译出的 bin 文件前面有 31kb 的空白，23333。事实上编译出来的只是机器码的二进制程序，这个程序具体会被塞到哪里，并不是由编译器来决定的，编译器能做的只有把汇编翻译成机器码。</p>
+<p>根据大一下学期学的 16 位实模式下 x86 汇编知识，我们知道 cs, ds, es, ss 是四个段寄存器。其中 cs:ip 指向现在正在执行的指令地址，ss 和 sp 是栈相关的（pop 使 sp 增加，push 使之减少）。es 和 ds 被用作数据段，es:[di], ds:[si]。</p>
+<p>当然我们知道 32 位下是不一样的，比如 ip 变成了 eip 等。这暂时不重要，我们以后会学到的。这里只需要知道它是在初始化段寄存器就行。以及我们这个代码内使用的寄存器，实际上全是 16 位及以下的。</p>
+<p>事实上，ds 在后面的代码中并没有用到，所以也可以不赋初值。</p>
+<p>然后接下来调用了 display string 的”函数”。这个函数内部的实现我们待会说，先回顾一下 call 和 ret。call 做的，是把下一条指令的 eip 压入栈中，然后 jmp 到 DispStr 表示的偏移处。ret 则是把栈顶赋给 eip。</p>
+<p>然后是 <code>jmp $</code>。后面还有另一处用到了 <code>$$</code>。对于这两个标志，<a target="_blank" rel="noopener" href="https://www.nasm.us/xdoc/2.15.05/html/nasmdoc3.html#section-3.5">官方文档</a>中的解释是：</p>
+<blockquote>
+<p>NASM supports two special tokens in expressions, allowing calculations to involve the current assembly position: the $ and $$ tokens. $ evaluates to the assembly position at the beginning of the line containing the expression; so you can code an infinite loop using JMP $. $$ evaluates to the beginning of the current section; so you can tell how far into the section you are by using ($-$$).</p>
+</blockquote>
+<p>此处可以简单理解为当前位置偏移量和所在节偏移量。我们这个程序中只有一个所谓的节，所以可以理解为程序开始的位置，也就是 07c00h。</p>
+<p><code>jmp $</code> 的含义就是”跳转到当前指令”。这显然会是一个无限的循环。</p>
+<p>最后三行都是我们学过的伪指令。db dw dd 是用来填放数据的，对应 byte, word, double word（字节，字，双字）。</p>
+<p>$-$$ 可以理解为这条伪指令前面的部分已经占了多大。times 的意思是重复。显然的这个伪指令的意思就是填充 0 到 510 字节。</p>
+<p>最后两个字节比较特殊，是 BIOS 识别引导扇区的依据，必须是 0xaa55。</p>
+<p><em>如果不是 0xaa55 会发生什么？BIOS 会因为找不到启动引导盘而异常退出。你会在 bochs 收到一条这样的报错：[BIOS  ] No bootable device.</em></p>
+<p>接下来分析函数内的部分。</p>
+<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">DispStr:</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">ax</span>, BootMessage</span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">bp</span>, <span class="built_in">ax</span>			<span class="comment">; ES:BP = string address</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">cx</span>, <span class="number">16</span>			<span class="comment">; CX = string length</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">ax</span>, <span class="number">01301h</span>		<span class="comment">; AH = 13,  AL = 01h</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">bx</span>, <span class="number">000ch</span>		<span class="comment">; RED/BLACK</span></span><br><span class="line">	<span class="keyword">mov</span>	<span class="built_in">dl</span>, <span class="number">0</span></span><br><span class="line">	<span class="keyword">int</span>	<span class="number">10h</span></span><br><span class="line">	<span class="keyword">ret</span></span><br></pre></td></tr></table></figure>
+
+<p>这个函数其实就是在调用中断处理程序。</p>
+<p>前两行是在设置 bp 寄存器。事实上，变址寄存器并不是不能直接用立即数赋值，所以直接改成 <code>mov bp, BootMessage</code> 并没有什么问题。</p>
+<p>es 前面设置过了。现在 es:bp 指向的是我们要显示的字符串的地址了。接下来的几行指令也是类似的，在设置调用的参数。然后 <code>int 10h</code> 调用中断处理程序。</p>
+<p>我们大一上时学过这个。我们最熟悉的应该是 21h。大多数的中断例程都是通过 ah 来传递功能编号。我们这里调用的<del>也许</del>是 10h 号中断的 13h 号功能。</p>
+<p><del>这个中断的相关信息我找到了这一篇 <a target="_blank" rel="noopener" href="https://4beginner.com/8086-Assembly-Language-INT-10h-Video-Interrupt">blog</a>。可以参考一下，大概是差不多的意思。</del></p>
+<p>xygg 太强了，什么都知道。官方文档在<a target="_blank" rel="noopener" href="https://stanislavs.org/helppc/int_10-13.html">这里</a>。</p>
+<p>好像也没什么好解释的，就是调用了个 bios 里的中断处理程序显示了个字符串。</p>
+<p>关于中断处理程序的组成，之前学过，但暂时还不需要，就不扯了。</p>
+<h3 id="1-5-3-反汇编"><a href="#1-5-3-反汇编" class="headerlink" title="1.5.3 反汇编"></a>1.5.3 反汇编</h3><p>反汇编在这里是为了更好的理解代码的逻辑，观察代码实际编译的效果。</p>
+<p>nasm 不仅提供了汇编的功能，也提供了反汇编的功能。你可以使用 <code>ndisasm</code> 进行反汇编。</p>
+<p>具体的，我们使用下面的指令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 直接执行 ndisasm 可以看到它的帮助</span></span><br><span class="line"><span class="comment"># 课本里的 -o 0x7c00 是 origin 的意思，类似 org 0x7c00，是告诉反汇编程序这段代码是被装载在 0x7c00 处的</span></span><br><span class="line"><span class="comment"># 个人建议不加</span></span><br><span class="line">ndisasm -o 0x7c00 boot.bin &gt; disboot.asm</span><br><span class="line">ndisasm -o boot.bin &gt; disboot.asm</span><br><span class="line"><span class="comment"># 用 objdump 也可以</span></span><br><span class="line">objdump -b binary -D -m i8086 -M intel boot.bin</span><br></pre></td></tr></table></figure>
+
+<p>为什么我不建议加 <code>-o 0x7c00</code> 呢。因为它会使 call 和 jmp 指令反汇编出来的东西“看上去不一样”。实际上这两在这里都是相对寻址，但是如果你不仔细对比机器码看的话，很容易产生误解。而且不加这条的话，<code>mov ax, BootMessage</code> 的反汇编效果会更加明显，更能体现出 <code>org</code> 指令的作用。</p>
+<p>这里就不给出反汇编的代码了，只用看前几行就行，因为它会把你填充的数据和 “hello os” 也当成指令反汇编。</p>
+<h3 id="1-5-4-bochs-调试"><a href="#1-5-4-bochs-调试" class="headerlink" title="1.5.4 bochs 调试"></a>1.5.4 bochs 调试</h3><p>关于 debugger 相关的文档在<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/doc/docbook/user/internal-debugger.html">这里</a>。</p>
+<p>也可以参考书上这个图。</p>
+<p><img src="/bochs%E5%B8%B8%E7%94%A8%E8%B0%83%E8%AF%95.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OS/" rel="tag"># OS</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/18/CF-808-Div-1-C-DFS-Trees/" rel="prev" title="CF#808 (Div.1) C. DFS Trees">
+      <i class="fa fa-chevron-left"></i> CF#808 (Div.1) C. DFS Trees
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE%E4%B8%8E-%E2%80%9Chello-OS%EF%BC%81%E2%80%9D"><span class="nav-text">1 环境配置与 “hello OS！”</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0%E4%B8%8E%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E9%80%89%E6%8B%A9"><span class="nav-text">1.1 虚拟机平台与操作系统选择</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-text">1.1.1 操作系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-2-%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%B9%B3%E5%8F%B0"><span class="nav-text">1.1.2 虚拟机平台</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E4%B8%80%E4%BA%9B%E2%80%9D%E6%97%A0%E5%85%B3%E7%B4%A7%E8%A6%81%E2%80%9D%E7%9A%84%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="nav-text">1.2 一些”无关紧要”的前置准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-%E4%BF%AE%E6%94%B9%E8%BD%AF%E4%BB%B6%E6%BA%90%E5%88%B0%E9%95%9C%E5%83%8F%E7%AB%99"><span class="nav-text">1.2.1 修改软件源到镜像站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-%E5%AE%89%E8%A3%85-VMware-tools-%E4%B8%8E%E8%AE%BE%E7%BD%AE%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-text">1.2.2 安装 VMware tools 与设置共享文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-%E4%B8%BA-github-%E8%B4%A6%E6%88%B7%E6%B7%BB%E5%8A%A0%E6%96%B0%E7%9A%84-ssh-key"><span class="nav-text">1.2.3 为 github 账户添加新的 ssh key</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-zsh-oh-my-zsh-%E7%9B%B8%E5%85%B3%E9%85%8D%E7%BD%AE"><span class="nav-text">1.2.4 zsh oh-my-zsh 相关配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E5%AE%9E%E9%AA%8C%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">1.3 实验环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-Bochs-%E5%AE%89%E8%A3%85"><span class="nav-text">1.3.1 Bochs 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-nasm-%E5%AE%89%E8%A3%85"><span class="nav-text">1.3.2 nasm 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-Hello-OS"><span class="nav-text">1.4 Hello OS!</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-%E9%9A%8F%E4%B9%A6%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD"><span class="nav-text">1.4.1 随书源码下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-%E6%88%91%E4%BB%AC%E8%A6%81%E5%81%9A%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-text">1.4.2 我们要做什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-3-%E5%88%B6%E4%BD%9C%E4%B8%80%E5%BC%A0%E7%A9%BA%E7%99%BD%E8%BD%AF%E7%9B%98"><span class="nav-text">1.4.3 制作一张空白软盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-%E5%86%99%E5%85%A5%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F"><span class="nav-text">1.4.4 写入引导程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-4-boshsrc-%E4%BF%AE%E6%94%B9"><span class="nav-text">1.4.4 boshsrc 修改</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-5-%E8%BF%90%E8%A1%8C%E6%95%88%E6%9E%9C%E5%8F%8A%E9%83%A8%E5%88%86%E5%B8%B8%E8%A7%81%E6%8A%A5%E9%94%99"><span class="nav-text">1.4.5 运行效果及部分常见报错</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-hello-os-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%E4%B8%8E%E8%B0%83%E8%AF%95"><span class="nav-text">1.5 hello os 源码分析与调试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-1-%E6%97%A0%E5%85%B3%E7%B4%A7%E8%A6%81%E7%9A%84%E5%89%8D%E7%BD%AE%E5%87%86%E5%A4%87"><span class="nav-text">1.5.1 无关紧要的前置准备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-2-%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="nav-text">1.5.2 源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-3-%E5%8F%8D%E6%B1%87%E7%BC%96"><span class="nav-text">1.5.3 反汇编</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-5-4-bochs-%E8%B0%83%E8%AF%95"><span class="nav-text">1.5.4 bochs 调试</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qing-LKY"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">Qing-LKY</p>
+  <div class="site-description" itemprop="description">可爱就是正义！</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Qing-LKY/" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Qing-LKY&#x2F;" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title"><i class="fa fa-link fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/Qing-LKY/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;Qing-LKY&#x2F;" rel="noopener" target="_blank">Past blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.xinyang.life/" title="https:&#x2F;&#x2F;blog.xinyang.life&#x2F;" rel="noopener" target="_blank">Xinyang's Blog</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.cnblogs.com/ctrl-newbee/" title="https:&#x2F;&#x2F;www.cnblogs.com&#x2F;ctrl-newbee&#x2F;" rel="noopener" target="_blank">Ctrlnewbee</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Qing-LKY</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

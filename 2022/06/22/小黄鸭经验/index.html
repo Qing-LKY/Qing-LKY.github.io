@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="傻逼错误 此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。  注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n n。 小心 1 和 &#39;1&#39;，这是一个情急下很容易写错且难以意识到的问题。 注意多测的清空，尤其是多测下前向星数组的 head 和 cc。 注意数组的初始化。特别是 dp 的时候如果懒得写边界特判的时候。 注意 continue">
+  <meta name="description" content="傻逼错误此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。  注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n n。 小心 1 和 ‘1’，这是一个情急下很容易写错且难以意识到的问题。 注意多测的清空，尤其是多测下前向星数组的 head 和 cc。 注意数组的初始化。特别是 dp 的时候如果懒得写边界特判的时候。 注意 continue 的位置。如果你只是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小黄鸭经验">
 <meta property="og:url" content="http://example.com/2022/06/22/%E5%B0%8F%E9%BB%84%E9%B8%AD%E7%BB%8F%E9%AA%8C/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="傻逼错误 此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。  注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n n。 小心 1 和 &#39;1&#39;，这是一个情急下很容易写错且难以意识到的问题。 注意多测的清空，尤其是多测下前向星数组的 head 和 cc。 注意数组的初始化。特别是 dp 的时候如果懒得写边界特判的时候。 注意 continue">
+<meta property="og:description" content="傻逼错误此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。  注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n n。 小心 1 和 ‘1’，这是一个情急下很容易写错且难以意识到的问题。 注意多测的清空，尤其是多测下前向星数组的 head 和 cc。 注意数组的初始化。特别是 dp 的时候如果懒得写边界特判的时候。 注意 continue 的位置。如果你只是">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-22T05:24:33.000Z">
 <meta property="article:modified_time" content="2022-06-22T11:38:35.420Z">
@@ -342,24 +342,19 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="傻逼错误">傻逼错误</h2>
-<p>此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。</p>
-<ol type="1">
-<li>注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n
-n。</li>
-<li>小心 1 和 '1'，这是一个情急下很容易写错且难以意识到的问题。</li>
+        <h2 id="傻逼错误"><a href="#傻逼错误" class="headerlink" title="傻逼错误"></a>傻逼错误</h2><p>此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。</p>
+<ol>
+<li>注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成 n n。</li>
+<li>小心 1 和 ‘1’，这是一个情急下很容易写错且难以意识到的问题。</li>
 <li>注意多测的清空，尤其是多测下前向星数组的 head 和 cc。</li>
 <li>注意数组的初始化。特别是 dp 的时候如果懒得写边界特判的时候。</li>
-<li>注意 continue
-的位置。如果你只是想跳过中间的某一段代码，后面还有另外的要执行，就不能
-continue。这个问题在一开始没有考虑清楚逻辑，后续补上其它代码段时非常容易出现。</li>
+<li>注意 continue 的位置。如果你只是想跳过中间的某一段代码，后面还有另外的要执行，就不能 continue。这个问题在一开始没有考虑清楚逻辑，后续补上其它代码段时非常容易出现。</li>
 <li>记得删 freopen。</li>
 <li>小心 i*j n*i 之类的东西爆 int。</li>
 <li>线段树大小是 0 的 build 会死循环。小心边界特判。</li>
 <li>queue 的初始化非常的慢，空间非常的玄学，不要开大的 queue 数组。</li>
 </ol>
-<h2 id="经验">经验</h2>
-<ol type="1">
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><ol>
 <li>理清程序逻辑</li>
 <li>看清题目要求（<strong>例如昆明那道面积覆盖的矩形，写成了格点覆盖，死活没想到这个问题痛失银牌</strong>）</li>
 <li>注意边界特判</li>
