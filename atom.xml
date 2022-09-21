@@ -28,7 +28,10 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;文章目录&quot;&gt;&lt;a href=&quot;#文章目录&quot; class=&quot;headerlink&quot; title=&quot;文章目录&quot;&gt;&lt;/a&gt;文章目录&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;1</summary>
+    <summary type="html">&lt;h1 id=&quot;文章目录&quot;&gt;文章目录&lt;/h1&gt;
+&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;1 环境配置与
+&quot;hello OS！&quot;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;2</summary>
         
       
     
@@ -53,7 +56,10 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是 Orange’s</summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
+&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是 Orange&#39;s
+啥啥的那本书。因为第一次课配环境血压飙的有点快，所以开个帖来记录实验过程。&lt;/p&gt;
+&lt;p&gt;文章里包含大量指向有用文档的超链接，但是都是夹在文字中的，长&lt;a</summary>
         
       
     
@@ -78,7 +84,9 @@
       
         
         
-    <summary type="html">&lt;p&gt;原题链接：&lt;a</summary>
+    <summary type="html">&lt;p&gt;原题链接：https://codeforc.es/contest/1707/problem/C[https://codeforc.es/contest/1707/problem/C]&lt;/p&gt;
+&lt;p&gt;(家里网络不是很好，最近主站经常上不去，只好上镜像了)&lt;/p&gt;
+&lt;h2</summary>
         
       
     
@@ -106,7 +114,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1701/problem/E&quot;&gt;https://codeforces.com/contest/1701/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -134,7 +142,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1701/problem/E&quot;&gt;https://codeforces.com/contest/1701/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -162,7 +170,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -190,7 +198,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/F&quot;&gt;https://codeforces.com/contest/1700/problem/F&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -216,7 +224,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -244,7 +252,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/D2&quot;&gt;https://codeforces.com/contest/1695/problem/D2&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -272,7 +280,7 @@
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/C&quot;&gt;https://codeforces.com/contest/1695/problem/C&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
+&lt;h2</summary>
         
       
     
@@ -299,9 +307,10 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;&lt;a href=&quot;#傻逼错误&quot; class=&quot;headerlink&quot; title=&quot;傻逼错误&quot;&gt;&lt;/a&gt;傻逼错误&lt;/h2&gt;&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;注意 n 和 m 的读入顺序和在</summary>
+    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;傻逼错误&lt;/h2&gt;
+&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成</summary>
         
       
     
@@ -326,8 +335,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;学期小结&quot;&gt;&lt;a href=&quot;#学期小结&quot; class=&quot;headerlink&quot; title=&quot;学期小结&quot;&gt;&lt;/a&gt;学期小结&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天 vp</summary>
+    <summary type="html">&lt;h2</summary>
         
       
     
@@ -352,7 +360,10 @@
       
         
         
-    <summary type="html">&lt;h1 id=&quot;Qing-LKY-的个人博客&quot;&gt;&lt;a href=&quot;#Qing-LKY-的个人博客&quot; class=&quot;headerlink&quot; title=&quot;Qing-LKY 的个人博客&quot;&gt;&lt;/a&gt;Qing-LKY 的个人博客&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a</summary>
+    <summary type="html">&lt;h1 id=&quot;qing-lky-的个人博客&quot;&gt;Qing-LKY 的个人博客&lt;/h1&gt;
+&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。&lt;/p&gt;
+&lt;p&gt;使用的是 github.io + hexa</summary>
         
       
     
