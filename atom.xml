@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-16T13:49:27.778Z</updated>
+  <updated>2022-09-21T07:03:12.290Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,19 +17,43 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>《操作系统实践》实验指南</title>
+    <title>《操作系统实践》实验指南 2</title>
+    <link href="http://example.com/2022/09/20/OS-LAB-2/"/>
+    <id>http://example.com/2022/09/20/OS-LAB-2/</id>
+    <published>2022-09-20T00:59:44.000Z</published>
+    <updated>2022-09-21T07:03:12.290Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;文章目录&quot;&gt;&lt;a href=&quot;#文章目录&quot; class=&quot;headerlink&quot; title=&quot;文章目录&quot;&gt;&lt;/a&gt;文章目录&lt;/h1&gt;&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;1</summary>
+        
+      
+    
+    
+    
+    <category term="课程笔记" scheme="http://example.com/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="OS" scheme="http://example.com/tags/OS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《操作系统实践》实验指南 1</title>
     <link href="http://example.com/2022/09/13/OS-LAB/"/>
     <id>http://example.com/2022/09/13/OS-LAB/</id>
     <published>2022-09-13T02:52:30.000Z</published>
-    <updated>2022-09-16T13:49:27.778Z</updated>
+    <updated>2022-09-21T06:48:06.485Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是</summary>
+    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是 Orange’s</summary>
         
       
     
