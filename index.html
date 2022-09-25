@@ -315,7 +315,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-21 15:03:12" itemprop="dateModified" datetime="2022-09-21T15:03:12+08:00">2022-09-21</time>
+                <time title="修改时间：2022-09-25 23:26:15" itemprop="dateModified" datetime="2022-09-25T23:26:15+08:00">2022-09-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -327,7 +327,21 @@ mjx-container[display="true"] + br {
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -342,8 +356,25 @@ mjx-container[display="true"] + br {
 <p><a target="_blank" rel="noopener" href="https://qing-lky.github.io/2022/09/13/OS-LAB/">1 环境配置与
 "hello OS！"</a></p>
 <p><strong>2 从实模式到保护模式</strong></p>
+<h1 id="前言">前言</h1>
+<p>你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。</p>
+<p>我发现，我做实验的效率极其低下，主要是下面几个原因：</p>
+<ol type="1">
+<li><p>睿智的虚拟环境搞得人很烦躁</p>
+<p><del>傻逼</del>可爱的 VMware
+动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是不好说，所以用的战战兢兢）</p>
+<p>可爱的 VMware tools
+每天要重装两三遍。搞得我都不想用共享剪切板功能了。</p>
+<p>想换 virtual
+box。结果奇慢无比，连启动都启动不了。（查了下官方社区，个人推测 hyper-v
++ amd 的问题）</p></li>
+<li><p>钻牛角尖</p>
+<p>总是被一些与实验无关紧要的问题吸引注意力，什么都想弄清楚，结果就是什么都顾不上。</p></li>
+<li><p>too much things to do</p>
+<p>信安大三上怎么这么多实验，f**k</p></li>
+</ol>
+<p><del>没事了，让我们开始吧（</del></p>
 <h1 id="从实模式到保护模式">2 从实模式到保护模式</h1>
-<p>(更新中)</p>
 <h2 id="freedos-初体验">2.1 Freedos 初体验</h2>
 <h3 id="why-dos">2.1.1 Why DOS？</h3>
 <p>DOS 是磁盘操作系统（Disk Operating
@@ -408,7 +439,7 @@ os 能访问的文件。</p>
 <p>把 bochsrc 修改为下面的内容：（其实就是上章用的那些修改了一下）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"><span class="comment"># Configuration file for Bochs</span></span><br><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># how much memory the emulated machine will have</span></span><br><span class="line">megs: 32</span><br><span class="line"></span><br><span class="line"><span class="comment"># filename of ROM images</span></span><br><span class="line">romimage: file=/usr/local/share/bochs/BIOS-bochs-latest</span><br><span class="line">vgaromimage: file=/usr/share/vgabios/vgabios.bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># what disk images will be used</span></span><br><span class="line">floppya: 1_44=freedos.img, status=inserted</span><br><span class="line">floppyb: 1_44=pm.img, status=inserted</span><br><span class="line"></span><br><span class="line"><span class="comment"># choose the boot disk.</span></span><br><span class="line">boot: a</span><br><span class="line"></span><br><span class="line"><span class="comment"># where do we send log messages?</span></span><br><span class="line"><span class="comment"># log: bochsout.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># disable the mouse</span></span><br><span class="line">mouse: enabled=0</span><br><span class="line"></span><br><span class="line"><span class="comment"># enable key mapping, using US layout as default.</span></span><br><span class="line"><span class="comment"># keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map</span></span><br><span class="line"></span><br><span class="line">display_library: sdl</span><br></pre></td></tr></table></figure>
 <p>接下来，运行 bochs，成功启动的话可以看到 freedos 的命令行界面。</p>
-<img src="/.com//09/20/OS-LAB-2/after_boot.png" class>
+<p><img src="/.com//after_boot.png"></p>
 <p>那个 format 是我自己打进去的，为了确认键盘能不能用。</p>
 <p>如果你遇到的报错是 no boot device，请检查你的启动盘有没有设置对。</p>
 <p>不过也有非常多人遇到了进入 bochs 后 freedos
@@ -425,7 +456,8 @@ mount 时会因为无法识别文件系统类型而报错。</p>
 <p>其实，你也可以不用到 freedos 下进行格式化，直接在 linux
 下执行下面的指令也是可以的。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat pm.img</span><br></pre></td></tr></table></figure>
-<p>被上述指令格式化的软盘是可以被 freedos 使用的。</p>
+<p>被上述指令格式化的软盘是可以被 freedos 使用的。它默认格式化为 fat12
+格式。</p>
 <p>P.S.
 格式化指根据用户选定的文件系统（如FAT12、FAT16、FAT32、NTFS、EXT2、EXT3等），在磁盘的特定区域写入特定数据，以达到初始化磁盘或磁盘分区、清除原磁盘或磁盘分区中所有文件的一个操作。一个什么都没有的空白软盘和格式化后的软盘是不一样的。</p>
 <p>使用下面指令可以挂载，和取消挂载。</p>
@@ -442,6 +474,55 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
 <p>书上的做法是在 cp 完 .com
 文件后取消挂载。其实不取消也行，没必要每次都挂载一下。</p>
 <h3 id="运行随书示例">2.1.5 运行随书示例</h3>
+<p>dos 下直接运行 .com，会将代码挂到虚拟地址 0100h
+处，需要在代码第一行加上 org 0100h。</p>
+<p>编译 asm 源码，然后复制到挂载的软盘上，启动 bochs，在 Freedos
+上运行即可。</p>
+<p>具体的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 注意 这一步要求 pm.inc 和 pmtest1b.asm 在同个目录下</span><br><span class="line">nasm pmtest1b.asm -o pmtest1b.com</span><br><span class="line"># 复制到挂载好的软盘里</span><br><span class="line">sudo cp pmtest1b.com /mnt/floppy</span><br><span class="line"># 运行 bochs</span><br><span class="line">bochs</span><br><span class="line"># 在 freedos 下运行下面指令</span><br><span class="line">B:\pmtest1b.com</span><br></pre></td></tr></table></figure>
+<p>运行成功后，你会在 bochs 显示屏上看到一个红色的
+P。但是接下来你就无法进行任何操作了，只能关掉 bochs 或用 debug
+想办法退出，因为这个程序是个死循环。</p>
+<h2 id="随书汇编源码解读">2.2 随书汇编源码解读</h2>
+<h3 id="彩蛋当你试图将随书源码作为引导程序">2.2.1
+（彩蛋）当你试图将随书源码作为引导程序</h3>
+<p>freedos 下执行 .com
+程序，不知道会被挂载到什么地方，因此难以设置断点，需要一些额外的手段（后文会提到）。</p>
+<p>而引导程序的虚拟地址与逻辑地址是对应的，设置断点非常容易。当然，这种做法是有局限的，有些实验源码使用了
+dos 设置的中断（如 21h 的 4ch 带返回值退出程序）。或是程序大于 510
+个字节。这些是没有办法用这种手段调试的。</p>
+<p>当然，pmtest1.asm
+是可以用这种方式调试的。但是，它有一个问题。就是它的末尾并没有
+0xaa55。</p>
+<p>但是我们不能再使用 <code>times 510-($-$$) db 0</code>
+来凑了。因为这个程序有非常多的段。而 <code>$$</code>
+针对的是当前的段。</p>
+<p>一种办法是拿我们之前用过的 a.img。它的末尾本来就含有
+0xaa55，而我们是非截断写入，因此末尾这两个字节是会保留的。</p>
+<p>另一种方法是用下面的指令来写入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -ne <span class="string">&quot;\x55\xaa&quot;</span> | <span class="built_in">dd</span> of=a.img seek=510 bs=1 count=2 conv=notrunc</span><br></pre></td></tr></table></figure>
+<p><code>-ne</code>
+的意思是不换行且使用转义符号。其实换不换行无所谓，反正只取前两个字节，取不到后面的
+<code>\10</code>（换行符）。这里出于强迫症保证了输出只有两个字节。<code>seek=510</code>
+就是从第 510 个字节开始写入（从 0 开始数）。其它之前介绍过了。</p>
+<p>你可能会像我一样，直接就把上面这条指令直接写到 makefile
+里去了。然后发现写进 a.img 的不是 0xaa55，而是 0x6e2d。</p>
+<p>查一下 ascii 码表，你会发现它把 "-n"
+当成字符串了。这是怎么回事呢？</p>
+<p>其实是 shell 的差异导致的。<a target="_blank" rel="noopener" href="https://blog.csdn.net/haifeng_gu/article/details/73332242">这篇博客讲的很清楚</a>，解决了困扰我大半天的问题。</p>
+<h3 id="一点小小的个人经验">2.2.2 一点小小的个人经验</h3>
+<p>其实这一章全是非常枯燥的知识，东西很多。学的时候看的我头昏眼花。</p>
+<p>我本来是打算把知识点什么的全部写进来的，但是编排起来实在有点难度，而且感觉不太符合我的风格（<del>其实就是单纯的懒和烦</del>）。</p>
+<p>所以就讲一下我个人的经验吧：</p>
+<blockquote>
+<p>因为源码是有很详细的注释的。直接看源码，看不懂的部分再去查书和
+PPT，效率就会大幅提升。</p>
+</blockquote>
+<p>当然这只是个人经验。具体怎么学舒服还得看自己。</p>
+<p>后面有空时会逐渐补全各部分的知识点。包括第一章中的一些还可以深入了解的东西也会抽空补全。</p>
+<h3 id="gdt-的载入与迈入保护模式">2.2.3 GDT 的载入与迈入保护模式</h3>
+<h3 id="一致代码段与非一致代码段">2.2.4 一致代码段与非一致代码段</h3>
+<p>cld（0） 和 std（1） 用于操作方向标志。用于串操作寻址。</p>
 
       
     </div>
@@ -492,7 +573,7 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-21 14:48:06" itemprop="dateModified" datetime="2022-09-21T14:48:06+08:00">2022-09-21</time>
+                <time title="修改时间：2022-09-25 11:33:45" itemprop="dateModified" datetime="2022-09-25T11:33:45+08:00">2022-09-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -504,7 +585,21 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>12k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>19 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -521,6 +616,13 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
 <p>文章里包含大量指向有用文档的超链接，但是都是夹在文字中的，长<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Qc411h7Ys">这样</a>（不用点，只是演示一下长什么样）。看起来不明显，需要仔细识别。后续可能会考虑改进一下，把链接摆在明显的位置，或是换一个主题。</p>
 <p>本人的博客向来是话比较多的，因为个人倾向于把所有想到的东西全部写进来。望多多包涵。</p>
 <p>随课持续更新中。也可能开一篇新的文章。</p>
+<p>说起来，我对这篇博客的定位其实不是特别的明朗。我并不清楚自己到底想写出一篇什么样的东西来。</p>
+<p>事实上，如果只是想记录实验步骤和课后习题什么的答案，<a target="_blank" rel="noopener" href="https://whu-os-ex-2021.readthedocs.io/en/latest/index.html">去年已经有大佬写过了</a>，而且人家的可读性、排版、完成度等也要远远优于我。</p>
+<p>因此，我可能更倾向于把我的文章定位为比较随性的、实验过程中发现的有趣的、试图详细理解研究的问题的记录随笔。</p>
+<p>因为比较笨，所以我写 acm
+题解时大多数时候会默认读者和我一样笨，然后把整个思考过程的过程都很啰嗦地写出来。<del>我暑假语雀更了上万字，不过群友似乎不怎么看得下去</del>。其实说白了，就是我不太擅长整理和精炼语言。</p>
+<p>这个不太好的习惯被我延续到了 OS
+实验的博客里。因此这对于只打算看个结果自己想和参考下操作的朋友不是特别的友好。我会在更新的过程中慢慢改进的。</p>
 <h1 id="文章目录">文章目录</h1>
 <p><strong>1 环境配置与 "hello OS！"</strong></p>
 <p><a target="_blank" rel="noopener" href="https://qing-lky.github.io/2022/09/13/OS-LAB-2/">2
@@ -568,7 +670,9 @@ wsl2，你就可以通过 /mnt/hgfs 访问主机上的这个文件夹了。</p>
 目录下，解压出来。不建议直接在那个目录下解压，一个是没有权限，一个是我不知道会发生什么，也不排除本来就是只读的。</p>
 <p>然后在解压出来的 VMware-tools-distrib 里打开 terminal，运行
 <code>sudo ./vmware-install.pl</code>。</p>
-<p>然后我就全程回车保持默认，<del>反正也看不懂</del>。</p>
+<p><del>然后我就全程回车保持默认，反正也看不懂</del>。</p>
+<p>注意，重装过程中的所有 overwrite 选项都是默认 no，个人是建议全部输入
+yes。</p>
 <p>然后就好了，然后就可以共享剪切板了。声明一下：如果你还没好，我也不太懂，因为我确实不知道这个安装程序是在干什么。</p>
 <p>重装了 tools
 后，原来设置的共享文件夹找不到了。所以你需要再删掉重新添加一次。用不用重启我忘了。</p>
@@ -745,7 +849,7 @@ makefile。你可以直接在上面改，也可以写个新的脚本。</p>
 a.img.gz，自己用 bximage 弄出一个空白 a.img 后重新压缩成 a.img.gz。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果已经存在 a.img 别忘了回答 yes</span></span><br><span class="line"><span class="comment"># 或者你也可以先 rm a.img</span></span><br><span class="line">bximage -func=create -fd=1.44M -q a.img</span><br><span class="line">gzip a.img</span><br></pre></td></tr></table></figure>
 <p>个人不建议一直用同一个被烧过的软盘跑，除非你保证每次都能把前面烧的内容覆盖掉。毕竟我们写入的方式是非截断的，并不会自动覆盖或重置掉后面的内容。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run :</span><br><span class="line">	rm a.img</span><br><span class="line">	bximage -func=create -fd=<span class="number">1.44</span>M -q a.img</span><br><span class="line">	nasm boot.asm -o boot.bin</span><br><span class="line">	dd <span class="keyword">if</span>=boot.bin of=a.img bs=<span class="number">512</span> count=<span class="number">1</span> conv=notrunc</span><br><span class="line">	bochs</span><br></pre></td></tr></table></figure>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">run :</span><br><span class="line">	rm a.img</span><br><span class="line">	bximage -func=create -fd=1.44M -q a.img</span><br><span class="line">	nasm boot.asm -o boot.bin</span><br><span class="line">	dd if=boot.bin of=a.img bs=512 count=1 conv=notrunc</span><br><span class="line">	bochs</span><br></pre></td></tr></table></figure>
 <p>如果你有按我上面说的重新打包一个 a.img.gz，你也可以维持原本的
 makefile 不变。</p>
 <p>这样我们每次改完 asm 就可以直接 make 啦。</p>
@@ -876,7 +980,21 @@ word, double word（字节，字，双字）。</p>
               <time title="创建时间：2022-07-18 09:42:59 / 修改时间：10:28:46" itemprop="dateCreated datePublished" datetime="2022-07-18T09:42:59+08:00">2022-07-18</time>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -986,7 +1104,21 @@ DFS，才可能满足这个要求。其它点必然在回溯到 u 或 v 时走�
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1089,7 +1221,21 @@ d 的点对数量。</li>
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1211,7 +1357,21 @@ i, j 和 k。这样会 tle on test 20。所以我们需要加一点优化。</p>
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1322,7 +1482,21 @@ B，我们有且只有一个固定的替换方式，来使得 A 变成 B。</p>
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1456,7 +1630,21 @@ i 的移动，<span class="math inline"><mjx-container class="MathJax" jax="SVG"
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.1k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1544,7 +1732,21 @@ xi 步第一次被访问，要求有 x1 &lt; x2 &lt; x3
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1646,7 +1848,21 @@ min，就是我们要的解。</p>
                 </span>
             </span>
 
-          
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
 
         </div>
       </header>
@@ -1838,6 +2054,18 @@ min，就是我们要的解。</p>
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Qing-LKY</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">46k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:16</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>

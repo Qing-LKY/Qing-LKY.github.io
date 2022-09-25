@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="文章目录 1 环境配置与 &quot;hello OS！&quot; 2 从实模式到保护模式 2 从实模式到保护模式 (更新中) 2.1 Freedos 初体验 2.1.1 Why DOS？ DOS 是磁盘操作系统（Disk Operating System）的简称，是早期个人计算机上的一类操作系统。 在上一章中，课本里提到：  还有一个可选的方法能够帮助调试，做法也很简单，就是把 &quot;org">
+  <meta name="description" content="文章目录 1 环境配置与 &quot;hello OS！&quot; 2 从实模式到保护模式 前言 你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。 我发现，我做实验的效率极其低下，主要是下面几个原因：  睿智的虚拟环境搞得人很烦躁 傻逼可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《操作系统实践》实验指南 2">
 <meta property="og:url" content="http://example.com/2022/09/20/OS-LAB-2/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="文章目录 1 环境配置与 &quot;hello OS！&quot; 2 从实模式到保护模式 2 从实模式到保护模式 (更新中) 2.1 Freedos 初体验 2.1.1 Why DOS？ DOS 是磁盘操作系统（Disk Operating System）的简称，是早期个人计算机上的一类操作系统。 在上一章中，课本里提到：  还有一个可选的方法能够帮助调试，做法也很简单，就是把 &quot;org">
+<meta property="og:description" content="文章目录 1 环境配置与 &quot;hello OS！&quot; 2 从实模式到保护模式 前言 你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。 我发现，我做实验的效率极其低下，主要是下面几个原因：  睿智的虚拟环境搞得人很烦躁 傻逼可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是不">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/.com//09/20/OS-LAB-2/after_boot.png">
+<meta property="og:image" content="http://example.com/.com//after_boot.png">
 <meta property="article:published_time" content="2022-09-20T00:59:44.000Z">
-<meta property="article:modified_time" content="2022-09-21T07:03:12.290Z">
+<meta property="article:modified_time" content="2022-09-25T15:26:15.314Z">
 <meta property="article:author" content="Qing-LKY">
 <meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/.com//09/20/OS-LAB-2/after_boot.png">
+<meta name="twitter:image" content="http://example.com/.com//after_boot.png">
 
 <link rel="canonical" href="http://example.com/2022/09/20/OS-LAB-2/">
 
@@ -208,7 +208,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-09-21 15:03:12" itemprop="dateModified" datetime="2022-09-21T15:03:12+08:00">2022-09-21</time>
+                <time title="修改时间：2022-09-25 23:26:15" itemprop="dateModified" datetime="2022-09-25T23:26:15+08:00">2022-09-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,6 +227,20 @@
               </span>
               <span class="post-meta-item-text">阅读次数：</span>
               <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>9 分钟</span>
             </span>
 
         </div>
@@ -242,8 +256,25 @@
 <p><a target="_blank" rel="noopener" href="https://qing-lky.github.io/2022/09/13/OS-LAB/">1 环境配置与
 "hello OS！"</a></p>
 <p><strong>2 从实模式到保护模式</strong></p>
+<h1 id="前言">前言</h1>
+<p>你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。</p>
+<p>我发现，我做实验的效率极其低下，主要是下面几个原因：</p>
+<ol type="1">
+<li><p>睿智的虚拟环境搞得人很烦躁</p>
+<p><del>傻逼</del>可爱的 VMware
+动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是不好说，所以用的战战兢兢）</p>
+<p>可爱的 VMware tools
+每天要重装两三遍。搞得我都不想用共享剪切板功能了。</p>
+<p>想换 virtual
+box。结果奇慢无比，连启动都启动不了。（查了下官方社区，个人推测 hyper-v
++ amd 的问题）</p></li>
+<li><p>钻牛角尖</p>
+<p>总是被一些与实验无关紧要的问题吸引注意力，什么都想弄清楚，结果就是什么都顾不上。</p></li>
+<li><p>too much things to do</p>
+<p>信安大三上怎么这么多实验，f**k</p></li>
+</ol>
+<p><del>没事了，让我们开始吧（</del></p>
 <h1 id="从实模式到保护模式">2 从实模式到保护模式</h1>
-<p>(更新中)</p>
 <h2 id="freedos-初体验">2.1 Freedos 初体验</h2>
 <h3 id="why-dos">2.1.1 Why DOS？</h3>
 <p>DOS 是磁盘操作系统（Disk Operating
@@ -308,7 +339,7 @@ os 能访问的文件。</p>
 <p>把 bochsrc 修改为下面的内容：（其实就是上章用的那些修改了一下）</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"><span class="comment"># Configuration file for Bochs</span></span><br><span class="line"><span class="comment">###############################################################</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># how much memory the emulated machine will have</span></span><br><span class="line">megs: 32</span><br><span class="line"></span><br><span class="line"><span class="comment"># filename of ROM images</span></span><br><span class="line">romimage: file=/usr/local/share/bochs/BIOS-bochs-latest</span><br><span class="line">vgaromimage: file=/usr/share/vgabios/vgabios.bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># what disk images will be used</span></span><br><span class="line">floppya: 1_44=freedos.img, status=inserted</span><br><span class="line">floppyb: 1_44=pm.img, status=inserted</span><br><span class="line"></span><br><span class="line"><span class="comment"># choose the boot disk.</span></span><br><span class="line">boot: a</span><br><span class="line"></span><br><span class="line"><span class="comment"># where do we send log messages?</span></span><br><span class="line"><span class="comment"># log: bochsout.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># disable the mouse</span></span><br><span class="line">mouse: enabled=0</span><br><span class="line"></span><br><span class="line"><span class="comment"># enable key mapping, using US layout as default.</span></span><br><span class="line"><span class="comment"># keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map</span></span><br><span class="line"></span><br><span class="line">display_library: sdl</span><br></pre></td></tr></table></figure>
 <p>接下来，运行 bochs，成功启动的话可以看到 freedos 的命令行界面。</p>
-<img src="/.com//09/20/OS-LAB-2/after_boot.png" class>
+<p><img src="/.com//after_boot.png"></p>
 <p>那个 format 是我自己打进去的，为了确认键盘能不能用。</p>
 <p>如果你遇到的报错是 no boot device，请检查你的启动盘有没有设置对。</p>
 <p>不过也有非常多人遇到了进入 bochs 后 freedos
@@ -325,7 +356,8 @@ mount 时会因为无法识别文件系统类型而报错。</p>
 <p>其实，你也可以不用到 freedos 下进行格式化，直接在 linux
 下执行下面的指令也是可以的。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat pm.img</span><br></pre></td></tr></table></figure>
-<p>被上述指令格式化的软盘是可以被 freedos 使用的。</p>
+<p>被上述指令格式化的软盘是可以被 freedos 使用的。它默认格式化为 fat12
+格式。</p>
 <p>P.S.
 格式化指根据用户选定的文件系统（如FAT12、FAT16、FAT32、NTFS、EXT2、EXT3等），在磁盘的特定区域写入特定数据，以达到初始化磁盘或磁盘分区、清除原磁盘或磁盘分区中所有文件的一个操作。一个什么都没有的空白软盘和格式化后的软盘是不一样的。</p>
 <p>使用下面指令可以挂载，和取消挂载。</p>
@@ -342,6 +374,55 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
 <p>书上的做法是在 cp 完 .com
 文件后取消挂载。其实不取消也行，没必要每次都挂载一下。</p>
 <h3 id="运行随书示例">2.1.5 运行随书示例</h3>
+<p>dos 下直接运行 .com，会将代码挂到虚拟地址 0100h
+处，需要在代码第一行加上 org 0100h。</p>
+<p>编译 asm 源码，然后复制到挂载的软盘上，启动 bochs，在 Freedos
+上运行即可。</p>
+<p>具体的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 注意 这一步要求 pm.inc 和 pmtest1b.asm 在同个目录下</span><br><span class="line">nasm pmtest1b.asm -o pmtest1b.com</span><br><span class="line"># 复制到挂载好的软盘里</span><br><span class="line">sudo cp pmtest1b.com /mnt/floppy</span><br><span class="line"># 运行 bochs</span><br><span class="line">bochs</span><br><span class="line"># 在 freedos 下运行下面指令</span><br><span class="line">B:\pmtest1b.com</span><br></pre></td></tr></table></figure>
+<p>运行成功后，你会在 bochs 显示屏上看到一个红色的
+P。但是接下来你就无法进行任何操作了，只能关掉 bochs 或用 debug
+想办法退出，因为这个程序是个死循环。</p>
+<h2 id="随书汇编源码解读">2.2 随书汇编源码解读</h2>
+<h3 id="彩蛋当你试图将随书源码作为引导程序">2.2.1
+（彩蛋）当你试图将随书源码作为引导程序</h3>
+<p>freedos 下执行 .com
+程序，不知道会被挂载到什么地方，因此难以设置断点，需要一些额外的手段（后文会提到）。</p>
+<p>而引导程序的虚拟地址与逻辑地址是对应的，设置断点非常容易。当然，这种做法是有局限的，有些实验源码使用了
+dos 设置的中断（如 21h 的 4ch 带返回值退出程序）。或是程序大于 510
+个字节。这些是没有办法用这种手段调试的。</p>
+<p>当然，pmtest1.asm
+是可以用这种方式调试的。但是，它有一个问题。就是它的末尾并没有
+0xaa55。</p>
+<p>但是我们不能再使用 <code>times 510-($-$$) db 0</code>
+来凑了。因为这个程序有非常多的段。而 <code>$$</code>
+针对的是当前的段。</p>
+<p>一种办法是拿我们之前用过的 a.img。它的末尾本来就含有
+0xaa55，而我们是非截断写入，因此末尾这两个字节是会保留的。</p>
+<p>另一种方法是用下面的指令来写入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -ne <span class="string">&quot;\x55\xaa&quot;</span> | <span class="built_in">dd</span> of=a.img seek=510 bs=1 count=2 conv=notrunc</span><br></pre></td></tr></table></figure>
+<p><code>-ne</code>
+的意思是不换行且使用转义符号。其实换不换行无所谓，反正只取前两个字节，取不到后面的
+<code>\10</code>（换行符）。这里出于强迫症保证了输出只有两个字节。<code>seek=510</code>
+就是从第 510 个字节开始写入（从 0 开始数）。其它之前介绍过了。</p>
+<p>你可能会像我一样，直接就把上面这条指令直接写到 makefile
+里去了。然后发现写进 a.img 的不是 0xaa55，而是 0x6e2d。</p>
+<p>查一下 ascii 码表，你会发现它把 "-n"
+当成字符串了。这是怎么回事呢？</p>
+<p>其实是 shell 的差异导致的。<a target="_blank" rel="noopener" href="https://blog.csdn.net/haifeng_gu/article/details/73332242">这篇博客讲的很清楚</a>，解决了困扰我大半天的问题。</p>
+<h3 id="一点小小的个人经验">2.2.2 一点小小的个人经验</h3>
+<p>其实这一章全是非常枯燥的知识，东西很多。学的时候看的我头昏眼花。</p>
+<p>我本来是打算把知识点什么的全部写进来的，但是编排起来实在有点难度，而且感觉不太符合我的风格（<del>其实就是单纯的懒和烦</del>）。</p>
+<p>所以就讲一下我个人的经验吧：</p>
+<blockquote>
+<p>因为源码是有很详细的注释的。直接看源码，看不懂的部分再去查书和
+PPT，效率就会大幅提升。</p>
+</blockquote>
+<p>当然这只是个人经验。具体怎么学舒服还得看自己。</p>
+<p>后面有空时会逐渐补全各部分的知识点。包括第一章中的一些还可以深入了解的东西也会抽空补全。</p>
+<h3 id="gdt-的载入与迈入保护模式">2.2.3 GDT 的载入与迈入保护模式</h3>
+<h3 id="一致代码段与非一致代码段">2.2.4 一致代码段与非一致代码段</h3>
+<p>cld（0） 和 std（1） 用于操作方向标志。用于串操作寻址。</p>
 
     </div>
 
@@ -422,8 +503,9 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95"><span class="nav-text">文章目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%AE%9E%E6%A8%A1%E5%BC%8F%E5%88%B0%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">2 从实模式到保护模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#freedos-%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-text">2.1 Freedos 初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#why-dos"><span class="nav-text">2.1.1 Why DOS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#freedos-%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%B8%8B%E8%BD%BD%E5%A7%BF%E5%8A%BF%E4%B8%8E%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.1.2 Freedos
-的正确下载姿势与解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-bochs-%E4%B8%AD%E8%BF%90%E8%A1%8C-freedos"><span class="nav-text">2.1.3 在 Bochs 中运行 Freedos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E6%8C%82%E8%BD%BD"><span class="nav-text">2.1.4 软盘格式化与挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%9A%8F%E4%B9%A6%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.1.5 运行随书示例</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E7%9B%AE%E5%BD%95"><span class="nav-text">文章目录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%AE%9E%E6%A8%A1%E5%BC%8F%E5%88%B0%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">2 从实模式到保护模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#freedos-%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-text">2.1 Freedos 初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#why-dos"><span class="nav-text">2.1.1 Why DOS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#freedos-%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%B8%8B%E8%BD%BD%E5%A7%BF%E5%8A%BF%E4%B8%8E%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.1.2 Freedos
+的正确下载姿势与解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-bochs-%E4%B8%AD%E8%BF%90%E8%A1%8C-freedos"><span class="nav-text">2.1.3 在 Bochs 中运行 Freedos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E6%8C%82%E8%BD%BD"><span class="nav-text">2.1.4 软盘格式化与挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%9A%8F%E4%B9%A6%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.1.5 运行随书示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E4%B9%A6%E6%B1%87%E7%BC%96%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.2 随书汇编源码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A9%E8%9B%8B%E5%BD%93%E4%BD%A0%E8%AF%95%E5%9B%BE%E5%B0%86%E9%9A%8F%E4%B9%A6%E6%BA%90%E7%A0%81%E4%BD%9C%E4%B8%BA%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F"><span class="nav-text">2.2.1
+（彩蛋）当你试图将随书源码作为引导程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%82%B9%E5%B0%8F%E5%B0%8F%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C"><span class="nav-text">2.2.2 一点小小的个人经验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gdt-%E7%9A%84%E8%BD%BD%E5%85%A5%E4%B8%8E%E8%BF%88%E5%85%A5%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">2.2.3 GDT 的载入与迈入保护模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%87%B4%E4%BB%A3%E7%A0%81%E6%AE%B5%E4%B8%8E%E9%9D%9E%E4%B8%80%E8%87%B4%E4%BB%A3%E7%A0%81%E6%AE%B5"><span class="nav-text">2.2.4 一致代码段与非一致代码段</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -505,6 +587,18 @@ mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Qing-LKY</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">46k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">1:16</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
