@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2022-09-25T15:26:15.314Z</updated>
+  <updated>2022-09-30T03:25:08.521Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -17,21 +17,81 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>如何在 Linux 下嗯造一个实验用的磁盘映像</title>
+    <link href="http://example.com/2022/09/28/use-disk-image-for-fslab/"/>
+    <id>http://example.com/2022/09/28/use-disk-image-for-fslab/</id>
+    <published>2022-09-28T10:11:46.000Z</published>
+    <updated>2022-09-30T03:25:08.521Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U
+盘来研究文件系统和磁盘的结构。&lt;/p&gt;
+&lt;p&gt;但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS
+的，手头也没有 U</summary>
+        
+      
+    
+    
+    
+    <category term="课程笔记" scheme="http://example.com/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="FAT32" scheme="http://example.com/tags/FAT32/"/>
+    
+    <category term="软件安全" scheme="http://example.com/tags/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 学习备忘录</title>
+    <link href="http://example.com/2022/09/27/Linux-%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98%E5%BD%95/"/>
+    <id>http://example.com/2022/09/27/Linux-%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98%E5%BD%95/</id>
+    <published>2022-09-27T02:28:36.000Z</published>
+    <updated>2022-09-28T01:57:15.917Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
+&lt;p&gt;因为最近装新环境的频率有点高，我发现我经常动不动就忘记指令什么的，整天百度，浪费时间，所以开个帖备查算了。&lt;/p&gt;
+&lt;h2 id=&quot;解压压缩命令&quot;&gt;解压、压缩命令&lt;/h2&gt;
+&lt;table&gt;
+&lt;colgroup&gt;
+&lt;col</summary>
+        
+      
+    
+    
+    
+    <category term="课程笔记" scheme="http://example.com/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/"/>
+    
+    
+    <category term="Linux" scheme="http://example.com/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
     <title>《操作系统实践》实验指南 2</title>
     <link href="http://example.com/2022/09/20/OS-LAB-2/"/>
     <id>http://example.com/2022/09/20/OS-LAB-2/</id>
     <published>2022-09-20T00:59:44.000Z</published>
-    <updated>2022-09-25T15:26:15.314Z</updated>
+    <updated>2022-09-28T02:03:02.988Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;文章目录&quot;&gt;文章目录&lt;/h1&gt;
-&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;1 环境配置与
-&quot;hello OS！&quot;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;2</summary>
+    <summary type="html">&lt;p&gt;文章目录：&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;环境配置与</summary>
         
       
     
@@ -49,17 +109,17 @@
     <link href="http://example.com/2022/09/13/OS-LAB/"/>
     <id>http://example.com/2022/09/13/OS-LAB/</id>
     <published>2022-09-13T02:52:30.000Z</published>
-    <updated>2022-09-25T03:33:45.158Z</updated>
+    <updated>2022-09-28T12:45:37.768Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h1 id=&quot;前言&quot;&gt;前言&lt;/h1&gt;
-&lt;p&gt;上的是武大网安院严老师的课头。使用的教材是 Orange&#39;s
-啥啥的那本书。因为第一次课配环境血压飙的有点快，所以开个帖来记录实验过程。&lt;/p&gt;
-&lt;p&gt;文章里包含大量指向有用文档的超链接，但是都是夹在文字中的，长&lt;a</summary>
+    <summary type="html">&lt;p&gt;文章目录:&lt;/p&gt;
+&lt;ol type=&quot;1&quot;&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;环境配置与 &quot;hello OS！&quot;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a</summary>
         
       
     
@@ -261,9 +321,9 @@
     <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="换根dp" scheme="http://example.com/tags/%E6%8D%A2%E6%A0%B9dp/"/>
+    
+    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
     
   </entry>
   
@@ -289,9 +349,9 @@
     <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="dp" scheme="http://example.com/tags/dp/"/>
-    
     <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="dp" scheme="http://example.com/tags/dp/"/>
     
   </entry>
   
