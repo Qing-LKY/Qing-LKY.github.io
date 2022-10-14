@@ -20,20 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="学期小结  呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天 vp 一下写写题解，打打游戏逛逛本校，顺便收收东西，看看找点什么东西学一学。 之前数据库实验学了 django 框架，一个人写完了前后端（一个非常简单的网页），也许可以找个时间分享一下学习经验。还有好多整理的一半一半的各个学科的学习资料，也得找个时间编排一下比较好。 这学期">
+  <meta name="description" content="前言 最近装了点东西，磁盘空间有点吃不消了。于是想着给虚拟机扩展磁盘。我使用的 VMware® Workstation 16 Pro。使用的 Linux 镜像是 ubuntu-20.04.5-live-server-amd64。 由于之前安装系统的时候没怎么细看，直接一路默认点过去了。我发现使用的似乎是 LVM。 所以鼓捣一下，扩了下容，记录下做法。 Part 1 输入 df -">
 <meta property="og:type" content="article">
-<meta property="og:title" content="学期小结">
-<meta property="og:url" content="http://example.com/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/">
+<meta property="og:title" content="VMware LVM 磁盘扩容">
+<meta property="og:url" content="http://example.com/2022/10/14/VMware-LVM-%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="学期小结  呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天 vp 一下写写题解，打打游戏逛逛本校，顺便收收东西，看看找点什么东西学一学。 之前数据库实验学了 django 框架，一个人写完了前后端（一个非常简单的网页），也许可以找个时间分享一下学习经验。还有好多整理的一半一半的各个学科的学习资料，也得找个时间编排一下比较好。 这学期">
+<meta property="og:description" content="前言 最近装了点东西，磁盘空间有点吃不消了。于是想着给虚拟机扩展磁盘。我使用的 VMware® Workstation 16 Pro。使用的 Linux 镜像是 ubuntu-20.04.5-live-server-amd64。 由于之前安装系统的时候没怎么细看，直接一路默认点过去了。我发现使用的似乎是 LVM。 所以鼓捣一下，扩了下容，记录下做法。 Part 1 输入 df -">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-20T14:20:03.000Z">
-<meta property="article:modified_time" content="2022-06-20T17:29:57.059Z">
+<meta property="article:published_time" content="2022-10-14T08:41:12.000Z">
+<meta property="article:modified_time" content="2022-10-14T10:34:14.049Z">
 <meta property="article:author" content="Qing-LKY">
-<meta property="article:tag" content="大学生活">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/">
+<link rel="canonical" href="http://example.com/2022/10/14/VMware-LVM-%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/">
 
 
 <script id="page-configurations">
@@ -46,7 +46,7 @@
   };
 </script>
 
-  <title>学期小结 | 小乖乖的妙妙屋</title>
+  <title>VMware LVM 磁盘扩容 | 小乖乖的妙妙屋</title>
   
 
 
@@ -176,7 +176,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/20/%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/10/14/VMware-LVM-%E7%A3%81%E7%9B%98%E6%89%A9%E5%AE%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -189,7 +189,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          学期小结
+          VMware LVM 磁盘扩容
         </h1>
 
         <div class="post-meta">
@@ -198,23 +198,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2022-06-20 22:20:03" itemprop="dateCreated datePublished" datetime="2022-06-20T22:20:03+08:00">2022-06-20</time>
+              <time title="创建时间：2022-10-14 16:41:12 / 修改时间：18:34:14" itemprop="dateCreated datePublished" datetime="2022-10-14T16:41:12+08:00">2022-10-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-21 01:29:57" itemprop="dateModified" datetime="2022-06-21T01:29:57+08:00">2022-06-21</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B0%B4/" itemprop="url" rel="index"><span itemprop="name">水</span></a>
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">课程笔记</span></a>
                 </span>
             </span>
 
@@ -231,14 +225,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>486</span>
+              <span>1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -250,23 +244,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="学期小结">学期小结</h2>
-<ul>
-<li><p>呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天
-vp
-一下写写题解，打打游戏逛逛本校，顺便收收东西，看看找点什么东西学一学。</p></li>
-<li><p>之前数据库实验学了 django
-框架，一个人写完了前后端（一个非常简单的网页），也许可以找个时间分享一下学习经验。还有好多整理的一半一半的各个学科的学习资料，也得找个时间编排一下比较好。</p></li>
-<li><p>这学期有点小摆，基本靠着 namomo
-的每日一题在苟命。不过也算是有进步吧？cf 终于还是突破了
-2000，可惜还没橙。昆明拿了个铜，因为一个傻逼错误没搞出
-dp，非常蛋疼。然后换了队友，省赛拿了 rk2。</p></li>
-<li><p>顺便入坑了
-arcaea。不过拇指玩起来好蛋疼，得找个机会入个平板。顺便平板也能记笔记什么的。嗯。绝对不是为了玩音游才想买平板的。嗯。</p></li>
-<li><p>这学期也开始学到一些比较底层的东西了，操作系统和编译原理。老师有布置过几个让我们去阅读底层代码的任务，但是我真的看不懂，而且也没什么时间，完成的不是很好，暑假该找时间更细致的学一下。毕竟
-acm 也就图一乐，还得干干正事。</p></li>
-<li><p>以及发现博客园的延迟有点小大，想换个博客玩玩了，所以搭了个新的</p></li>
-</ul>
+        <h2 id="前言">前言</h2>
+<p>最近装了点东西，磁盘空间有点吃不消了。于是想着给虚拟机扩展磁盘。我使用的
+VMware® Workstation 16 Pro。使用的 Linux 镜像是
+ubuntu-20.04.5-live-server-amd64。</p>
+<p>由于之前安装系统的时候没怎么细看，直接一路默认点过去了。我发现使用的似乎是
+LVM。</p>
+<p>所以鼓捣一下，扩了下容，记录下做法。</p>
+<h2 id="part-1">Part 1</h2>
+<p>输入
+<code>df -h</code>，可以查看文件系统磁盘空间的使用情况。我发现，我的
+/dev/mapper/ubuntu--vg-ubuntu--lv 也就是挂载在 <code>/</code>
+的已经满了。 用了 8 个 G。但实际上我不止给我的虚拟机分配了这么点，我分了
+20 G。应该是什么地方没设置好。</p>
+<p>当我查看硬盘状况 <code>sudo fdisk -l</code> 时，发现 /dev/sda3 有 18
+个 G。也就是说其实我还有 10 个 G 没有用上。</p>
+<p>所以去查了一下，翻到了不少博客。</p>
+<p>首先，输入 <code>sudo vgdisplay</code>，发现果然还有很大的 Free
+Size。</p>
+<p>于是，运行下面的指令扩展逻辑卷的大小：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lvextend -L +10G /dev/mapper/ubuntu--vg-ubuntu--lv</span><br></pre></td></tr></table></figure>
+<p>具体扩大几 G 取决于 Free Size 的大小，10 G 对我来说是可行的。</p>
+<p>然后把文件系统的大小也调整一下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">resize2fs /dev/mapper/ubuntu--vg-ubuntu--lv</span><br></pre></td></tr></table></figure>
+<h2 id="part-2">Part 2</h2>
+<p>后来，我发现原本分配的这 20 个 G 也不是很够用。于是我又在 VMware
+里通过“虚拟机--设置--硬盘--扩展”，给它分配到了 40 G。</p>
+<p>再次输入 <code>sudo fdisk /dev/sda -l</code>
+时，我发现，它的大小已经变大，但是三个分区的大小没变，并且出现了 "GPT
+PMBR size mismatch (41943039 != 83886079) will be corrected by write."
+的提示。</p>
+<p>于是我直接 <code>sudo fdisk /dev/sda</code>。输入 d 删掉了原本 18 G
+的分区 3，然后输出 n 重新建了分区
+3，建分区的过程保持默认，它会自动帮我分配剩余的所有空间到这个分区里。在提示是否删除原有标签的时候选择了
+No。</p>
+<p>但是此时，pv
+卷的大小还没有变，只是物理盘大小大了。用下面的指令就可以把 pv
+卷自动调整。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 查看自己的物理卷名字 我的叫 /dev/sda3</span></span><br><span class="line">sudo pvdisplay</span><br><span class="line"><span class="comment"># 调整段的大小</span></span><br><span class="line">sudo pvresize /dev/sda3</span><br></pre></td></tr></table></figure>
+<p>再次 <code>sudo pvdisplay</code>。发现 pv 卷的大小对了。</p>
+<p>再次 <code>sudo vgdisplay</code>。发现 Free Size 又有了。</p>
+<p>再重复 Part 1 的步骤就行了。</p>
 
     </div>
 
@@ -276,7 +294,7 @@ acm 也就图一乐，还得干干正事。</p></li>
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%A4%A7%E5%AD%A6%E7%94%9F%E6%B4%BB/" rel="tag"># 大学生活</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
           </div>
 
         
@@ -285,13 +303,10 @@ acm 也就图一乐，还得干干正事。</p></li>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/06/19/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" rel="prev" title="Hexo 博客搭建记录">
-      <i class="fa fa-chevron-left"></i> Hexo 博客搭建记录
+    <a href="/2022/09/28/use-disk-image-for-fslab/" rel="prev" title="如何在 Linux 下嗯造一个实验用的磁盘映像">
+      <i class="fa fa-chevron-left"></i> 如何在 Linux 下嗯造一个实验用的磁盘映像
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/06/22/%E5%B0%8F%E9%BB%84%E9%B8%AD%E7%BB%8F%E9%AA%8C/" rel="next" title="小黄鸭经验">
-      小黄鸭经验 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -350,7 +365,7 @@ acm 也就图一乐，还得干干正事。</p></li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%A6%E6%9C%9F%E5%B0%8F%E7%BB%93"><span class="nav-text">学期小结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-1"><span class="nav-text">Part 1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#part-2"><span class="nav-text">Part 2</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
