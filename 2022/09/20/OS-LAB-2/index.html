@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="文章目录：  环境配置与 &quot;hello OS！&quot; 从实模式到保护模式  2 从实模式到保护模式 前言 你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。 我发现，我做实验的效率极其低下，主要是下面几个原因：  睿智的虚拟环境搞得人很烦躁 傻逼可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应">
+  <meta name="description" content="文章目录：  环境配置与 “hello OS！”  从实模式到保护模式   2 从实模式到保护模式前言你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。 我发现，我做实验的效率极其低下，主要是下面几个原因：  睿智的虚拟环境搞得人很烦躁 傻逼可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《操作系统实践》实验指南 2">
 <meta property="og:url" content="http://example.com/2022/09/20/OS-LAB-2/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="文章目录：  环境配置与 &quot;hello OS！&quot; 从实模式到保护模式  2 从实模式到保护模式 前言 你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。 我发现，我做实验的效率极其低下，主要是下面几个原因：  睿智的虚拟环境搞得人很烦躁 傻逼可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应">
+<meta property="og:description" content="文章目录：  环境配置与 “hello OS！”  从实模式到保护模式   2 从实模式到保护模式前言你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。 我发现，我做实验的效率极其低下，主要是下面几个原因：  睿智的虚拟环境搞得人很烦躁 傻逼可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/.com//after_boot.png">
 <meta property="article:published_time" content="2022-09-20T00:59:44.000Z">
@@ -253,181 +253,111 @@
 
       
         <p>文章目录：</p>
-<ol type="1">
-<li><p><a target="_blank" rel="noopener" href="https://qing-lky.github.io/2022/09/13/OS-LAB/">环境配置与 "hello
-OS！"</a></p></li>
-<li><p><strong>从实模式到保护模式</strong></p></li>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://qing-lky.github.io/2022/09/13/OS-LAB/">环境配置与 “hello OS！”</a></p>
+</li>
+<li><p><strong>从实模式到保护模式</strong></p>
+</li>
 </ol>
-<h1 id="从实模式到保护模式">2 从实模式到保护模式</h1>
-<h2 id="前言">前言</h2>
-<p>你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。</p>
+<h1 id="2-从实模式到保护模式"><a href="#2-从实模式到保护模式" class="headerlink" title="2 从实模式到保护模式"></a>2 从实模式到保护模式</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>你可能会问，上一篇不是才写了前言吗，怎么又来。其实我只是单纯的想吐槽一下，不知道放到正文的哪里，就丢到这来了。</p>
 <p>我发现，我做实验的效率极其低下，主要是下面几个原因：</p>
 <ul>
 <li><p>睿智的虚拟环境搞得人很烦躁</p>
-<p><del>傻逼</del>可爱的 VMware
-动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是不好说，所以用的战战兢兢）</p>
-<p>可爱的 VMware tools
-每天要重装两三遍。搞得我都不想用共享剪切板功能了。</p>
-<p>想换 virtual
-box。结果奇慢无比，连启动都启动不了。（查了下官方社区，个人推测 hyper-v
-+ amd 的问题）</p></li>
+<p><del>傻逼</del>可爱的 VMware 动不动就无响应个两分钟，有时暂停之后还会一直无响应。（据说是防火墙问题，但是不好说，所以用的战战兢兢）</p>
+<p>可爱的 VMware tools 每天要重装两三遍。搞得我都不想用共享剪切板功能了。</p>
+<p>想换 virtual box。结果奇慢无比，连启动都启动不了。（查了下官方社区，个人推测 hyper-v + amd 的问题）</p>
+</li>
 <li><p>钻牛角尖</p>
-<p>总是被一些与实验无关紧要的问题吸引注意力，什么都想弄清楚，结果就是什么都顾不上。</p></li>
+<p>总是被一些与实验无关紧要的问题吸引注意力，什么都想弄清楚，结果就是什么都顾不上。</p>
+</li>
 <li><p>too much things to do</p>
-<p>信安大三上怎么这么多实验，f**k</p></li>
+<p>信安大三上怎么这么多实验，f**k</p>
+</li>
 </ul>
 <p><del>没事了，让我们开始吧（</del></p>
-<h2 id="freedos-初体验">2.1 Freedos 初体验</h2>
-<h3 id="why-dos">2.1.1 Why DOS？</h3>
-<p>DOS 是磁盘操作系统（Disk Operating
-System）的简称，是早期个人计算机上的一类操作系统。</p>
+<h2 id="2-1-Freedos-初体验"><a href="#2-1-Freedos-初体验" class="headerlink" title="2.1 Freedos 初体验"></a>2.1 Freedos 初体验</h2><h3 id="2-1-1-Why-DOS？"><a href="#2-1-1-Why-DOS？" class="headerlink" title="2.1.1 Why DOS？"></a>2.1.1 Why DOS？</h3><p>DOS 是磁盘操作系统（Disk Operating System）的简称，是早期个人计算机上的一类操作系统。</p>
 <p>在上一章中，课本里提到：</p>
 <blockquote>
-<p>还有一个可选的方法能够帮助调试，做法也很简单，就是把 "org 07c00h"
-这一行改成 "org 0100h" 就可以编译成一个 .COM 文件让它在 DOS
-下运行了。</p>
+<p>还有一个可选的方法能够帮助调试，做法也很简单，就是把 “org 07c00h” 这一行改成 “org 0100h” 就可以编译成一个 .COM 文件让它在 DOS 下运行了。</p>
 </blockquote>
 <p>通过 DOS，可以方便地进行引导程序的执行和调试。</p>
 <p>在之前的实验中，我们都是将引导程序直接写入引导扇区中。但是引导扇区的大小是有限的（512），随着程序的增大，问题会逐渐体现。为了解决这个问题，可以写一个“真正的”引导扇区来读取我们的程序，使我们的程序像一个真正的内核那样被运行。但这有较高的难度。</p>
 <p>再加上：</p>
 <blockquote>
-<p>很多保护模式的教程都是基于 DOS
-来讲的，如果读者在本书中有些东西没有搞明白，可以同时参考其它教程。</p>
+<p>很多保护模式的教程都是基于 DOS 来讲的，如果读者在本书中有些东西没有搞明白，可以同时参考其它教程。</p>
 </blockquote>
 <p>在这一章的实验中，我们选择 bochs + Freedos 的方式来进行。</p>
-<h3 id="freedos-的正确下载姿势与解读">2.1.2 Freedos
-的正确下载姿势与解读</h3>
-<p>虽然书上只有一句轻描淡写的“从官网上下载”，不过我连续下错了两次，所以还是记录下如何获取到正确的、可以用教材中的配置方法启动的映像。</p>
-<p>事实上，在各种渠道下下载的盘，只要配置正确，都可以在 bochs
-中启动。不过，作为一个初学者，我们可以先尝试教材中介绍的方法。</p>
-<p>下载的入口在<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/">Bochs
-官网</a>的侧边栏 Get Bochs 下的 <a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/diskimages.html">Disk
-Image</a>。我们要下的是 freedos 的映像。</p>
-<p>我下载下来时它的名字叫："freedos-img.tar.gz"，里面有四个文件
-"a/b/c.img" 和 "bochsrc"。只有在这里下载的压缩包里面才会有课本中提到的
-"a.img"。</p>
-<p><em>如果你不想关心别的事情了，那可以跳到 2.1.3
-了。后面的内容只是记录我在找到这个书上指定的东西的过程中发现的一些趣事。</em></p>
-<p>首先，事实上，你也可以在其它地方找到 freedos。比如 <a target="_blank" rel="noopener" href="https://freedos.org/download/">freedos 自己的官网</a>，和我们<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/bochs/files/">下载 bochs
-源码的地方附近</a>。</p>
-<p>freedos 官网上可以找到能用的 FreeDOS 1.3 Floppy Edition。根据它的
-readme.txt，我们也许可以用 144m/x86boot.img 作为启动盘来装比较高版本的
-freedos。<del>（xygg
-试过，跑起来很帅）</del>不过我没有去尝试，不清楚配置的细节上有没有特殊的讲究。而且我们的实验对
-freedos 的版本其实没有多大的讲究。</p>
-<p>至于 sourceforge.net 上提供的那个，则是个 hard
-disk，配置起来和书上提供的有很大出入（当然它有给出示例
-bochsrc，所以你想跑那个也不是不行）。</p>
-<p>在 bochs.sourceforge.io 上下载的这个，虽然描述说的是 "10-meg hard
-disk image which boots into FreeDOS"，但其实这个 hard disk image
-指的是压缩包里的 c.img，另外两个软盘 a.img 和 b.img
-虽然在示例中没有作为启动盘使用，但它们也是启动盘。</p>
-<p>我直接把 <code>boot: c</code> 改成 a 和 b 试了一下。a.img
-是可以正常且完整启动的。b.img 可以看得出进入了引导程序，但是内核或 FAT
-的加载似乎出现了什么问题。我暂时没有去细究这个 b。但是书本上教的把 a.img
-复制出来改成 freedos.img 当启动盘用确实是可行的。</p>
+<h3 id="2-1-2-Freedos-的正确下载姿势与解读"><a href="#2-1-2-Freedos-的正确下载姿势与解读" class="headerlink" title="2.1.2 Freedos 的正确下载姿势与解读"></a>2.1.2 Freedos 的正确下载姿势与解读</h3><p>虽然书上只有一句轻描淡写的“从官网上下载”，不过我连续下错了两次，所以还是记录下如何获取到正确的、可以用教材中的配置方法启动的映像。</p>
+<p>事实上，在各种渠道下下载的盘，只要配置正确，都可以在 bochs 中启动。不过，作为一个初学者，我们可以先尝试教材中介绍的方法。</p>
+<p>下载的入口在<a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/">Bochs 官网</a>的侧边栏 Get Bochs 下的 <a target="_blank" rel="noopener" href="https://bochs.sourceforge.io/diskimages.html">Disk Image</a>。我们要下的是 freedos 的映像。</p>
+<p>我下载下来时它的名字叫：”freedos-img.tar.gz”，里面有四个文件 “a&#x2F;b&#x2F;c.img” 和 “bochsrc”。只有在这里下载的压缩包里面才会有课本中提到的 “a.img”。</p>
+<p><em>如果你不想关心别的事情了，那可以跳到 2.1.3 了。后面的内容只是记录我在找到这个书上指定的东西的过程中发现的一些趣事。</em></p>
+<p>首先，事实上，你也可以在其它地方找到 freedos。比如 <a target="_blank" rel="noopener" href="https://freedos.org/download/">freedos 自己的官网</a>，和我们<a target="_blank" rel="noopener" href="https://sourceforge.net/projects/bochs/files/">下载 bochs 源码的地方附近</a>。</p>
+<p>freedos 官网上可以找到能用的 FreeDOS 1.3 Floppy Edition。根据它的 readme.txt，我们也许可以用 144m&#x2F;x86boot.img 作为启动盘来装比较高版本的 freedos。<del>（xygg 试过，跑起来很帅）</del>不过我没有去尝试，不清楚配置的细节上有没有特殊的讲究。而且我们的实验对 freedos 的版本其实没有多大的讲究。</p>
+<p>至于 sourceforge.net 上提供的那个，则是个 hard disk，配置起来和书上提供的有很大出入（当然它有给出示例 bochsrc，所以你想跑那个也不是不行）。</p>
+<p>在 bochs.sourceforge.io 上下载的这个，虽然描述说的是 “10-meg hard disk image which boots into FreeDOS”，但其实这个 hard disk image 指的是压缩包里的 c.img，另外两个软盘 a.img 和 b.img 虽然在示例中没有作为启动盘使用，但它们也是启动盘。</p>
+<p>我直接把 <code>boot: c</code> 改成 a 和 b 试了一下。a.img 是可以正常且完整启动的。b.img 可以看得出进入了引导程序，但是内核或 FAT 的加载似乎出现了什么问题。我暂时没有去细究这个 b。但是书本上教的把 a.img 复制出来改成 freedos.img 当启动盘用确实是可行的。</p>
 <p>P.S. 事实上，通过下面的指令，我们也可以看出它是一个启动盘：</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexdump -C a.img | <span class="built_in">head</span> -50</span><br></pre></td></tr></table></figure>
-<p>你可以在其中 0200 前（也就是 511 和 512 字节处）观察到 55 和
-aa。结合上节课的知识，这个 a.img 会被识别为启动盘。</p>
-<p>事实上，我们也可以考虑把 a.img 和 b.img 的前 512
-个字节搞出来反汇编一下观察下差别，来满足我们的好奇心。这里暂时留个坑罢。</p>
-<h3 id="在-bochs-中运行-freedos">2.1.3 在 Bochs 中运行 Freedos</h3>
-<p>前面我们下载到了 freedos 映像的压缩文件。把其中的 a.img
-弄出来作为启动盘，然后创建一个新的空白软盘 pm.img 来存放我们希望 guest
-os 能访问的文件。</p>
+
+<p>你可以在其中 0200 前（也就是 511 和 512 字节处）观察到 55 和 aa。结合上节课的知识，这个 a.img 会被识别为启动盘。</p>
+<p>事实上，我们也可以考虑把 a.img 和 b.img 的前 512 个字节搞出来反汇编一下观察下差别，来满足我们的好奇心。这里暂时留个坑罢。</p>
+<h3 id="2-1-3-在-Bochs-中运行-Freedos"><a href="#2-1-3-在-Bochs-中运行-Freedos" class="headerlink" title="2.1.3 在 Bochs 中运行 Freedos"></a>2.1.3 在 Bochs 中运行 Freedos</h3><p>前面我们下载到了 freedos 映像的压缩文件。把其中的 a.img 弄出来作为启动盘，然后创建一个新的空白软盘 pm.img 来存放我们希望 guest os 能访问的文件。</p>
 <p>为方便辨认，我把 a.img 改名成了 freedos.img。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf freedos-img.tar.gz</span><br><span class="line"><span class="built_in">cp</span> freedos-img/a.img ./freedos.img</span><br><span class="line">bximage -func=create -fd=1.44M -q pm.img</span><br><span class="line">vim bochsrc</span><br></pre></td></tr></table></figure>
+
 <p>把 bochsrc 修改为下面的内容：（其实就是上章用的那些修改了一下）</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># how much memory the emulated machine will have</span><br><span class="line">megs: 32</span><br><span class="line"></span><br><span class="line"># filename of ROM images</span><br><span class="line">romimage: file=/usr/local/share/bochs/BIOS-bochs-latest</span><br><span class="line">vgaromimage: file=/usr/share/vgabios/vgabios.bin</span><br><span class="line"></span><br><span class="line"># what disk images will be used</span><br><span class="line">floppya: 1_44=freedos.img, status=inserted</span><br><span class="line">floppyb: 1_44=pm.img, status=inserted</span><br><span class="line"></span><br><span class="line"># choose the boot disk.</span><br><span class="line">boot: a</span><br><span class="line"></span><br><span class="line"># where do we send log messages?</span><br><span class="line"># log: bochsout.txt</span><br><span class="line"></span><br><span class="line"># disable the mouse</span><br><span class="line">mouse: enabled=0</span><br><span class="line"></span><br><span class="line"># enable key mapping, using US layout as default.</span><br><span class="line"># keyboard_mapping: enabled=1, map=/usr/share/bochs/keymaps/x11-pc-us.map</span><br><span class="line"></span><br><span class="line">display_library: sdl</span><br></pre></td></tr></table></figure>
+
 <p>接下来，运行 bochs，成功启动的话可以看到 freedos 的命令行界面。</p>
-<figure>
-<img src="/.com//after_boot.png" alt="after_boot">
-<figcaption aria-hidden="true">after_boot</figcaption>
-</figure>
+<p><img src="/.com//after_boot.png" alt="after_boot"></p>
 <p>那个 format 是我自己打进去的，为了确认键盘能不能用。</p>
 <p>如果你遇到的报错是 no boot device，请检查你的启动盘有没有设置对。</p>
-<p>不过也有非常多人遇到了进入 bochs 后 freedos
-内键盘无法使用的问题，这个我也不清楚怎么解决。（指的是完全打不了字或一打字
-bochs 就报错。我们后面用的那个示例 .com
-是个死循环，运行后是关不掉也用不了键盘的，只能关掉 bochs）</p>
-<h3 id="软盘格式化与挂载">2.1.4 软盘格式化与挂载</h3>
-<p>在 freedos 下，你可以运行下面的指令来格式化 B 盘（也就是
-pm.img）。</p>
+<p>不过也有非常多人遇到了进入 bochs 后 freedos 内键盘无法使用的问题，这个我也不清楚怎么解决。（指的是完全打不了字或一打字 bochs 就报错。我们后面用的那个示例 .com 是个死循环，运行后是关不掉也用不了键盘的，只能关掉 bochs）</p>
+<h3 id="2-1-4-软盘格式化与挂载"><a href="#2-1-4-软盘格式化与挂载" class="headerlink" title="2.1.4 软盘格式化与挂载"></a>2.1.4 软盘格式化与挂载</h3><p>在 freedos 下，你可以运行下面的指令来格式化 B 盘（也就是 pm.img）。</p>
 <figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">format</span> B:\</span><br></pre></td></tr></table></figure>
-<p>不同于前面直接将二进制代码写入扇区，在 dos 下运行 .com 需要借助
-freedos 的文件系统，所以我们需要先把 pm.img 格式化。如果不这么做的话，在
-mount 时会因为无法识别文件系统类型而报错。</p>
-<p>其实，你也可以不用到 freedos 下进行格式化，直接在 linux
-下执行下面的指令也是可以的。</p>
+
+<p>不同于前面直接将二进制代码写入扇区，在 dos 下运行 .com 需要借助 freedos 的文件系统，所以我们需要先把 pm.img 格式化。如果不这么做的话，在 mount 时会因为无法识别文件系统类型而报错。</p>
+<p>其实，你也可以不用到 freedos 下进行格式化，直接在 linux 下执行下面的指令也是可以的。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat pm.img</span><br></pre></td></tr></table></figure>
-<p>被上述指令格式化的软盘是可以被 freedos 使用的。它默认格式化为 fat12
-格式。</p>
-<p>P.S.
-格式化指根据用户选定的文件系统（如FAT12、FAT16、FAT32、NTFS、EXT2、EXT3等），在磁盘的特定区域写入特定数据，以达到初始化磁盘或磁盘分区、清除原磁盘或磁盘分区中所有文件的一个操作。一个什么都没有的空白软盘和格式化后的软盘是不一样的。</p>
+
+<p>被上述指令格式化的软盘是可以被 freedos 使用的。它默认格式化为 fat12 格式。</p>
+<p>P.S. 格式化指根据用户选定的文件系统（如FAT12、FAT16、FAT32、NTFS、EXT2、EXT3等），在磁盘的特定区域写入特定数据，以达到初始化磁盘或磁盘分区、清除原磁盘或磁盘分区中所有文件的一个操作。一个什么都没有的空白软盘和格式化后的软盘是不一样的。</p>
 <p>使用下面指令可以挂载，和取消挂载。</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 挂载前需要新建文件夹</span></span><br><span class="line">sudo <span class="built_in">mkdir</span> /mnt/floppy</span><br><span class="line">sudo mount -o loop pm.img /mnt/floppy</span><br><span class="line"><span class="comment"># 可以像正常文件系统那样访问读写这个文件夹</span></span><br><span class="line">sudo <span class="built_in">cp</span> a.txt /mnt/floppy</span><br><span class="line"><span class="comment"># 取消挂载</span></span><br><span class="line">sudo umount /mnt/floppy</span><br></pre></td></tr></table></figure>
-<p>P.S. 什么是 loop device？它是一种“伪设备”。我们的 pm.img
-上虽然有一个文件系统，但它毕竟是虚拟的，不是一个真正的硬件，不能直接访问。所以我们可以用
--o loop（也可以指定具体的 loop device），这样 pm.img
-就会与这个伪设备关联，然后我们就得到了一个可挂载的设备。这样我们就可以通过挂载和访问这个设备来访问这个虚拟的文件系统了。</p>
-<p>（上面的这段参考了<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30832351/article/details/98198529">这篇
-CSDN 博客</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Loop%E8%AE%BE%E5%A4%87">维基百科</a>）</p>
-<p>不管你是不是挂载到 /mnt/xxx
-下，被你挂载的文件夹都会被加上权限限制（毕竟是在访问一个设备），所以
-mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
-<p>书上的做法是在 cp 完 .com
-文件后取消挂载。其实不取消也行，没必要每次都挂载一下。</p>
-<h3 id="运行随书示例">2.1.5 运行随书示例</h3>
-<p>dos 下直接运行 .com，会将代码挂到虚拟地址 0100h
-处，需要在代码第一行加上 org 0100h。</p>
-<p>编译 asm 源码，然后复制到挂载的软盘上，启动 bochs，在 Freedos
-上运行即可。</p>
+
+<p>P.S. 什么是 loop device？它是一种“伪设备”。我们的 pm.img 上虽然有一个文件系统，但它毕竟是虚拟的，不是一个真正的硬件，不能直接访问。所以我们可以用 -o loop（也可以指定具体的 loop device），这样 pm.img 就会与这个伪设备关联，然后我们就得到了一个可挂载的设备。这样我们就可以通过挂载和访问这个设备来访问这个虚拟的文件系统了。</p>
+<p>（上面的这段参考了<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30832351/article/details/98198529">这篇 CSDN 博客</a>和<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Loop%E8%AE%BE%E5%A4%87">维基百科</a>）</p>
+<p>不管你是不是挂载到 &#x2F;mnt&#x2F;xxx 下，被你挂载的文件夹都会被加上权限限制（毕竟是在访问一个设备），所以 mount 以及对文件系统的操作都需要在 root 或 sudo 下进行。</p>
+<p>书上的做法是在 cp 完 .com 文件后取消挂载。其实不取消也行，没必要每次都挂载一下。</p>
+<h3 id="2-1-5-运行随书示例"><a href="#2-1-5-运行随书示例" class="headerlink" title="2.1.5 运行随书示例"></a>2.1.5 运行随书示例</h3><p>dos 下直接运行 .com，会将代码挂到虚拟地址 0100h 处，需要在代码第一行加上 org 0100h。</p>
+<p>编译 asm 源码，然后复制到挂载的软盘上，启动 bochs，在 Freedos 上运行即可。</p>
 <p>具体的：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 注意 这一步要求 pm.inc 和 pmtest1b.asm 在同个目录下</span><br><span class="line">nasm pmtest1b.asm -o pmtest1b.com</span><br><span class="line"># 复制到挂载好的软盘里</span><br><span class="line">sudo cp pmtest1b.com /mnt/floppy</span><br><span class="line"># 运行 bochs</span><br><span class="line">bochs</span><br><span class="line"># 在 freedos 下运行下面指令</span><br><span class="line">B:\pmtest1b.com</span><br></pre></td></tr></table></figure>
-<p>运行成功后，你会在 bochs 显示屏上看到一个红色的
-P。但是接下来你就无法进行任何操作了，只能关掉 bochs 或用 debug
-想办法退出，因为这个程序是个死循环。</p>
-<h2 id="随书汇编源码解读">2.2 随书汇编源码解读</h2>
-<h3 id="彩蛋当你试图将随书源码作为引导程序">2.2.1
-（彩蛋）当你试图将随书源码作为引导程序</h3>
-<p>freedos 下执行 .com
-程序，不知道会被挂载到什么地方，因此难以设置断点，需要一些额外的手段（后文会提到）。</p>
-<p>而引导程序的虚拟地址与逻辑地址是对应的，设置断点非常容易。当然，这种做法是有局限的，有些实验源码使用了
-dos 设置的中断（如 21h 的 4ch 带返回值退出程序）。或是程序大于 510
-个字节。这些是没有办法用这种手段调试的。</p>
-<p>当然，pmtest1.asm
-是可以用这种方式调试的。但是，它有一个问题。就是它的末尾并没有
-0xaa55。</p>
-<p>但是我们不能再使用 <code>times 510-($-$$) db 0</code>
-来凑了。因为这个程序有非常多的段。而 <code>$$</code>
-针对的是当前的段。</p>
-<p>一种办法是拿我们之前用过的 a.img。它的末尾本来就含有
-0xaa55，而我们是非截断写入，因此末尾这两个字节是会保留的。</p>
+
+<p>运行成功后，你会在 bochs 显示屏上看到一个红色的 P。但是接下来你就无法进行任何操作了，只能关掉 bochs 或用 debug 想办法退出，因为这个程序是个死循环。</p>
+<h2 id="2-2-随书汇编源码解读"><a href="#2-2-随书汇编源码解读" class="headerlink" title="2.2 随书汇编源码解读"></a>2.2 随书汇编源码解读</h2><h3 id="2-2-1-（彩蛋）当你试图将随书源码作为引导程序"><a href="#2-2-1-（彩蛋）当你试图将随书源码作为引导程序" class="headerlink" title="2.2.1 （彩蛋）当你试图将随书源码作为引导程序"></a>2.2.1 （彩蛋）当你试图将随书源码作为引导程序</h3><p>freedos 下执行 .com 程序，不知道会被挂载到什么地方，因此难以设置断点，需要一些额外的手段（后文会提到）。</p>
+<p>而引导程序的虚拟地址与逻辑地址是对应的，设置断点非常容易。当然，这种做法是有局限的，有些实验源码使用了 dos 设置的中断（如 21h 的 4ch 带返回值退出程序）。或是程序大于 510 个字节。这些是没有办法用这种手段调试的。</p>
+<p>当然，pmtest1.asm 是可以用这种方式调试的。但是，它有一个问题。就是它的末尾并没有 0xaa55。</p>
+<p>但是我们不能再使用 <code>times 510-($-$$) db 0</code> 来凑了。因为这个程序有非常多的段。而 <code>$$</code> 针对的是当前的段。</p>
+<p>一种办法是拿我们之前用过的 a.img。它的末尾本来就含有 0xaa55，而我们是非截断写入，因此末尾这两个字节是会保留的。</p>
 <p>另一种方法是用下面的指令来写入：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -ne <span class="string">&quot;\x55\xaa&quot;</span> | <span class="built_in">dd</span> of=a.img seek=510 bs=1 count=2 conv=notrunc</span><br></pre></td></tr></table></figure>
-<p><code>-ne</code>
-的意思是不换行且使用转义符号。其实换不换行无所谓，反正只取前两个字节，取不到后面的
-<code>\10</code>（换行符）。这里出于强迫症保证了输出只有两个字节。<code>seek=510</code>
-就是从第 510 个字节开始写入（从 0 开始数）。其它之前介绍过了。</p>
-<p>你可能会像我一样，直接就把上面这条指令直接写到 makefile
-里去了。然后发现写进 a.img 的不是 0xaa55，而是 0x6e2d。</p>
-<p>查一下 ascii 码表，你会发现它把 "-n"
-当成字符串了。这是怎么回事呢？</p>
+
+<p><code>-ne</code> 的意思是不换行且使用转义符号。其实换不换行无所谓，反正只取前两个字节，取不到后面的 <code>\10</code>（换行符）。这里出于强迫症保证了输出只有两个字节。<code>seek=510</code> 就是从第 510 个字节开始写入（从 0 开始数）。其它之前介绍过了。</p>
+<p>你可能会像我一样，直接就把上面这条指令直接写到 makefile 里去了。然后发现写进 a.img 的不是 0xaa55，而是 0x6e2d。</p>
+<p>查一下 ascii 码表，你会发现它把 “-n” 当成字符串了。这是怎么回事呢？</p>
 <p>其实是 shell 的差异导致的。<a target="_blank" rel="noopener" href="https://blog.csdn.net/haifeng_gu/article/details/73332242">这篇博客讲的很清楚</a>，解决了困扰我大半天的问题。</p>
-<h3 id="一点小小的个人经验">2.2.2 一点小小的个人经验</h3>
-<p>其实这一章全是非常枯燥的知识，东西很多。学的时候看的我头昏眼花。</p>
+<h3 id="2-2-2-一点小小的个人经验"><a href="#2-2-2-一点小小的个人经验" class="headerlink" title="2.2.2 一点小小的个人经验"></a>2.2.2 一点小小的个人经验</h3><p>其实这一章全是非常枯燥的知识，东西很多。学的时候看的我头昏眼花。</p>
 <p>我本来是打算把知识点什么的全部写进来的，但是编排起来实在有点难度，而且感觉不太符合我的风格（<del>其实就是单纯的懒和烦</del>）。</p>
 <p>所以就讲一下我个人的经验吧：</p>
 <blockquote>
-<p>因为源码是有很详细的注释的。直接看源码，看不懂的部分再去查书和
-PPT，效率就会大幅提升。</p>
+<p>因为源码是有很详细的注释的。直接看源码，看不懂的部分再去查书和 PPT，效率就会大幅提升。</p>
 </blockquote>
 <p>当然这只是个人经验。具体怎么学舒服还得看自己。</p>
 <p>以及自己动手写是很重要的。虽然他给的代码非常的长，可能没有什么自己动手写的欲望。但自己敲一遍（至少在回答动手做问题的时候）还是有必要的。口胡永远比不上自己会敲。</p>
 <p>后面有空时会逐渐补全各部分的知识点。包括第一章中的一些还可以深入了解的东西也会抽空补全。</p>
-<h3 id="有趣问题记录">2.2.3 有趣问题记录</h3>
-<p>其实本来是想分析一波原理的。但是实验报告里抄来抄去截来截去已经累死了，原理什么的就自己看书吧。这里只记录下自己在学习时遇到的一些无法理解的有趣问题和分析。</p>
+<h3 id="2-2-3-有趣问题记录"><a href="#2-2-3-有趣问题记录" class="headerlink" title="2.2.3 有趣问题记录"></a>2.2.3 有趣问题记录</h3><p>其实本来是想分析一波原理的。但是实验报告里抄来抄去截来截去已经累死了，原理什么的就自己看书吧。这里只记录下自己在学习时遇到的一些无法理解的有趣问题和分析。</p>
 
     </div>
 
@@ -511,9 +441,7 @@ PPT，效率就会大幅提升。</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E5%AE%9E%E6%A8%A1%E5%BC%8F%E5%88%B0%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">2 从实模式到保护模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#freedos-%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-text">2.1 Freedos 初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#why-dos"><span class="nav-text">2.1.1 Why DOS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#freedos-%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%B8%8B%E8%BD%BD%E5%A7%BF%E5%8A%BF%E4%B8%8E%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.1.2 Freedos
-的正确下载姿势与解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8-bochs-%E4%B8%AD%E8%BF%90%E8%A1%8C-freedos"><span class="nav-text">2.1.3 在 Bochs 中运行 Freedos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E6%8C%82%E8%BD%BD"><span class="nav-text">2.1.4 软盘格式化与挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C%E9%9A%8F%E4%B9%A6%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.1.5 运行随书示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E4%B9%A6%E6%B1%87%E7%BC%96%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.2 随书汇编源码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A9%E8%9B%8B%E5%BD%93%E4%BD%A0%E8%AF%95%E5%9B%BE%E5%B0%86%E9%9A%8F%E4%B9%A6%E6%BA%90%E7%A0%81%E4%BD%9C%E4%B8%BA%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F"><span class="nav-text">2.2.1
-（彩蛋）当你试图将随书源码作为引导程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E7%82%B9%E5%B0%8F%E5%B0%8F%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C"><span class="nav-text">2.2.2 一点小小的个人经验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E8%B6%A3%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-text">2.2.3 有趣问题记录</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E4%BB%8E%E5%AE%9E%E6%A8%A1%E5%BC%8F%E5%88%B0%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-text">2 从实模式到保护模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Freedos-%E5%88%9D%E4%BD%93%E9%AA%8C"><span class="nav-text">2.1 Freedos 初体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-Why-DOS%EF%BC%9F"><span class="nav-text">2.1.1 Why DOS？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-Freedos-%E7%9A%84%E6%AD%A3%E7%A1%AE%E4%B8%8B%E8%BD%BD%E5%A7%BF%E5%8A%BF%E4%B8%8E%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.1.2 Freedos 的正确下载姿势与解读</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-%E5%9C%A8-Bochs-%E4%B8%AD%E8%BF%90%E8%A1%8C-Freedos"><span class="nav-text">2.1.3 在 Bochs 中运行 Freedos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-%E8%BD%AF%E7%9B%98%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E6%8C%82%E8%BD%BD"><span class="nav-text">2.1.4 软盘格式化与挂载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-%E8%BF%90%E8%A1%8C%E9%9A%8F%E4%B9%A6%E7%A4%BA%E4%BE%8B"><span class="nav-text">2.1.5 运行随书示例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E9%9A%8F%E4%B9%A6%E6%B1%87%E7%BC%96%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB"><span class="nav-text">2.2 随书汇编源码解读</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%EF%BC%88%E5%BD%A9%E8%9B%8B%EF%BC%89%E5%BD%93%E4%BD%A0%E8%AF%95%E5%9B%BE%E5%B0%86%E9%9A%8F%E4%B9%A6%E6%BA%90%E7%A0%81%E4%BD%9C%E4%B8%BA%E5%BC%95%E5%AF%BC%E7%A8%8B%E5%BA%8F"><span class="nav-text">2.2.1 （彩蛋）当你试图将随书源码作为引导程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E4%B8%80%E7%82%B9%E5%B0%8F%E5%B0%8F%E7%9A%84%E4%B8%AA%E4%BA%BA%E7%BB%8F%E9%AA%8C"><span class="nav-text">2.2.2 一点小小的个人经验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E6%9C%89%E8%B6%A3%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-text">2.2.3 有趣问题记录</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -28,9 +28,7 @@
       
         
         
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;最近装了点东西，磁盘空间有点吃不消了。于是想着给虚拟机扩展磁盘。我使用的
-VMware® Workstation 16 Pro。使用的 Linux</summary>
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近装了点东西，磁盘空间有点吃不消了。于是想着给虚拟机扩展磁盘。我使用的 VMware® Workstation 16 Pro。使用的</summary>
         
       
     
@@ -55,11 +53,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
       
         
         
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U
-盘来研究文件系统和磁盘的结构。&lt;/p&gt;
-&lt;p&gt;但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS
-的，手头也没有 U</summary>
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U</summary>
         
       
     
@@ -79,19 +73,15 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
     <link href="http://example.com/2022/09/27/Linux-%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98%E5%BD%95/"/>
     <id>http://example.com/2022/09/27/Linux-%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98%E5%BD%95/</id>
     <published>2022-09-27T02:28:36.000Z</published>
-    <updated>2022-09-28T01:57:15.917Z</updated>
+    <updated>2022-10-18T02:35:28.709Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;因为最近装新环境的频率有点高，我发现我经常动不动就忘记指令什么的，整天百度，浪费时间，所以开个帖备查算了。&lt;/p&gt;
-&lt;h2 id=&quot;解压压缩命令&quot;&gt;解压、压缩命令&lt;/h2&gt;
-&lt;table&gt;
-&lt;colgroup&gt;
-&lt;col</summary>
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;因为最近装新环境的频率有点高，我发现我经常动不动就忘记指令什么的，整天百度，浪费时间，所以开个帖备查算了。&lt;/p&gt;
+&lt;h2</summary>
         
       
     
@@ -117,8 +107,8 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;文章目录：&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;环境配置与</summary>
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://qing-lky.github.io/2022/09/13/OS-LAB/&quot;&gt;环境配置与 “hello</summary>
         
       
     
@@ -144,8 +134,9 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;文章目录:&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;环境配置与 &quot;hello OS！&quot;&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;环境配置与 “hello OS！”&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a</summary>
         
       
@@ -171,9 +162,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
       
         
         
-    <summary type="html">&lt;p&gt;原题链接：https://codeforc.es/contest/1707/problem/C[https://codeforc.es/contest/1707/problem/C]&lt;/p&gt;
-&lt;p&gt;(家里网络不是很好，最近主站经常上不去，只好上镜像了)&lt;/p&gt;
-&lt;h2</summary>
+    <summary type="html">&lt;p&gt;原题链接：&lt;a</summary>
         
       
     
@@ -201,7 +190,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1701/problem/E&quot;&gt;https://codeforces.com/contest/1701/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -229,7 +218,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1701/problem/E&quot;&gt;https://codeforces.com/contest/1701/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -257,7 +246,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -285,7 +274,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/F&quot;&gt;https://codeforces.com/contest/1700/problem/F&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -311,7 +300,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1700/problem/E&quot;&gt;https://codeforces.com/contest/1700/problem/E&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -339,7 +328,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/D2&quot;&gt;https://codeforces.com/contest/1695/problem/D2&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -348,9 +337,9 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
     <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="换根dp" scheme="http://example.com/tags/%E6%8D%A2%E6%A0%B9dp/"/>
-    
     <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
+    
+    <category term="换根dp" scheme="http://example.com/tags/%E6%8D%A2%E6%A0%B9dp/"/>
     
   </entry>
   
@@ -367,7 +356,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
         
         
     <summary type="html">&lt;p&gt;原题链接：&lt;a href=&quot;https://codeforces.com/contest/1695/problem/C&quot;&gt;https://codeforces.com/contest/1695/problem/C&lt;/a&gt;&lt;/p&gt;
-&lt;h2</summary>
+&lt;h2 id=&quot;题目大意&quot;&gt;&lt;a</summary>
         
       
     
@@ -376,9 +365,9 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
     <category term="ACM题解" scheme="http://example.com/categories/ACM%E9%A2%98%E8%A7%A3/"/>
     
     
-    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
-    
     <category term="dp" scheme="http://example.com/tags/dp/"/>
+    
+    <category term="构造" scheme="http://example.com/tags/%E6%9E%84%E9%80%A0/"/>
     
   </entry>
   
@@ -394,10 +383,9 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
       
         
         
-    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;傻逼错误&lt;/h2&gt;
-&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
-&lt;ol type=&quot;1&quot;&gt;
-&lt;li&gt;注意 n 和 m 的读入顺序和在 for 循环里的使用，别把 n m 弄成</summary>
+    <summary type="html">&lt;h2 id=&quot;傻逼错误&quot;&gt;&lt;a href=&quot;#傻逼错误&quot; class=&quot;headerlink&quot; title=&quot;傻逼错误&quot;&gt;&lt;/a&gt;傻逼错误&lt;/h2&gt;&lt;p&gt;此处收录了 debug 时发现的一些血压飙升的错误。警钟长鸣。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;注意 n 和 m 的读入顺序和在</summary>
         
       
     
@@ -422,7 +410,8 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
       
         
         
-    <summary type="html">&lt;h2</summary>
+    <summary type="html">&lt;h2 id=&quot;学期小结&quot;&gt;&lt;a href=&quot;#学期小结&quot; class=&quot;headerlink&quot; title=&quot;学期小结&quot;&gt;&lt;/a&gt;学期小结&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;呜呜，好久没有写博客了。最近可算是考完了，但是还要等个十来天才能搬去网安基地。这几天无所事事，每天 vp</summary>
         
       
     
@@ -447,10 +436,7 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
       
         
         
-    <summary type="html">&lt;h1 id=&quot;qing-lky-的个人博客&quot;&gt;Qing-LKY 的个人博客&lt;/h1&gt;
-&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;博客园不知道为什么不能实时更新了。感觉很蛋疼。所以想试着自己搭一个博客。&lt;/p&gt;
-&lt;p&gt;使用的是 github.io + hexa</summary>
+    <summary type="html">&lt;h1 id=&quot;Qing-LKY-的个人博客&quot;&gt;&lt;a href=&quot;#Qing-LKY-的个人博客&quot; class=&quot;headerlink&quot; title=&quot;Qing-LKY 的个人博客&quot;&gt;&lt;/a&gt;Qing-LKY 的个人博客&lt;/h1&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a</summary>
         
       
     
