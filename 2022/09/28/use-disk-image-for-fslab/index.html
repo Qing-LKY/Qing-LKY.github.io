@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U 盘来研究文件系统和磁盘的结构。 但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS 的，手头也没有 U 盘。 所以我决定在 Linux 下，使用虚拟磁盘映像来做这个实验。 下面我将会嗯造一个实验用的磁盘映像。为了达到研究的目的，它会有分区，有 FAT32 文件系统，并且各个分区会有一些各种各样的文件。 创建虚拟磁">
+  <meta name="description" content="前言 事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U 盘来研究文件系统和磁盘的结构。 但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS 的，手头也没有 U 盘。 所以我决定在 Linux 下，使用虚拟磁盘映像来做这个实验。 下面我将会嗯造一个实验用的磁盘映像。为了达到研究的目的，它会有分区，有 FAT32 文件系统，并且各个分区会有一些各种各样的文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何在 Linux 下嗯造一个实验用的磁盘映像">
 <meta property="og:url" content="http://example.com/2022/09/28/use-disk-image-for-fslab/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="前言事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U 盘来研究文件系统和磁盘的结构。 但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS 的，手头也没有 U 盘。 所以我决定在 Linux 下，使用虚拟磁盘映像来做这个实验。 下面我将会嗯造一个实验用的磁盘映像。为了达到研究的目的，它会有分区，有 FAT32 文件系统，并且各个分区会有一些各种各样的文件。 创建虚拟磁">
+<meta property="og:description" content="前言 事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U 盘来研究文件系统和磁盘的结构。 但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS 的，手头也没有 U 盘。 所以我决定在 Linux 下，使用虚拟磁盘映像来做这个实验。 下面我将会嗯造一个实验用的磁盘映像。为了达到研究的目的，它会有分区，有 FAT32 文件系统，并且各个分区会有一些各种各样的文">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-28T10:11:46.000Z">
 <meta property="article:modified_time" content="2022-10-14T10:34:26.166Z">
@@ -251,59 +251,83 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U 盘来研究文件系统和磁盘的结构。</p>
-<p>但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS 的，手头也没有 U 盘。</p>
+        <h2 id="前言">前言</h2>
+<p>事情是这样的。我们软安有个实验，需要一个 FAT32 的磁盘或 U
+盘来研究文件系统和磁盘的结构。</p>
+<p>但是非常尴尬的是，我压根没有这样的条件。我的两个盘都是 NTFS
+的，手头也没有 U 盘。</p>
 <p>所以我决定在 Linux 下，使用虚拟磁盘映像来做这个实验。</p>
-<p>下面我将会嗯造一个实验用的磁盘映像。为了达到研究的目的，它会有分区，有 FAT32 文件系统，并且各个分区会有一些各种各样的文件。</p>
-<h2 id="创建虚拟磁盘"><a href="#创建虚拟磁盘" class="headerlink" title="创建虚拟磁盘"></a>创建虚拟磁盘</h2><p>其实就是需要个满足要求大小的文件。</p>
-<h3 id="方法一：使用-bximage"><a href="#方法一：使用-bximage" class="headerlink" title="方法一：使用 bximage"></a>方法一：使用 bximage</h3><p>在 OS 实验中应该用过这个玩意的。fd 还是 hd 都无所谓，没指定 type 就是默认 flat，出来的就会是 128M 的“空”文件。</p>
+<p>下面我将会嗯造一个实验用的磁盘映像。为了达到研究的目的，它会有分区，有
+FAT32 文件系统，并且各个分区会有一些各种各样的文件。</p>
+<h2 id="创建虚拟磁盘">创建虚拟磁盘</h2>
+<p>其实就是需要个满足要求大小的文件。</p>
+<h3 id="方法一使用-bximage">方法一：使用 bximage</h3>
+<p>在 OS 实验中应该用过这个玩意的。fd 还是 hd 都无所谓，没指定 type
+就是默认 flat，出来的就会是 128M 的“空”文件。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install bximage</span><br><span class="line">bximage -func=create -fd=128M -q myDisk.img</span><br></pre></td></tr></table></figure>
-
-<h3 id="方法二：使用-dd-和-x2F-dev-x2F-zero"><a href="#方法二：使用-dd-和-x2F-dev-x2F-zero" class="headerlink" title="方法二：使用 dd 和 &#x2F;dev&#x2F;zero"></a>方法二：使用 dd 和 &#x2F;dev&#x2F;zero</h3><p>同样也是 OS 实验用过的东西。只不过这次的输入来源是 &#x2F;dev&#x2F;zero 这个特殊的设备。它会不停的输出 0 (NULL)。</p>
+<h3 id="方法二使用-dd-和-devzero">方法二：使用 dd 和 /dev/zero</h3>
+<p>同样也是 OS 实验用过的东西。只不过这次的输入来源是 /dev/zero
+这个特殊的设备。它会不停的输出 0 (NULL)。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面的指令会往 myDisk.img 里填充 128Mb 的 0</span></span><br><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/zero of=myDisk.img bs=1M count=128</span><br></pre></td></tr></table></figure>
-
-<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p>此时的磁盘还没有分区，我们需要对它进行分区。</p>
+<h2 id="磁盘分区">磁盘分区</h2>
+<p>此时的磁盘还没有分区，我们需要对它进行分区。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk myDisk.img</span><br></pre></td></tr></table></figure>
-
 <p>执行上面的指令后，会进入 fdisk 提供的交互界面。它的使用大致如下：</p>
 <ul>
 <li>输入 m 可以查看所有能用的指令。</li>
-<li>输入 l 可以查看所有支持的文件类型的 16 进制码。可以看到我们需要的 FAT32 类型码是 b。</li>
+<li>输入 l 可以查看所有支持的文件类型的 16 进制码。可以看到我们需要的
+FAT32 类型码是 b。</li>
 <li>输入 p 可以查看当前已有的分区状况。现在还没有任何分区。</li>
-<li>输入 n 创建一个新的分区。进入分区创建的交互：<br>输入 p&#x2F;e 来创建主分区或扩展分区。这里我们输入 p。<br>输入一个数字作为分区号。这里我们保持默认（分区 1）。<br>输入一个数字表示第一扇区的起始扇区。这里我们保持默认。<br>输入一个数字来表示第一扇区的最后扇区。这里我们输入一个比较靠中间的数（因为我想多造点分区）。<br>此时我们就造出了一个分区。分区的默认类型是 linux。<br>重复上述过程，多造一两个分区出来。</li>
-<li>输入 t 来修改分区的类型。将创建的分区修改位 FAT32（b）类型。具体操作跟着交互提示走，此处不再赘述。</li>
+<li>输入 n 创建一个新的分区。进入分区创建的交互： 输入 p/e
+来创建主分区或扩展分区。这里我们输入 p。
+输入一个数字作为分区号。这里我们保持默认（分区 1）。
+输入一个数字表示第一扇区的起始扇区。这里我们保持默认。
+输入一个数字来表示第一扇区的最后扇区。这里我们输入一个比较靠中间的数（因为我想多造点分区）。
+此时我们就造出了一个分区。分区的默认类型是 linux。
+重复上述过程，多造一两个分区出来。</li>
+<li>输入 t 来修改分区的类型。将创建的分区修改位
+FAT32（b）类型。具体操作跟着交互提示走，此处不再赘述。</li>
 <li>输入 O 可以导出我们当前的配置。输入 L 可以载入一个配置。</li>
 <li>输入 w 来将修改写入虚拟硬盘。并退出 fdisk。</li>
 </ul>
-<p>简单的规划一下：我们的盘是 128 Mb。注意 FAT32 对簇的数量是有要求的。它要求至少要有 65525 个簇。我们的扇区大小是 512 b。大致算一下，一个分区至少要有 32 Mb。</p>
+<p>简单的规划一下：我们的盘是 128 Mb。注意 FAT32
+对簇的数量是有要求的。它要求至少要有 65525 个簇。我们的扇区大小是 512
+b。大致算一下，一个分区至少要有 32 Mb。</p>
 <p>（我暂时还没有理解 65525 的逻辑所在。<a target="_blank" rel="noopener" href="https://www.keil.com/pack/doc/mw/FileSystem/html/fat_fs.html">情报来源是这个</a>。）</p>
 <p>你可以把已经算好的配置用 O 导出了。你可以这样做：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果你忘了用 O。你也可以这样导出：</span></span><br><span class="line">sudo sfdisk -d myDisk.img &gt; disksrc</span><br><span class="line"><span class="comment"># 这样可以用之前的分区配置来分区：</span></span><br><span class="line">sudo sfdisk myDisk.img &lt; disksrc</span><br></pre></td></tr></table></figure>
-
 <p>下面是我的 diskrc，如果不想手动分区，也可以直接用我的导入：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">label: dos</span><br><span class="line">label-id: 0x50380754</span><br><span class="line">device: myDisk.img</span><br><span class="line">unit: sectors</span><br><span class="line"></span><br><span class="line">myDisk.img1 : start=        2048, size=       67953, type=b</span><br><span class="line">myDisk.img2 : start=       71680, size=       70001, type=b</span><br><span class="line">myDisk.img3 : start=      143360, size=      118784, type=b</span><br></pre></td></tr></table></figure>
-
-<p>分区我是随便加的。如果你希望多分几个区甚至扩展分区来研究，最好把磁盘大小拉大一点，比如拉到 256 Mb。</p>
-<p>需要注意，在 fdisk 下用 O 指令导出的 disksrc 是只读的。如果需要改动，需要使用 <code>chmod +w disksrc</code> 来添加可写权限。使用 <code>sfdisk -d</code> 则不会，因为它只负责导出到标准输出。</p>
-<h2 id="使用-loop-设备"><a href="#使用-loop-设备" class="headerlink" title="使用 loop 设备"></a>使用 loop 设备</h2><p>我们的分区还没有被格式化。我们需要对每个分区分别格式化，而不是对整个磁盘格式化。所以我们需要建立 loop 设备到分区的映射，单独对每个分区进行格式化。</p>
-<p>这里有几篇参考的文章，其中这篇问答含有完整的三种做法：<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/69363/mount-single-partition-from-image-of-entire-disk-device">Mount single partition from image of entire disk device</a>。</p>
+<p>分区我是随便加的。如果你希望多分几个区甚至扩展分区来研究，最好把磁盘大小拉大一点，比如拉到
+256 Mb。</p>
+<p>需要注意，在 fdisk 下用 O 指令导出的 disksrc
+是只读的。如果需要改动，需要使用 <code>chmod +w disksrc</code>
+来添加可写权限。使用 <code>sfdisk -d</code>
+则不会，因为它只负责导出到标准输出。</p>
+<h2 id="使用-loop-设备">使用 loop 设备</h2>
+<p>我们的分区还没有被格式化。我们需要对每个分区分别格式化，而不是对整个磁盘格式化。所以我们需要建立
+loop 设备到分区的映射，单独对每个分区进行格式化。</p>
+<p>这里有几篇参考的文章，其中这篇问答含有完整的三种做法：<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/69363/mount-single-partition-from-image-of-entire-disk-device">Mount
+single partition from image of entire disk device</a>。</p>
 <p>我的 Ubuntu 版本较高，可以使用最简单的方法二（需要 16.05 +）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用这个指令后，myDisk 的各个分区会被映射到 /dev/loop* 上。例如 /dev/loop3p1：</span></span><br><span class="line">sudo losetup -Pf myDisk.img</span><br><span class="line"><span class="comment"># 使用下面的指令可以取消 loop3 的映射（所有的分区）：</span></span><br><span class="line">sudo losetup -d /dev/loop3</span><br></pre></td></tr></table></figure>
-
 <p>其它两种方法，有需要的读者可自行到上面的链接中阅读。方法一是手动计算偏移。方法三是使用了一个工具。</p>
-<h2 id="分区格式化"><a href="#分区格式化" class="headerlink" title="分区格式化"></a>分区格式化</h2><p>上面我们已经将各个分区弄到了 loop 设备上，接下来我们可以进行格式化了：</p>
+<h2 id="分区格式化">分区格式化</h2>
+<p>上面我们已经将各个分区弄到了 loop
+设备上，接下来我们可以进行格式化了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat -F32 /dev/loop3p1</span><br></pre></td></tr></table></figure>
-
 <p>其它分区的格式化方法类比一下即可。</p>
-<h2 id="分区挂载和加入文件"><a href="#分区挂载和加入文件" class="headerlink" title="分区挂载和加入文件"></a>分区挂载和加入文件</h2><p>需要先 losetup。如果你没有 losetup 的话，参考前面。</p>
-<p>使用 mount 把 &#x2F;dev&#x2F;loop3p1 之类的挂载到某个目录上就行了。例如：</p>
+<h2 id="分区挂载和加入文件">分区挂载和加入文件</h2>
+<p>需要先 losetup。如果你没有 losetup 的话，参考前面。</p>
+<p>使用 mount 把 /dev/loop3p1 之类的挂载到某个目录上就行了。例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 挂载</span></span><br><span class="line">sudo mount /dev/loop3p1 /mnt/myhd</span><br><span class="line"><span class="comment"># 取消</span></span><br><span class="line">sudo umount /dev/loop3p1</span><br></pre></td></tr></table></figure>
-
-<p>需要注意你可能不止要 <code>umount</code>，还需要 <code>losetup -d</code>。取决于你的个人需要。</p>
-<h2 id="信息检查"><a href="#信息检查" class="headerlink" title="信息检查"></a>信息检查</h2><p>你可以用下面的指令来查看你挂上去的这个磁盘的相关信息：</p>
+<p>需要注意你可能不止要 <code>umount</code>，还需要
+<code>losetup -d</code>。取决于你的个人需要。</p>
+<h2 id="信息检查">信息检查</h2>
+<p>你可以用下面的指令来查看你挂上去的这个磁盘的相关信息：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 下面的指令可以查看挂载点的信息：</span></span><br><span class="line">mount</span><br><span class="line">mount | grep <span class="string">&quot;/mnt/myhd&quot;</span></span><br><span class="line"><span class="comment"># 下面的指令可以查看：</span></span><br><span class="line"><span class="comment"># 使用了哪个 loop 设备、文件系统类型、磁盘大小、已使用大小、挂载位置</span></span><br><span class="line"><span class="built_in">df</span> -hT</span><br><span class="line"><span class="built_in">df</span> -hT | grep <span class="string">&quot;/mnt/myhd&quot;</span></span><br><span class="line"><span class="comment"># 下面的指令可以查看更具体的磁盘、设备信息：</span></span><br><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
-
-<h2 id="懒人总结"><a href="#懒人总结" class="headerlink" title="懒人总结"></a>懒人总结</h2><p>我把上面的步骤搞在了一个 bash 脚本里：</p>
+<h2 id="懒人总结">懒人总结</h2>
+<p>我把上面的步骤搞在了一个 bash 脚本里：</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/Qing-LKY/Image-Builder-for-Filesystem-Study">https://github.com/Qing-LKY/Image-Builder-for-Filesystem-Study</a></p>
 <p>也许能帮上忙。</p>
 
@@ -390,7 +414,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98"><span class="nav-text">创建虚拟磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E4%BD%BF%E7%94%A8-bximage"><span class="nav-text">方法一：使用 bximage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%BD%BF%E7%94%A8-dd-%E5%92%8C-x2F-dev-x2F-zero"><span class="nav-text">方法二：使用 dd 和 &#x2F;dev&#x2F;zero</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="nav-text">磁盘分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-loop-%E8%AE%BE%E5%A4%87"><span class="nav-text">使用 loop 设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-text">分区格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8A%A0%E5%85%A5%E6%96%87%E4%BB%B6"><span class="nav-text">分区挂载和加入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5"><span class="nav-text">信息检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%87%92%E4%BA%BA%E6%80%BB%E7%BB%93"><span class="nav-text">懒人总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%A3%81%E7%9B%98"><span class="nav-text">创建虚拟磁盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E4%BD%BF%E7%94%A8-bximage"><span class="nav-text">方法一：使用 bximage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%BD%BF%E7%94%A8-dd-%E5%92%8C-devzero"><span class="nav-text">方法二：使用 dd 和 &#x2F;dev&#x2F;zero</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA"><span class="nav-text">磁盘分区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-loop-%E8%AE%BE%E5%A4%87"><span class="nav-text">使用 loop 设备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%A0%BC%E5%BC%8F%E5%8C%96"><span class="nav-text">分区格式化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%8C%BA%E6%8C%82%E8%BD%BD%E5%92%8C%E5%8A%A0%E5%85%A5%E6%96%87%E4%BB%B6"><span class="nav-text">分区挂载和加入文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E6%A3%80%E6%9F%A5"><span class="nav-text">信息检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%87%92%E4%BA%BA%E6%80%BB%E7%BB%93"><span class="nav-text">懒人总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -406,7 +430,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -419,7 +443,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -477,13 +501,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">50k</span>
+    <span title="站点总字数">53k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:23</span>
+    <span title="站点阅读时长">1:29</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
