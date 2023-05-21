@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2023-04-13T15:46:52.848Z</updated>
+  <updated>2023-05-12T01:31:50.191Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://example.com/2023/04/06/CS155-Project2-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/"/>
     <id>http://example.com/2023/04/06/CS155-Project2-%E5%AE%9E%E9%AA%8C%E8%AE%B0%E5%BD%95/</id>
     <published>2023-04-06T14:58:47.000Z</published>
-    <updated>2023-04-13T15:46:52.848Z</updated>
+    <updated>2023-05-12T01:31:50.191Z</updated>
     
     
       
@@ -44,17 +44,15 @@
     <link href="http://example.com/2023/03/25/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%88%92%E9%80%82%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA/"/>
     <id>http://example.com/2023/03/25/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%88%92%E9%80%82%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA/</id>
     <published>2023-03-25T14:46:14.000Z</published>
-    <updated>2023-04-03T01:27:22.295Z</updated>
+    <updated>2023-05-21T03:47:19.909Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。&lt;/p&gt;
-&lt;h2 id=&quot;下载&quot;&gt;下载&lt;/h2&gt;
-&lt;p&gt;&lt;a</summary>
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。&lt;/p&gt;
+&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot;</summary>
         
       
     
@@ -159,19 +157,15 @@ VMware® Workstation 16 Pro。使用的 Linux</summary>
     <link href="http://example.com/2022/09/27/Linux-%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98%E5%BD%95/"/>
     <id>http://example.com/2022/09/27/Linux-%E5%AD%A6%E4%B9%A0%E5%A4%87%E5%BF%98%E5%BD%95/</id>
     <published>2022-09-27T02:28:36.000Z</published>
-    <updated>2022-11-08T01:02:20.272Z</updated>
+    <updated>2023-05-21T07:10:45.402Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;前言&lt;/h2&gt;
-&lt;p&gt;因为最近装新环境的频率有点高，我发现我经常动不动就忘记指令什么的，整天百度，浪费时间，所以开个帖备查算了。&lt;/p&gt;
-&lt;h2 id=&quot;解压压缩命令&quot;&gt;解压、压缩命令&lt;/h2&gt;
-&lt;table&gt;
-&lt;colgroup&gt;
-&lt;col</summary>
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;因为最近装新环境的频率有点高，我发现我经常动不动就忘记指令什么的，整天百度，浪费时间，所以开个帖备查算了。&lt;/p&gt;
+&lt;h2</summary>
         
       
     
