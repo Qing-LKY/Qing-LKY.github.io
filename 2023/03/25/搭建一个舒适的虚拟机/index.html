@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。 下载清华源 Ubuntu Release 换源清华源 Ubuntu 软件镜像仓库阿里云 Ubuntu 软件镜像仓库 用阿里源的可以手动注释掉 deb-src 的行。 设置 root 密码1sudo passwd  常用包1net-tools  oh-my-zsh12apt install zshchsh -s &#x2F;bin&#x2F;zsh  通过 g">
+  <meta name="description" content="前言 最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。 下载 清华源 Ubuntu Release 换源 清华源 Ubuntu 软件镜像仓库 阿里云 Ubuntu 软件镜像仓库 用阿里源的可以手动注释掉 deb-src 的行。 设置 root 密码 1sudo passwd 常用包 1net-tools oh-my-zsh 12apt install zshch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建一个舒适的虚拟机">
 <meta property="og:url" content="http://example.com/2023/03/25/%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E8%88%92%E9%80%82%E7%9A%84%E8%99%9A%E6%8B%9F%E6%9C%BA/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="前言最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。 下载清华源 Ubuntu Release 换源清华源 Ubuntu 软件镜像仓库阿里云 Ubuntu 软件镜像仓库 用阿里源的可以手动注释掉 deb-src 的行。 设置 root 密码1sudo passwd  常用包1net-tools  oh-my-zsh12apt install zshchsh -s &#x2F;bin&#x2F;zsh  通过 g">
+<meta property="og:description" content="前言 最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。 下载 清华源 Ubuntu Release 换源 清华源 Ubuntu 软件镜像仓库 阿里云 Ubuntu 软件镜像仓库 用阿里源的可以手动注释掉 deb-src 的行。 设置 root 密码 1sudo passwd 常用包 1net-tools oh-my-zsh 12apt install zshch">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-25T14:46:14.000Z">
 <meta property="article:modified_time" content="2024-10-15T12:48:38.604Z">
@@ -231,7 +231,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.3k</span>
+              <span>2.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -250,62 +250,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。</p>
-<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/">清华源 Ubuntu Release</a></p>
-<h2 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h2><p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华源 Ubuntu 软件镜像仓库</a><br><a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/ubuntu">阿里云 Ubuntu 软件镜像仓库</a></p>
+        <h2 id="前言">前言</h2>
+<p>最近总是重搭虚拟机。简单记录下如何快速的让虚拟机好用。</p>
+<h2 id="下载">下载</h2>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/ubuntu-releases/">清华源
+Ubuntu Release</a></p>
+<h2 id="换源">换源</h2>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华源
+Ubuntu 软件镜像仓库</a> <a target="_blank" rel="noopener" href="https://developer.aliyun.com/mirror/ubuntu">阿里云 Ubuntu
+软件镜像仓库</a></p>
 <p>用阿里源的可以手动注释掉 deb-src 的行。</p>
-<h2 id="设置-root-密码"><a href="#设置-root-密码" class="headerlink" title="设置 root 密码"></a>设置 root 密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd</span><br></pre></td></tr></table></figure>
-
-<h2 id="常用包"><a href="#常用包" class="headerlink" title="常用包"></a>常用包</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net-tools</span><br></pre></td></tr></table></figure>
-
-<h2 id="oh-my-zsh"><a href="#oh-my-zsh" class="headerlink" title="oh-my-zsh"></a>oh-my-zsh</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install zsh</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
-
-<p>通过 <a target="_blank" rel="noopener" href="https://gitee.com/mirrors/oh-my-zsh">gitee 同步仓库</a>安装：</p>
+<h2 id="设置-root-密码">设置 root 密码</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo passwd</span><br></pre></td></tr></table></figure>
+<h2 id="常用包">常用包</h2>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net-tools</span><br></pre></td></tr></table></figure>
+<h2 id="oh-my-zsh">oh-my-zsh</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">apt install zsh</span><br><span class="line">chsh -s /bin/zsh</span><br></pre></td></tr></table></figure>
+<p>通过 <a target="_blank" rel="noopener" href="https://gitee.com/mirrors/oh-my-zsh">gitee
+同步仓库</a>安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -o install.sh https://gitee.com/mirrors/oh-my-zsh/raw/master/tools/install.sh</span><br><span class="line">REMOTE=https://gitee.com/mirrors/oh-my-zsh.git sh install.sh</span><br></pre></td></tr></table></figure>
-
 <p>建议再加个插件: <a target="_blank" rel="noopener" href="https://gitee.com/testbook/zsh-syntax-highlighting">zsh-syntax-highlighting</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://gitee.com/minhanghuang/zsh-syntax-highlighting.git <span class="variable">$&#123;ZSH_CUSTOM:-~/.oh-my-zsh/custom&#125;</span>/plugins/zsh-syntax-highlighting</span><br><span class="line"><span class="comment"># 在插件列表中添加 zsh-syntax-highlighting</span></span><br><span class="line">vim .zshrc</span><br></pre></td></tr></table></figure>
-
-<h2 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h2><p><a target="_blank" rel="noopener" href="https://fishshell.com/">fishshell</a> 是个好东西，虽然我还是习惯 zsh</p>
-<h2 id="vim"><a href="#vim" class="headerlink" title="vim"></a>vim</h2><p>vim 有好多版本，如果是桌面操作系统例如 GNOME 建议装 vim-gtk3</p>
-<p>无图形化界面或单纯在命令行中使用建议装 vim-nox。因为它支持 Perl、Python、Ruby 和 TCL 脚本</p>
-<h2 id="ssh-server"><a href="#ssh-server" class="headerlink" title="ssh-server"></a>ssh-server</h2><p>ubuntu 下安装：</p>
+<h2 id="fish">fish</h2>
+<p><a target="_blank" rel="noopener" href="https://fishshell.com/">fishshell</a>
+是个好东西，虽然我还是习惯 zsh</p>
+<h2 id="vim">vim</h2>
+<p>vim 有好多版本，如果是桌面操作系统例如 GNOME 建议装 vim-gtk3</p>
+<p>无图形化界面或单纯在命令行中使用建议装 vim-nox。因为它支持
+Perl、Python、Ruby 和 TCL 脚本</p>
+<h2 id="ssh-server">ssh-server</h2>
+<p>ubuntu 下安装：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install openssh-server</span><br></pre></td></tr></table></figure>
-
-<p>配置文件 &#x2F;etc&#x2F;ssh&#x2F;sshd_config</p>
+<p>配置文件 /etc/ssh/sshd_config</p>
 <p>加入自己的 keys</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl https://github.com/&lt;username&gt;.keys | <span class="built_in">tee</span> -a ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-
 <p>在主机上连接虚拟机：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh lky@192.168.xxx.xxx</span><br></pre></td></tr></table></figure>
-
-<h2 id="git"><a href="#git" class="headerlink" title="git"></a>git</h2><p>通过 https 端口连接 <a href="mailto:&#x67;&#x69;&#116;&#64;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x69;&#116;&#64;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#99;&#x6f;&#109;</a>（有时能绕开 DNS 污染）</p>
-<p>修改 ~&#x2F;.ssh&#x2F;config</p>
+<h2 id="git">git</h2>
+<p>通过 https 端口连接 git@github.com（有时能绕开 DNS 污染）</p>
+<p>修改 ~/.ssh/config</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Host github.com</span><br><span class="line">    Hostname ssh.github.com</span><br><span class="line">    Port 443</span><br></pre></td></tr></table></figure>
-
 <p>生成 key</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t ecdsa -b 521 -C <span class="string">&quot;your_email@example.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="开启共享文件夹"><a href="#开启共享文件夹" class="headerlink" title="开启共享文件夹"></a>开启共享文件夹</h2><p>先在 GUI 设置，然后</p>
+<h2 id="开启共享文件夹">开启共享文件夹</h2>
+<p>先在 GUI 设置，然后</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vmhgfs-fuse .host:/ /mnt/hgfs</span><br></pre></td></tr></table></figure>
-
-<p>当然，也有可能不需要这么干，如果提示 nonempty 的话说明 GUI 设置完自动处理好了</p>
-<h2 id="clash"><a href="#clash" class="headerlink" title="clash"></a>clash</h2><p>参考<a target="_blank" rel="noopener" href="https://blog.iswiftai.com/posts/clash-linux/">这篇博客</a></p>
+<p>当然，也有可能不需要这么干，如果提示 nonempty 的话说明 GUI
+设置完自动处理好了</p>
+<h2 id="clash">clash</h2>
+<p>参考<a target="_blank" rel="noopener" href="https://blog.iswiftai.com/posts/clash-linux/">这篇博客</a></p>
 <p>下载安装:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 使用了公益镜像源，可能会失效</span></span><br><span class="line">curl -O https://download.nuaa.cf/Dreamacro/clash/releases/download/v1.14.0/clash-linux-amd64-v1.14.0.gz</span><br><span class="line"><span class="comment"># curl -O https://github.com/Dreamacro/clash/releases/download/v1.14.0/clash-linux-amd64-v1.14.0.gz</span></span><br><span class="line">gzip -d clash-linux-amd64-v1.14.0.gz</span><br><span class="line">sudo install -m 755 ./clash-linux-amd64-v1.14.0 /usr/local/bin/clash</span><br><span class="line">clash -v</span><br></pre></td></tr></table></figure>
-
 <p>拷贝配置:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">mkdir</span> /etc/clash</span><br><span class="line"><span class="comment"># 自己的 config.yaml 例如可以在 windows 的 clash 那里搞出来</span></span><br><span class="line">sudo <span class="built_in">cp</span> config.yaml /etc/clash</span><br><span class="line"><span class="comment"># Country.mmdb 可以下载</span></span><br><span class="line">sudo curl -O https://proxy.freecdn.ml/?url=https://github.com/Dreamacro/maxmind-geoip/releases/download/20230512/Country.mmdb</span><br><span class="line"><span class="comment"># sudo curl -O https://github.com/Dreamacro/maxmind-geoip/releases/download/20230512/Country.mmdb</span></span><br></pre></td></tr></table></figure>
-
-<p>编写 systemd 服务配置 <code>sudo vim /etc/systemd/system/clash.service</code>:</p>
+<p>编写 systemd 服务配置
+<code>sudo vim /etc/systemd/system/clash.service</code>:</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Clash daemon, A rule-based proxy in Go.</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">Restart=always</span><br><span class="line">ExecStart=/usr/local/bin/clash -d /etc/clash</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
 <p>开启服务:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> clash</span><br><span class="line">sudo systemctl start clash</span><br><span class="line">sudo systemctl status clash</span><br></pre></td></tr></table></figure>
-
 <p>可以看到端口，export 到变量里即可</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
-
 <p>取消的话</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">unset</span>  http_proxy  https_proxy</span><br></pre></td></tr></table></figure>
 
@@ -407,20 +411,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-count">22</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-count">26</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -468,7 +472,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -478,13 +482,13 @@
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">65k</span>
+    <span title="站点总字数">70k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">1:48</span>
+    <span title="站点阅读时长">1:56</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
