@@ -20,27 +20,27 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="前言 个人将爬虫分为两类，一类是直接使用 requests 库爬取的，一类是需要使用 selenium 爬取的（比如 js 动态加载）。无论是哪一类，都需要控制请求的频率。 代码的部分基本可以要求 kimi 生成或自己查 api，所以不做赘述。此处仅介绍爬取的思路。 分析内容加载方式 一般情况下，F12 可以唤起浏览器的开发者工具。我们可以使用 F12 来对网页进行分析，决定下一步">
+  <meta name="description" content="前言个人将爬虫分为两类，一类是直接使用 requests 库爬取的，一类是需要使用 selenium 爬取的（比如 js 动态加载）。无论是哪一类，都需要控制请求的频率。 代码的部分基本可以要求 kimi 生成或自己查 api，所以不做赘述。此处仅介绍爬取的思路。 分析内容加载方式一般情况下，F12 可以唤起浏览器的开发者工具。我们可以使用 F12 来对网页进行分析，决定下一步该做什么。 一般来讲">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基础爬虫思路整理">
 <meta property="og:url" content="http://example.com/2025/01/11/%E5%9F%BA%E7%A1%80%E7%88%AC%E8%99%AB%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">
 <meta property="og:site_name" content="小乖乖的妙妙屋">
-<meta property="og:description" content="前言 个人将爬虫分为两类，一类是直接使用 requests 库爬取的，一类是需要使用 selenium 爬取的（比如 js 动态加载）。无论是哪一类，都需要控制请求的频率。 代码的部分基本可以要求 kimi 生成或自己查 api，所以不做赘述。此处仅介绍爬取的思路。 分析内容加载方式 一般情况下，F12 可以唤起浏览器的开发者工具。我们可以使用 F12 来对网页进行分析，决定下一步">
+<meta property="og:description" content="前言个人将爬虫分为两类，一类是直接使用 requests 库爬取的，一类是需要使用 selenium 爬取的（比如 js 动态加载）。无论是哪一类，都需要控制请求的频率。 代码的部分基本可以要求 kimi 生成或自己查 api，所以不做赘述。此处仅介绍爬取的思路。 分析内容加载方式一般情况下，F12 可以唤起浏览器的开发者工具。我们可以使用 F12 来对网页进行分析，决定下一步该做什么。 一般来讲">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/images/直接响应.png">
-<meta property="og:image" content="http://example.com/images/微博的反例.png">
-<meta property="og:image" content="http://example.com/images/模仿请求.png">
-<meta property="og:image" content="http://example.com/images/查看元素.png">
-<meta property="og:image" content="http://example.com/images/NDSS爬取.png">
-<meta property="og:image" content="http://example.com/images/X爬取示例.png">
+<meta property="og:image" content="http://example.com/images/%E7%9B%B4%E6%8E%A5%E5%93%8D%E5%BA%94.png">
+<meta property="og:image" content="http://example.com/images/%E5%BE%AE%E5%8D%9A%E7%9A%84%E5%8F%8D%E4%BE%8B.png">
+<meta property="og:image" content="http://example.com/images/%E6%A8%A1%E4%BB%BF%E8%AF%B7%E6%B1%82.png">
+<meta property="og:image" content="http://example.com/images/%E6%9F%A5%E7%9C%8B%E5%85%83%E7%B4%A0.png">
+<meta property="og:image" content="http://example.com/images/NDSS%E7%88%AC%E5%8F%96.png">
+<meta property="og:image" content="http://example.com/images/X%E7%88%AC%E5%8F%96%E7%A4%BA%E4%BE%8B.png">
 <meta property="article:published_time" content="2025-01-11T05:22:08.000Z">
-<meta property="article:modified_time" content="2025-01-11T14:49:28.973Z">
+<meta property="article:modified_time" content="2025-01-11T14:57:36.214Z">
 <meta property="article:author" content="Qing-LKY">
 <meta property="article:tag" content="爬虫">
 <meta property="article:tag" content="Python">
 <meta property="article:tag" content="f&#x3D;base64">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/images/直接响应.png">
+<meta name="twitter:image" content="http://example.com/images/%E7%9B%B4%E6%8E%A5%E5%93%8D%E5%BA%94.png">
 
 <link rel="canonical" href="http://example.com/2025/01/11/%E5%9F%BA%E7%A1%80%E7%88%AC%E8%99%AB%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86/">
 
@@ -321,7 +321,7 @@ mjx-container[display="true"] + br {
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2025-01-11 13:22:08 / 修改时间：22:49:28" itemprop="dateCreated datePublished" datetime="2025-01-11T13:22:08+08:00">2025-01-11</time>
+              <time title="创建时间：2025-01-11 13:22:08 / 修改时间：22:57:36" itemprop="dateCreated datePublished" datetime="2025-01-11T13:22:08+08:00">2025-01-11</time>
             </span>
 
           
@@ -356,135 +356,71 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="前言">前言</h2>
-<p>个人将爬虫分为两类，一类是直接使用 requests 库爬取的，一类是需要使用
-selenium 爬取的（比如 js
-动态加载）。无论是哪一类，都需要控制请求的频率。</p>
-<p>代码的部分基本可以要求 kimi 生成或自己查
-api，所以不做赘述。此处仅介绍爬取的思路。</p>
-<h2 id="分析内容加载方式">分析内容加载方式</h2>
-<p>一般情况下，F12 可以唤起浏览器的开发者工具。我们可以使用 F12
-来对网页进行分析，决定下一步该做什么。</p>
-<p>一般来讲，我们在浏览器上看到的网页，是浏览器加载各种 js
-后显示出来的。但在我们使用 requests 库或 curl
-时，由于不存在浏览器环境，并不会加载
-js，所以我们需要判断<strong>要爬取的内容是否在目标页面直接响应的时候就已经存在</strong>。</p>
-<p>一种简单的方式是直接 curl
-获取页面的源码，然后检查里面是否有我们想爬的内容。这里我们介绍一下用 F12
-来查看。</p>
-<p>由于 F12 的网络工具只有在打开时才会记录请求，所以打开 F12
-并点击“网络”后还要重新刷新一下页面。一般的，一个页面的直接响应会在第一位。</p>
-<p><img src="/images/直接响应.png"></p>
-<p>单击那个请求，点击响应，就可以看到那个响应的源码。使用 ctrl+F
-搜索就可以判断想要的内容是否在上面。</p>
-<p><strong>如果内容不在上面，那么我们将无法直接使用 requests
-库爬取页面</strong>。也就是常见的反爬手段：JS 动态加载。</p>
-<p>下面的微博就是一个例子。微博的内容并不在 document
-类型的页面直接响应中。通过查找，我们可以发现它在一个 hottimeline 的 xhr
-类型的请求里。</p>
-<p><img src="/images/微博的反例.png"></p>
-<p>对于无法直接使用 requests 爬取 html 页面然后使用 beautifulsoup
-分析页面代码的，有以下两种思路：</p>
-<p>首先，直接发起对应的请求。requests 并不只能请求 html
-页面，如果你能分析出内容所在的这个请求是怎么生成的（比如上面的
-hottimeline 这个请求），那么你可以<strong>直接代替浏览器用 requests
-库来发起它</strong>。</p>
-<p>单击该请求，你可以尝试模仿它的
-url、标头、载荷、cookie，看看能不能获取到想要的内容。</p>
-<p><img src="/images/模仿请求.png"></p>
-<p>某种意义上讲，你也可以称其为<strong>对页面加载过程的逆向</strong>。可能比较复杂，特别在需要涉及到
-cookie 凭证的生成等等的时候，感兴趣的可以试一下。</p>
-<p>第二种思路就是直接使用 <strong>selenium</strong>
-库。也就是浏览器自动化测试工具。这种方式原理和实现也比较简单，相当于自动打开一个浏览器，让浏览器自己加载内容然后爬取。不用操心乱七八糟的
-js 动态加载、 CloudFlare 认证等，可以让浏览器甚至手动代劳。</p>
-<p>但是 selenium 需要图形截面和 <a target="_blank" rel="noopener" href="https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/?cs=4112006293&amp;form=MA13LH">webdriver</a>，所以难以在服务器上运行。</p>
-<h2 id="定位-dom-元素">定位 DOM 元素</h2>
-<p>直接在页面上对应位置右键然后点击“检查”，可以跳转到元素。而在元素页面挪动鼠标，可以在页面上高亮出该元素的对应内容。</p>
-<p><img src="/images/查看元素.png"></p>
-<p>通过这种方式，你可以判断目标元素的位置，然后在右键菜单栏中复制定位的辅助信息比如
-XPath 等（也可以自行观察元素 html
-代码的属性），用于在代码中抓取指定元素的内容。</p>
-<p>请注意，“元素”栏显示的是网页完成加载后的页面元素，如果使用的是
-selenium，可以直接参照它来定位。但如果使用的是
-requests，元素里呈现的可能与初始响应的不同（当然，大多数情况下是相同的）。</p>
-<p>有一些特殊的情况，比如内容虽然包含在直接响应里，但是并不是在 html
-页面上，而是在 html 页面源码的 js 块里（比如 <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/10498135">IEEE</a>）。</p>
-<p>实际上，由于 response.text 实际上就是整个响应的 html 源码，直接对
-response.text 使用正则表达式匹配出来即可。下面是一个从 IEEE
-的某个文章页面的 js 代码里抓取 <code>xplGlobal.document.metadata</code>
-的例子：</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>个人将爬虫分为两类，一类是直接使用 requests 库爬取的，一类是需要使用 selenium 爬取的（比如 js 动态加载）。无论是哪一类，都需要控制请求的频率。</p>
+<p>代码的部分基本可以要求 kimi 生成或自己查 api，所以不做赘述。此处仅介绍爬取的思路。</p>
+<h2 id="分析内容加载方式"><a href="#分析内容加载方式" class="headerlink" title="分析内容加载方式"></a>分析内容加载方式</h2><p>一般情况下，F12 可以唤起浏览器的开发者工具。我们可以使用 F12 来对网页进行分析，决定下一步该做什么。</p>
+<p>一般来讲，我们在浏览器上看到的网页，是浏览器加载各种 js 后显示出来的。但在我们使用 requests 库或 curl 时，由于不存在浏览器环境，并不会加载 js，所以我们需要判断<strong>要爬取的内容是否在目标页面直接响应的时候就已经存在</strong>。</p>
+<p>一种简单的方式是直接 curl 获取页面的源码，然后检查里面是否有我们想爬的内容。这里我们介绍一下用 F12 来查看。</p>
+<p>由于 F12 的网络工具只有在打开时才会记录请求，所以打开 F12 并点击“网络”后还要重新刷新一下页面。一般的，一个页面的直接响应会在第一位。</p>
+<p><img src="/images/%E7%9B%B4%E6%8E%A5%E5%93%8D%E5%BA%94.png"></p>
+<p>单击那个请求，点击响应，就可以看到那个响应的源码。使用 ctrl+F 搜索就可以判断想要的内容是否在上面。</p>
+<p><strong>如果内容不在上面，那么我们将无法直接使用 requests 库爬取页面</strong>。也就是常见的反爬手段：JS 动态加载。</p>
+<p>下面的微博就是一个例子。微博的内容并不在 document 类型的页面直接响应中。通过查找，我们可以发现它在一个 hottimeline 的 xhr 类型的请求里。</p>
+<p><img src="/images/%E5%BE%AE%E5%8D%9A%E7%9A%84%E5%8F%8D%E4%BE%8B.png"></p>
+<p>对于无法直接使用 requests 爬取 html 页面然后使用 beautifulsoup 分析页面代码的，有以下两种思路：</p>
+<p>首先，直接发起对应的请求。requests 并不只能请求 html 页面，如果你能分析出内容所在的这个请求是怎么生成的（比如上面的 hottimeline 这个请求），那么你可以<strong>直接代替浏览器用 requests 库来发起它</strong>。</p>
+<p>单击该请求，你可以尝试模仿它的 url、标头、载荷、cookie，看看能不能获取到想要的内容。</p>
+<p><img src="/images/%E6%A8%A1%E4%BB%BF%E8%AF%B7%E6%B1%82.png"></p>
+<p>某种意义上讲，你也可以称其为<strong>对页面加载过程的逆向</strong>。可能比较复杂，特别在需要涉及到 cookie 凭证的生成等等的时候，感兴趣的可以试一下。</p>
+<p>第二种思路就是直接使用 <strong>selenium</strong> 库。也就是浏览器自动化测试工具。这种方式原理和实现也比较简单，相当于自动打开一个浏览器，让浏览器自己加载内容然后爬取。不用操心乱七八糟的 js 动态加载、 CloudFlare 认证等，可以让浏览器甚至手动代劳。</p>
+<p>但是 selenium 需要图形截面和 <a target="_blank" rel="noopener" href="https://developer.microsoft.com/zh-cn/microsoft-edge/tools/webdriver/?cs=4112006293&form=MA13LH">webdriver</a>，所以难以在服务器上运行。</p>
+<h2 id="定位-DOM-元素"><a href="#定位-DOM-元素" class="headerlink" title="定位 DOM 元素"></a>定位 DOM 元素</h2><p>直接在页面上对应位置右键然后点击“检查”，可以跳转到元素。而在元素页面挪动鼠标，可以在页面上高亮出该元素的对应内容。</p>
+<p><img src="/images/%E6%9F%A5%E7%9C%8B%E5%85%83%E7%B4%A0.png"></p>
+<p>通过这种方式，你可以判断目标元素的位置，然后在右键菜单栏中复制定位的辅助信息比如 XPath 等（也可以自行观察元素 html 代码的属性），用于在代码中抓取指定元素的内容。</p>
+<p>请注意，“元素”栏显示的是网页完成加载后的页面元素，如果使用的是 selenium，可以直接参照它来定位。但如果使用的是 requests，元素里呈现的可能与初始响应的不同（当然，大多数情况下是相同的）。</p>
+<p>有一些特殊的情况，比如内容虽然包含在直接响应里，但是并不是在 html 页面上，而是在 html 页面源码的 js 块里（比如 <a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/abstract/document/10498135">IEEE</a>）。</p>
+<p>实际上，由于 response.text 实际上就是整个响应的 html 源码，直接对 response.text 使用正则表达式匹配出来即可。下面是一个从 IEEE 的某个文章页面的 js 代码里抓取 <code>xplGlobal.document.metadata</code> 的例子：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">response = requests.get(url, headers=headers)</span><br><span class="line"><span class="keyword">if</span> response.status_code != <span class="number">200</span>:</span><br><span class="line">    <span class="keyword">raise</span> Exception(<span class="string">f"response status_code <span class="subst">{response.status_code}</span>"</span>)</span><br><span class="line"><span class="comment"># 获取 JS 里的 metadata</span></span><br><span class="line">pattern = <span class="string">r"xplGlobal\.document\.metadata\s*=\s*(.*);(?=\s*\n)"</span></span><br><span class="line">match = re.search(pattern, response.text)</span><br><span class="line">metadata = match.group(<span class="number">1</span>).strip()</span><br><span class="line">ieee_data = json.loads(metadata)</span><br></pre></td></tr></table></figure>
-<h2 id="通用流程">通用流程</h2>
-<p>其实针对页面的爬虫编写的步骤可以概括为：</p>
-<ol type="1">
-<li><p>获取包含有想要内容的页面（使用 selenium 的
-<code>driver.get</code> 或 requests 库发起请求）</p></li>
-<li><p>确定要爬的内容是哪个元素</p></li>
-<li><p>使用页面解析库定位并获取元素（这一步如果不懂，可以把辅助信息比如
-xpath、对应元素的 html 源码等发送给 kimi 要求针对性的生成代码）：</p>
-<ol type="a">
-<li><p>对于直接 requests 得到的 response，可以使用 beautifulsoup 或 lxml
-等；</p></li>
-<li><p>对于 selenium，直接使用 <code>find_elements</code></p></li>
-</ol></li>
-<li><p>处理数据并保存</p></li>
+
+<h2 id="通用流程"><a href="#通用流程" class="headerlink" title="通用流程"></a>通用流程</h2><p>其实针对页面的爬虫编写的步骤可以概括为：</p>
+<ol>
+<li><p>获取包含有想要内容的页面（使用 selenium 的 <code>driver.get</code> 或 requests 库发起请求）</p>
+</li>
+<li><p>确定要爬的内容是哪个元素</p>
+</li>
+<li><p>使用页面解析库定位并获取元素（这一步如果不懂，可以把辅助信息比如 xpath、对应元素的 html 源码等发送给 kimi 要求针对性的生成代码）：</p>
+<p>a. 对于直接 requests 得到的 response，可以使用 beautifulsoup 或 lxml 等；</p>
+<p>b. 对于 selenium，直接使用 <code>find_elements</code></p>
+</li>
+<li><p>处理数据并保存</p>
+</li>
 </ol>
-<h3 id="使用-beautifulsoup-分析并定位元素">使用 beautifulsoup
-分析并定位元素</h3>
-<p>beautifulsoup 仅支持基于标签名的检索。下面是一个从 <a target="_blank" rel="noopener" href="https://www.ndss-symposium.org/ndss-paper/architecting-trigger-action-platforms-for-security-performance-and-functionality/">ndss</a>
-上爬取作者、摘要信息的例子：</p>
-<p><img src="/images/NDSS爬取.png"></p>
+<h2 id="使用-beautifulsoup-分析并定位元素"><a href="#使用-beautifulsoup-分析并定位元素" class="headerlink" title="使用 beautifulsoup 分析并定位元素"></a>使用 beautifulsoup 分析并定位元素</h2><p>beautifulsoup 仅支持基于标签名的检索。下面是一个从 <a target="_blank" rel="noopener" href="https://www.ndss-symposium.org/ndss-paper/architecting-trigger-action-platforms-for-security-performance-and-functionality/">ndss</a> 上爬取作者、摘要信息的例子：</p>
+<p><img src="/images/NDSS%E7%88%AC%E5%8F%96.png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">response = requests.get(url)</span><br><span class="line"><span class="keyword">if</span> response.status_code != <span class="number">200</span>:</span><br><span class="line">    <span class="keyword">raise</span> Exception(response.status_code)</span><br><span class="line">soup = BeautifulSoup(response.text, <span class="string">"html.parser"</span>)</span><br><span class="line">paper_data_div = soup.find(<span class="string">'div'</span>, class_=<span class="string">'paper-data'</span>)</span><br><span class="line">author_extra = <span class="string">""</span></span><br><span class="line">abstract = <span class="string">""</span></span><br><span class="line"><span class="keyword">if</span> paper_data_div:</span><br><span class="line">    paragraphs = paper_data_div.find_all(<span class="string">'p'</span>)</span><br><span class="line">    <span class="comment"># 段落一对应作者（含单位）</span></span><br><span class="line">    author_extra = paragraphs[<span class="number">0</span>].get_text(strip=<span class="literal">True</span>)</span><br><span class="line">    institutions = ndss_get_institution(author_extra)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(institutions)):</span><br><span class="line">        paper[<span class="string">"author"</span>][i][<span class="string">"from"</span>] = institutions[i]</span><br><span class="line">    <span class="comment"># 后续对应摘要</span></span><br><span class="line">    abstract = <span class="string">'\n'</span>.join([p.get_text(strip=<span class="literal">True</span>) <span class="keyword">for</span> p <span class="keyword">in</span> paragraphs[<span class="number">1</span>:]])</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">raise</span> Exception(<span class="string">"&lt;div paper-data&gt; not found!"</span>)</span><br><span class="line"><span class="comment"># paper["author_extra"] = author_extra</span></span><br><span class="line">paper[<span class="string">"abstract"</span>] = abstract</span><br></pre></td></tr></table></figure>
-<p>需要注意的是，requests 得到的是直接响应。上面的 NDSS
-例子中网页结构比较简单，元素与直接响应是对应的。如果你在 F12
-中看到了某个元素，但是实际爬的时候没有找到，应该去检查直接响应里这个元素是否存在，以直接响应为准处理。</p>
-<p>换句话讲，使用 requests
-爬取页面时，不要过分依赖浏览器页面上的元素布置（尤其是相对布置），因为那有可能是前端在加载页面的时候额外从
-js 里弄上去的。</p>
-<p>至于使用 requests 发起 api 请求的，得到的内容并不是 html
-格式，需要使用其它的方式处理。当然，也更简单了。</p>
-<h3 id="使用-selenium-爬取元素">使用 selenium 爬取元素</h3>
-<p>下面是使用 selenium
-加载并爬取页面元素的基本例子（以推特的页面为例）：</p>
-<p><img src="/images/X爬取示例.png"></p>
+
+<p>需要注意的是，requests 得到的是直接响应。上面的 NDSS 例子中网页结构比较简单，元素与直接响应是对应的。如果你在 F12 中看到了某个元素，但是实际爬的时候没有找到，应该去检查直接响应里这个元素是否存在，以直接响应为准处理。</p>
+<p>换句话讲，使用 requests 爬取页面时，不要过分依赖浏览器页面上的元素布置（尤其是相对布置），因为那有可能是前端在加载页面的时候额外从 js 里弄上去的。</p>
+<p>至于使用 requests 发起 api 请求的，得到的内容并不是 html 格式，需要使用其它的方式处理。当然，也更简单了。</p>
+<h2 id="使用-selenium-爬取元素"><a href="#使用-selenium-爬取元素" class="headerlink" title="使用 selenium 爬取元素"></a>使用 selenium 爬取元素</h2><p>下面是使用 selenium 加载并爬取页面元素的基本例子（以推特的页面为例）：</p>
+<p><img src="/images/X%E7%88%AC%E5%8F%96%E7%A4%BA%E4%BE%8B.png"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Edge()</span><br><span class="line">driver.get(<span class="string">"https://x.com/zmjjkk/photo"</span>)</span><br><span class="line">photo_xpath = <span class="string">'//img[@alt="Image" and contains(@src, "https://pbs.twimg.com/profile_images/") and contains(@src, "_400x400.jpg")]'</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  WebDriverWait(driver, <span class="number">10</span>).until(</span><br><span class="line">      expected_conditions.presence_of_element_located((By.XPATH, photo_xpath))</span><br><span class="line">  )</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">f"<span class="subst">{Fore.RED}</span>Fail to get photo when trying for uid <span class="subst">{uid}</span><span class="subst">{Style.RESET_ALL}</span>"</span>)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">  <span class="comment"># looks changable</span></span><br><span class="line">  img_element = driver.find_element(By.XPATH, photo_xpath)</span><br><span class="line">  img_url = img_element.get_attribute(<span class="string">'src'</span>)</span><br><span class="line"><span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">f"<span class="subst">{Fore.RED}</span>Fail to get img url when trying for uid <span class="subst">{uid}</span>: <span class="subst">{e}</span><span class="subst">{Style.RESET_ALL}</span>"</span>)</span><br><span class="line"><span class="keyword">return</span> (name, intro, img_url)</span><br></pre></td></tr></table></figure>
-<p>由于 selenium 需要用浏览器来加载页面，我们需要给出足够的等待时间来让
-js 上的内容加载到页面上。</p>
-<p>你可能注意到了，我代码中使用的 XPath 非常特殊。这是因为使用 selenium
-抓取页面存在一个问题：不稳定性。</p>
-<p>以 X 的页面为例，它的 DOM
-元素是前端框架动态加载的。当你调整浏览器的窗口大小、甚至换一个环境，元素对应的位置和
-class
-可能就会发生改变。为此，我们需要找到一个更加稳定的方式来获取这个元素。所以我结合了该
-img 标签的特征写下了上面的代码。</p>
-<p>当然，只要你把你的需求描述清楚，把你要爬的内容和元素的特征（甚至整个元素的源码复制上去）描述清楚，kimi
-也是可以代劳的。</p>
-<p>使用 selenium
-的另一个好处是可以手动处理一些复杂的事情，比如登录。</p>
+
+<p>由于 selenium 需要用浏览器来加载页面，我们需要给出足够的等待时间来让 js 上的内容加载到页面上。</p>
+<p>你可能注意到了，我代码中使用的 XPath 非常特殊。这是因为使用 selenium 抓取页面存在一个问题：不稳定性。</p>
+<p>以 X 的页面为例，它的 DOM 元素是前端框架动态加载的。当你调整浏览器的窗口大小、甚至换一个环境，元素对应的位置和 class 可能就会发生改变。为此，我们需要找到一个更加稳定的方式来获取这个元素。所以我结合了该 img 标签的特征写下了上面的代码。</p>
+<p>当然，只要你把你的需求描述清楚，把你要爬的内容和元素的特征（甚至整个元素的源码复制上去）描述清楚，kimi 也是可以代劳的。</p>
+<p>使用 selenium 的另一个好处是可以手动处理一些复杂的事情，比如登录。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">driver.get(<span class="string">"https://x.com"</span>)</span><br><span class="line"><span class="built_in">input</span>(<span class="string">"Press any key to continue"</span>)</span><br></pre></td></tr></table></figure>
-<p>我们完全可以在打开的浏览器上把有需要做的事情（比如 cloudflare
-人机验证、页面登录）的事情全干了。然后再让它运行。</p>
+
+<p>我们完全可以在打开的浏览器上把有需要做的事情（比如 cloudflare 人机验证、页面登录）的事情全干了。然后再让它运行。</p>
 <p>当然，最优雅最完美的方法肯定是去研究那些东西的机制，而不是手动来做。</p>
-<h2 id="防止被-ban">防止被 ban</h2>
-<p>爬虫时，建议至少设置一个类似与正常浏览器的
-header，并控制请求频率。</p>
-<p>部分网站反爬只是断开链接，影响是暂时，而有些网站则会直接 ban 掉你的
-ip（比如
-dl.acm）。所以还是建议保持足够长的间隔，最好是到10s。反正没必要那么着急。</p>
-<h2 id="总结">总结</h2>
-<p>其实我自己也没有多了解爬虫和 Web。我只能想办法让它 works。selenium
-基本是万能的解法。但有些时候还是要分析一下 F12
-抓到的请求看看有没有更方便更优雅的做法。</p>
-<p>并且，当你是打算抓取某个网站的“全部页面”时，你需要考虑一下你要从哪里知道所谓的“全部页面”是哪些。换句话讲：你需要先抓取导航页得到文章列表（也有些网站的文章列表藏在
-JS 或某些可模仿的 API 请求里，<strong>善用 F12 和
-Ctrl+F，你会找到最优雅最高效的解法</strong>），再抓取文章内容。只要有思路，实现起来都不难，毕竟有各种生成式
-AI 可以辅助你。</p>
-<p>此外，Github 上也许有已经写好的开源爬虫库可以使用，特别是 X
-之类的网站。如果你要对付的是比较著名的页面，在网络上搜索也许能找到现成的代码资源。</p>
-<h2 id="尾声">尾声</h2>
-<p content="6K6w5L2P77yM5LiN566h5piv54is6Jmr6L+Y5piv5Lu75L2V5Yir55qE5Lic6KW/77yMa2ltaSDlj6/ku6XovoXliqnkvaDlrp7njrDvvIzkvYYqKuS4jeimgeaKiiBraW1pIOW9k+eIuSoq77yM6Iez5bCR6KaB55yL5oeCIGtpbWkg5Lii57uZ5L2g55qE5piv5LuA5LmI44CC6Zmk6Z2e5L2g6IO95YOP5p+Q5p2h5pW05aSp6KOF5qih5YGa5qC35YW25a6e5LuA5LmI6YO95LiN5Lya5LuA5LmI5LqL5oOF6YO95Y+q55+l6YGT5b6A5LiL6Z2i55Sp57uZa2ltaeeIueWwveWtnemDveWtneS4jeaYjueZvemAu+i+keS4gOWdqOaehOW8j+WumOWRs+Wkp+eahOWPkeeYn+eahOWtpuacr+Wltum+meS4gOagt+aIkOWkqeacieS6uuWFnOW6leOAgg==">
-。
-</p>
+<h2 id="防止被-ban"><a href="#防止被-ban" class="headerlink" title="防止被 ban"></a>防止被 ban</h2><p>爬虫时，建议至少设置一个类似与正常浏览器的 header，并控制请求频率。</p>
+<p>部分网站反爬只是断开链接，影响是暂时，而有些网站则会直接 ban 掉你的 ip（比如 dl.acm）。所以还是建议保持足够长的间隔，最好是到10s。反正没必要那么着急。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>其实我自己也没有多了解爬虫和 Web。我只能想办法让它 works。selenium 基本是万能的解法。但有些时候还是要分析一下 F12 抓到的请求看看有没有更方便更优雅的做法。</p>
+<p>并且，当你是打算抓取某个网站的“全部页面”时，你需要考虑一下你要从哪里知道所谓的“全部页面”是哪些。换句话讲：你需要先抓取导航页得到文章列表（也有些网站的文章列表藏在 JS 或某些可模仿的 API 请求里，<strong>善用 F12 和 Ctrl+F，你会找到最优雅最高效的解法</strong>），再抓取文章内容。只要有思路，实现起来都不难，毕竟有各种生成式 AI 可以辅助你。</p>
+<p>此外，Github 上也许有已经写好的开源爬虫库可以使用，特别是 X 之类的网站。如果你要对付的是比较著名的页面，在网络上搜索也许能找到现成的代码资源。</p>
+<h2 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h2><p content="6K6w5L2P77yM5LiN566h5piv54is6Jmr6L+Y5piv5Lu75L2V5Yir55qE5Lic6KW/77yMa2ltaSDlj6/ku6XovoXliqnkvaDlrp7njrDvvIzkvYYqKuS4jeimgeaKiiBraW1pIOW9k+eIuSoq77yM6Iez5bCR6KaB55yL5oeCIGtpbWkg5Lii57uZ5L2g55qE5piv5LuA5LmI44CC6Zmk6Z2e5L2g6IO95YOP5p+Q5p2h5pW05aSp6KOF5qih5YGa5qC35YW25a6e5LuA5LmI6YO95LiN5Lya5LuA5LmI5LqL5oOF6YO95Y+q55+l6YGT5b6A5LiL6Z2i55Sp57uZa2ltaeeIueWwveWtnemDveWtneS4jeaYjueZvemAu+i+keS4gOWdqOaehOW8j+WumOWRs+Wkp+eahOWPkeeYn+eahOWtpuacr+Wltum+meS4gOagt+aIkOWkqeacieS6uuWFnOW6leOAgg==">。</p>
 
     </div>
 
@@ -567,8 +503,7 @@ AI 可以辅助你。</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%86%85%E5%AE%B9%E5%8A%A0%E8%BD%BD%E6%96%B9%E5%BC%8F"><span class="nav-text">分析内容加载方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D-dom-%E5%85%83%E7%B4%A0"><span class="nav-text">定位 DOM 元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-text">通用流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-beautifulsoup-%E5%88%86%E6%9E%90%E5%B9%B6%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0"><span class="nav-text">使用 beautifulsoup
-分析并定位元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-selenium-%E7%88%AC%E5%8F%96%E5%85%83%E7%B4%A0"><span class="nav-text">使用 selenium 爬取元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E8%A2%AB-ban"><span class="nav-text">防止被 ban</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-text">尾声</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E5%86%85%E5%AE%B9%E5%8A%A0%E8%BD%BD%E6%96%B9%E5%BC%8F"><span class="nav-text">分析内容加载方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%BD%8D-DOM-%E5%85%83%E7%B4%A0"><span class="nav-text">定位 DOM 元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E6%B5%81%E7%A8%8B"><span class="nav-text">通用流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-beautifulsoup-%E5%88%86%E6%9E%90%E5%B9%B6%E5%AE%9A%E4%BD%8D%E5%85%83%E7%B4%A0"><span class="nav-text">使用 beautifulsoup 分析并定位元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-selenium-%E7%88%AC%E5%8F%96%E5%85%83%E7%B4%A0"><span class="nav-text">使用 selenium 爬取元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E6%AD%A2%E8%A2%AB-ban"><span class="nav-text">防止被 ban</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%BE%E5%A3%B0"><span class="nav-text">尾声</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
